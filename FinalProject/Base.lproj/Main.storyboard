@@ -181,7 +181,7 @@
         <!--Item-->
         <scene sceneID="7wn-Rw-flW">
             <objects>
-                <navigationController id="9cg-dY-Ddx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PostBranch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9cg-dY-Ddx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="3gR-kZ-VSs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4gq-5J-1Wu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

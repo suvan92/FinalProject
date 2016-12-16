@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Current Posts View Controller-->
         <scene sceneID="jFR-Q9-uYu">
             <objects>
-                <viewController id="esz-wP-k9g" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrentPostsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="esz-wP-k9g" customClass="CurrentPostsViewController" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eAw-8i-HEk"/>
                         <viewControllerLayoutGuide type="bottom" id="euU-gm-gpV"/>
