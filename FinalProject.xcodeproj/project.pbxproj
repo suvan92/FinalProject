@@ -13,7 +13,6 @@
 		147917E91E0370B900727419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E71E0370B900727419 /* LaunchScreen.storyboard */; };
 		147917F71E0373E100727419 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917F61E0373E100727419 /* User.swift */; };
 		147917F91E03740F00727419 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917F81E03740F00727419 /* FoodItem.swift */; };
-		147917FC1E037B6D00727419 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 147917FB1E037B6D00727419 /* GoogleService-Info.plist */; };
 		147917FE1E037D5000727419 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917FD1E037D5000727419 /* LoginViewController.swift */; };
 		147918001E037D8400727419 /* PostBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917FF1E037D8400727419 /* PostBranch.storyboard */; };
 		147918021E037D8D00727419 /* RequestBranch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147918011E037D8D00727419 /* RequestBranch.storyboard */; };
@@ -21,6 +20,8 @@
 		147918061E03916300727419 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918051E03916300727419 /* Router.swift */; };
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
+		B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063BEE71E039FF800818E7B /* NewPostViewController.swift */; };
+		B063BEEA1E04564600818E7B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B063BEE91E04564600818E7B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +33,6 @@
 		147917EA1E0370B900727419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		147917F61E0373E100727419 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		147917F81E03740F00727419 /* FoodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
-		147917FB1E037B6D00727419 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		147917FD1E037D5000727419 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		147917FF1E037D8400727419 /* PostBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostBranch.storyboard; sourceTree = "<group>"; };
 		147918011E037D8D00727419 /* RequestBranch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RequestBranch.storyboard; sourceTree = "<group>"; };
@@ -42,6 +42,8 @@
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
+		B063BEE71E039FF800818E7B /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		B063BEE91E04564600818E7B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +132,7 @@
 		147917FA1E037B5000727419 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				147917FB1E037B6D00727419 /* GoogleService-Info.plist */,
+				B063BEE91E04564600818E7B /* GoogleService-Info.plist */,
 				147917E51E0370B900727419 /* Assets.xcassets */,
 				147917EA1E0370B900727419 /* Info.plist */,
 			);
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				147918071E03921000727419 /* CurrentPostsViewController.swift */,
+				B063BEE71E039FF800818E7B /* NewPostViewController.swift */,
 			);
 			name = PostBranch;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				TargetAttributes = {
 					147917DA1E0370B900727419 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 9NXK8LBV53;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -239,12 +243,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				147917E91E0370B900727419 /* LaunchScreen.storyboard in Resources */,
-				147917FC1E037B6D00727419 /* GoogleService-Info.plist in Resources */,
 				147918021E037D8D00727419 /* RequestBranch.storyboard in Resources */,
 				147917E61E0370B900727419 /* Assets.xcassets in Resources */,
 				147918041E037D9600727419 /* Messages.storyboard in Resources */,
 				147918001E037D8400727419 /* PostBranch.storyboard in Resources */,
 				147917E41E0370B900727419 /* Main.storyboard in Resources */,
+				B063BEEA1E04564600818E7B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,7 @@
 				147917F91E03740F00727419 /* FoodItem.swift in Sources */,
 				147917DF1E0370B900727419 /* AppDelegate.swift in Sources */,
 				147918061E03916300727419 /* Router.swift in Sources */,
+				B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,
@@ -432,7 +437,9 @@
 			baseConfigurationReference = 9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9NXK8LBV53;
 				INFOPLIST_FILE = FinalProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.suvanr.FinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -445,7 +452,9 @@
 			baseConfigurationReference = AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9NXK8LBV53;
 				INFOPLIST_FILE = FinalProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.suvanr.FinalProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";

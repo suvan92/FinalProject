@@ -1,2 +1,5 @@
 FinalProject/GoogleService-Info.plist
-Pods/
+Pods/*
+FinalProject.xcworkspace/xcuserdata/timbeals.xcuserdatad/UserInterfaceState.xcuserstate
+FinalProject.xcodeproj/xcuserdata/timbeals.xcuserdatad/xcschemes/xcschememanagement.plist
+
