@@ -12,6 +12,8 @@
 		147917E41E0370B900727419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E21E0370B900727419 /* Main.storyboard */; };
 		147917E61E0370B900727419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147917E51E0370B900727419 /* Assets.xcassets */; };
 		147917E91E0370B900727419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E71E0370B900727419 /* LaunchScreen.storyboard */; };
+		147917F71E0373E100727419 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917F61E0373E100727419 /* User.swift */; };
+		147917F91E03740F00727419 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917F81E03740F00727419 /* FoodItem.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		147917E51E0370B900727419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		147917E81E0370B900727419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		147917EA1E0370B900727419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		147917F61E0373E100727419 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		147917F81E03740F00727419 /* FoodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +65,48 @@
 		147917DD1E0370B900727419 /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
-				147917DE1E0370B900727419 /* AppDelegate.swift */,
-				147917E01E0370B900727419 /* ViewController.swift */,
-				147917E21E0370B900727419 /* Main.storyboard */,
+				147917F51E0372EB00727419 /* UI */,
+				147917F41E0372EA00727419 /* Views */,
+				147917F31E0372E800727419 /* Controllers */,
+				147917F01E0372E300727419 /* Models */,
 				147917E51E0370B900727419 /* Assets.xcassets */,
-				147917E71E0370B900727419 /* LaunchScreen.storyboard */,
 				147917EA1E0370B900727419 /* Info.plist */,
 			);
 			path = FinalProject;
+			sourceTree = "<group>";
+		};
+		147917F01E0372E300727419 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				147917DE1E0370B900727419 /* AppDelegate.swift */,
+				147917F61E0373E100727419 /* User.swift */,
+				147917F81E03740F00727419 /* FoodItem.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		147917F31E0372E800727419 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				147917E01E0370B900727419 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		147917F41E0372EA00727419 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		147917F51E0372EB00727419 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				147917E21E0370B900727419 /* Main.storyboard */,
+				147917E71E0370B900727419 /* LaunchScreen.storyboard */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		92A7DB6FB43451EB884B003F /* Frameworks */ = {
@@ -211,8 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147917F91E03740F00727419 /* FoodItem.swift in Sources */,
 				147917E11E0370B900727419 /* ViewController.swift in Sources */,
 				147917DF1E0370B900727419 /* AppDelegate.swift in Sources */,
+				147917F71E0373E100727419 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +416,7 @@
 				147917EF1E0370B900727419 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
