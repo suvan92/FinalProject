@@ -49,7 +49,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u4d-6N-HJB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="u4d-6N-HJB">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="u4d-6N-HJB" secondAttribute="height" id="S8v-Pm-UJR"/>
                                 </constraints>
@@ -62,6 +62,9 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-zr-YJB">
                                 <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postButton:" destination="0aw-P1-o16" eventType="touchUpInside" id="6Lb-sY-8hT"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Food Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HnQ-En-CwR">
                                 <nil key="textColor"/>
@@ -103,10 +106,19 @@
                             <constraint firstItem="ek4-PN-sg3" firstAttribute="top" secondItem="WbS-zr-YJB" secondAttribute="bottom" constant="20" id="u0B-RV-oPu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foodDescription" destination="jDs-lP-Idd" id="mZg-35-RgI"/>
+                        <outlet property="foodTitleTextField" destination="HnQ-En-CwR" id="Fa7-d4-ZQe"/>
+                        <outlet property="imageView" destination="u4d-6N-HJB" id="izO-Ta-Itd"/>
+                        <outlet property="postByLabel" destination="xsa-2m-7KD" id="LLs-04-ZtD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u8n-fb-WaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="-97.601199400299862"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultImage" width="540" height="540"/>
+    </resources>
 </document>

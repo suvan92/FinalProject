@@ -34,5 +34,8 @@ class FoodItem: NSObject {
         self.ref = nil
     }
     
+    func toDictionary() {
+        
+    }
 
 }
