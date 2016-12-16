@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+let loginSegueIdentifier = "loginSegue"
+
 class LoginViewController: UIViewController {
 
     
@@ -35,11 +37,10 @@ class LoginViewController: UIViewController {
             
             FIRAuth.auth()!.createUser(withEmail: email.text!, password: password.text!) { user, error in
                 if error == nil {
-                    print("signup successul!")
+                    self.login(email: email.text!, password: password.text!)
                 } else {
                     print(error!.localizedDescription)
                 }
-                
             }
         }
         signupController.addTextField { textEmail in
@@ -55,8 +56,23 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
+        let email = emailTextField.text
+        let password = passwordTextField.text
         
+        login(email: email!, password: password!)
         
+    }
+    
+    func login(email: String, password: String) {
+        
+        FIRAuth.auth()!.signIn(withEmail: email, password: password) { user, error in
+            if error == nil {
+                self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+            } else {
+                print(error!.localizedDescription)
+            }
+            
+        }
     }
     
     
