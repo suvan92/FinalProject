@@ -12,30 +12,36 @@ import JSQMessagesViewController
 
 class FoodItem: NSObject {
     
-    let ref : FIRDatabaseReference?
     let name : String
-    let owner : User
-    let photoURL : String?
+    let ownerID : String?
+    let photoID : String
     let itemDescription : String
-    let category : String
-    var requesters : [User]
+    var itemTags : [String]
+    var requesters : [String]
     var requesterChosen : Bool
-    var acceptedRequester : User?
+    var acceptedRequester : String?
     
-    init(name: String, owner: User, photo: String, description: String, category: String) {
+    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
         self.name = name
-        self.owner = owner
-        self.photoURL = photo
+        self.ownerID = owner
+        self.photoID = photo
         self.itemDescription = description
-        self.category = category
+        self.itemTags = tags
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
-        self.ref = nil
     }
     
-    func toDictionary() {
-        
+    func toDictionary() -> [String:Any?] {
+        let result : [String:Any?] = ["name":name,
+                                     "ownerID":nil,
+                                     "photoID":photoID,
+                                     "description":itemDescription,
+                                     "tags":itemTags,
+                                     "requesters":requesters,
+                                     "requesterChosen":false,
+                                     "acceptedRequester":nil]
+        return result
     }
 
 }

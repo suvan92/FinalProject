@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+let storage = FIRStorage.storage()
+let storageRef = storage.reference(forURL: "gs://finalproject-1b778.appspot.com")
+
 class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
     
@@ -91,13 +94,46 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     
     @IBAction func postButton(_ sender: UIButton) {
-    
         
+        let imageName = generateImageName()
         
+        let testRef = storageRef.child("images/\(imageName)")
+        let data = convertImageToData()
+        
+        let uploadTask = testRef.put(data, metadata: nil) { metadata, error in
+            
+            if error == nil {
+                print("\nimage upload successful, url: \(metadata?.downloadURL())")
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
     }
-
-
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print("imageView is touched")
-//    }
+    
+    func convertImageToData() -> Data {
+        let imageForUpload = imageView.image!
+        let imageData : Data = UIImageJPEGRepresentation(imageForUpload, 0.5)!
+        return imageData
+    }
+    
+    func generateImageName() -> String {
+        var uuid = NSUUID().uuidString
+        return uuid + ".jpg"
+    }
+    
+    @IBAction func downloadImageButton(_ sender: UIButton) {
+        let downloadImageRef = storageRef.child("images/373B4D74-853B-4356-9E0E-F45867EA4DB9.jpg")
+        downloadImageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let data = data {
+                let image = UIImage(data: data)
+                self.imageView.image = image!
+                self.imageView.contentMode = .scaleAspectFit
+            }
+        }
+    }
+    
+    
+    
 }

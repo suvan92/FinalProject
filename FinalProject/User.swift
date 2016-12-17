@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class User: NSObject {
     
     let uid : String
     let email : String
-    var postedItems : [FoodItem]
-    var requestedItems : [FoodItem]
+    var postedItems : [String]
+    var requestedItems : [String]
     
     init(uid: String, email: String) {
         self.uid = uid
@@ -21,6 +22,14 @@ class User: NSObject {
         self.postedItems = []
         self.requestedItems = []
     }
+    
+    // Must get reference to user in database and download postedItems and requestedItems arrays separate from authData init method
+//    init(authData: FIRUser) {
+//        uid = authData.uid
+//        email = authData.email!
+//    }
+    
+    
     
 
 }
