@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142583B71E05F7DC00324D32 /* ImageUploader.swift */; };
 		147917DF1E0370B900727419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917DE1E0370B900727419 /* AppDelegate.swift */; };
 		147917E41E0370B900727419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E21E0370B900727419 /* Main.storyboard */; };
 		147917E61E0370B900727419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147917E51E0370B900727419 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		142583B71E05F7DC00324D32 /* ImageUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		147917DB1E0370B900727419 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		147917DE1E0370B900727419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		147917E31E0370B900727419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				147917F61E0373E100727419 /* User.swift */,
 				147917F81E03740F00727419 /* FoodItem.swift */,
 				147918051E03916300727419 /* Router.swift */,
+				142583B71E05F7DC00324D32 /* ImageUploader.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				147918061E03916300727419 /* Router.swift in Sources */,
 				B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
+				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,
 			);

@@ -21,7 +21,7 @@ class FoodItem: NSObject {
     var requesterChosen : Bool
     var acceptedRequester : String?
     
-    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
+    init(name: String, owner: String?, photo: String, description: String, tags: [String]) {
         self.name = name
         self.ownerID = owner
         self.photoID = photo
