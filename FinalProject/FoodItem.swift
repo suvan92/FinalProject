@@ -13,7 +13,7 @@ import JSQMessagesViewController
 class FoodItem: NSObject {
     
     let name : String
-    let ownerID : String
+    let ownerID : String?
     let photoID : String
     let itemDescription : String
     var itemTags : [String]
@@ -34,7 +34,7 @@ class FoodItem: NSObject {
     
     func toDictionary() -> [String:Any?] {
         let result : [String:Any?] = ["name":name,
-                                     "ownerID":ownerID,
+                                     "ownerID":nil,
                                      "photoID":photoID,
                                      "description":itemDescription,
                                      "tags":itemTags,
