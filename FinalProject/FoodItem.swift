@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
+let ref = FIRDatabase.database().reference(withPath: "foodItems")
+
 class FoodItem: NSObject {
     
     let name : String
@@ -20,6 +22,16 @@ class FoodItem: NSObject {
     var requesters : [String]
     var requesterChosen : Bool
     var acceptedRequester : String?
+    
+    // MARK: Class Methods
+    
+    class func saveToDatabase(item :FoodItem) {
+        let newItemRef = ref.childByAutoId()
+        print(newItemRef.description())
+    }
+    
+    
+    // MARK: Instance Methods
     
     init(name: String, owner: String?, photo: String, description: String, tags: [String]) {
         self.name = name

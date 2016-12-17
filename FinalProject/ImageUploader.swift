@@ -14,8 +14,7 @@ let storageRef = storage.reference(forURL: "gs://finalproject-1b778.appspot.com"
 
 class ImageUploader: NSObject {
     
-    class func uploadImage(image: UIImage) -> String {
-        let imageName = ImageUploader.generateImageName()
+    class func upload(image: UIImage, withName imageName: String) {
         
         let testRef = storageRef.child("images/\(imageName)")
         let data = ImageUploader.convertImageToData(image: image)
@@ -29,7 +28,6 @@ class ImageUploader: NSObject {
                 print(error!.localizedDescription)
             }
         }
-        return imageName
     }
     
     class func convertImageToData(image: UIImage) -> Data {

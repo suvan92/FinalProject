@@ -90,8 +90,11 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: Posting Methods
+    
     @IBAction func postButton(_ sender: UIButton) {
-        let imageName = ImageUploader.uploadImage(image: imageView.image!)
+        let imageName = ImageUploader.generateImageName()
+        ImageUploader.upload(image: imageView.image!, withName: imageName)
         createFoodItem(withImageNamed: imageName)
         
     }
@@ -99,8 +102,9 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
         let itemDescription = foodDescription.text
-        
         let newItem = FoodItem(name: itemName, owner: nil, photo: imageName, description: itemDescription!, tags: [])
+        
+        FoodItem.saveToDatabase(item: newItem)
         
     }
     
