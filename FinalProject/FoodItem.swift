@@ -15,6 +15,7 @@ let ref = FIRDatabase.database().reference(withPath: "foodItems")
 class FoodItem: NSObject {
     
     let name : String
+    var dataBaseRef : String?
     let ownerID : String?
     let photoID : String
     let itemDescription : String
@@ -27,7 +28,9 @@ class FoodItem: NSObject {
     
     class func saveToDatabase(item :FoodItem) {
         let newItemRef = ref.childByAutoId()
-        print(newItemRef.description())
+        let referenceString = newItemRef.description()
+        item.dataBaseRef = String(referenceString.characters.suffix(20))
+        newItemRef.setValue(item.toDictionary())
     }
     
     
@@ -42,6 +45,7 @@ class FoodItem: NSObject {
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
+        self.dataBaseRef = nil
     }
     
     func toDictionary() -> [String:Any?] {

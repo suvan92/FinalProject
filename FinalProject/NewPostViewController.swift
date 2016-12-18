@@ -94,8 +94,9 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func postButton(_ sender: UIButton) {
         let imageName = ImageUploader.generateImageName()
-        ImageUploader.upload(image: imageView.image!, withName: imageName)
-        createFoodItem(withImageNamed: imageName)
+        ImageUploader.upload(image: imageView.image!, withName: imageName) {
+            self.createFoodItem(withImageNamed: imageName)
+        }
         
     }
     

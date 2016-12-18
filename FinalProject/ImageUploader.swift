@@ -12,9 +12,11 @@ import Firebase
 let storage = FIRStorage.storage()
 let storageRef = storage.reference(forURL: "gs://finalproject-1b778.appspot.com")
 
+// data(withMaxSize size: Int64, completion: @escaping (Data?, Error?) -> Swift.Void)
+
 class ImageUploader: NSObject {
     
-    class func upload(image: UIImage, withName imageName: String) {
+    class func upload(image: UIImage, withName imageName: String, completion: @escaping () -> Swift.Void) {
         
         let testRef = storageRef.child("images/\(imageName)")
         let data = ImageUploader.convertImageToData(image: image)
@@ -24,6 +26,7 @@ class ImageUploader: NSObject {
             if error == nil {
                 // how to return for parent function
                 print("image upload successful: \(imageName)")
+                completion()
             } else {
                 print(error!.localizedDescription)
             }
