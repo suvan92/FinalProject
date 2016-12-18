@@ -47,7 +47,9 @@ class User: NSObject {
     
     func saveToDatabase() {
         let currentUserRef = userRef.child(self.uid!)
-        currentUserRef.setValue(self.toDictionary())
+        currentUserRef.setValue(self.toDictionary()) {
+            // self.delegate.signUserIn()
+        }
         print("stop")
     }
 }

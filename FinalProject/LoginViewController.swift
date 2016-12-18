@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
                     let currentUser = User.sharedInstance
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
+//                    currentUser.delegate = self
                     currentUser.saveToDatabase()
                     self.login(email: email.text!, password: password.text!)
                 } else {
