@@ -68,6 +68,11 @@ class LoginViewController: UIViewController {
         
         FIRAuth.auth()!.signIn(withEmail: email, password: password) { user, error in
             if error == nil {
+                let userID = user?.uid
+                let userEmail = user?.email
+                User.sharedInstance.uid = userID
+                User.sharedInstance.email = userEmail
+                
                 self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
             } else {
                 print(error!.localizedDescription)
