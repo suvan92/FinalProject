@@ -50,7 +50,7 @@ class FoodItem: NSObject {
     
     func toDictionary() -> [String:Any?] {
         let result : [String:Any?] = ["name":name,
-                                     "ownerID":nil,
+                                     "ownerID":ownerID,
                                      "photoID":photoID,
                                      "description":itemDescription,
                                      "tags":itemTags,

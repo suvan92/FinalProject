@@ -102,7 +102,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
         let itemDescription = foodDescription.text
-        let newItem = FoodItem(name: itemName, owner: nil, photo: imageName, description: itemDescription!, tags: [])
+        let ownerID = User.sharedInstance.uid!
+        let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
         
         FoodItem.saveToDatabase(item: newItem)
         
