@@ -11,25 +11,17 @@ import Firebase
 
 class User: NSObject {
     
-    let uid : String
-    let email : String
-    var postedItems : [String]
-    var requestedItems : [String]
+    var uid : String?
+    var email : String?
+    var postedItems : [String]?
+    var requestedItems : [String]?
     
-    init(uid: String, email: String) {
-        self.uid = uid
-        self.email = email
-        self.postedItems = []
-        self.requestedItems = []
-    }
+    static let sharedInstance = User()
+    private override init() {}
     
     // Must get reference to user in database and download postedItems and requestedItems arrays separate from authData init method
 //    init(authData: FIRUser) {
 //        uid = authData.uid
 //        email = authData.email!
 //    }
-    
-    
-    
-
 }
