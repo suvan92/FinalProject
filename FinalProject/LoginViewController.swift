@@ -38,7 +38,10 @@ class LoginViewController: UIViewController {
             
             FIRAuth.auth()!.createUser(withEmail: email.text!, password: password.text!) { user, error in
                 if error == nil {
-                    (User.sharedInstance as User).saveToDatabase()
+                    let currentUser = User.sharedInstance
+                    currentUser.uid = user?.uid
+                    currentUser.email = user?.email
+                    currentUser.saveToDatabase()
                     self.login(email: email.text!, password: password.text!)
                 } else {
                     print(error!.localizedDescription)

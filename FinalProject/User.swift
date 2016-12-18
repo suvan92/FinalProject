@@ -23,10 +23,13 @@ class User: NSObject {
     
     func setupUserProperties() {
         userRef.queryEqual(toValue: self.uid!).observe(.value, with: { snapshot in
-            self.uid = snapshot.value(forKey: "uid") as? String
-            self.email = snapshot.value(forKey: "email") as? String
-            self.postedItems = snapshot.value(forKey: "postedItems") as? [String]
-            self.requestedItems = snapshot.value(forKey: "requestedItems") as? [String]
+            
+            let snashotValue = snapshot.value as! [String:Any?]
+            
+            self.uid = snashotValue["uid"] as? String
+            self.email = snashotValue["email"] as? String
+            self.postedItems = snashotValue["postedItems"] as? [String]
+            self.requestedItems = snashotValue["requestedItems"] as? [String]
         })
         
         
@@ -43,7 +46,8 @@ class User: NSObject {
     }
     
     func saveToDatabase() {
-        let currentUserRef = ref.child(self.uid!)
+        let currentUserRef = userRef.child(self.uid!)
         currentUserRef.setValue(self.toDictionary())
+        print("stop")
     }
 }
