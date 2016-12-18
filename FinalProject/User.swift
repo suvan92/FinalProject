@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+let userRef = FIRDatabase.database().reference(withPath: "users")
+
 class User: NSObject {
     
     var uid : String?
@@ -19,9 +21,29 @@ class User: NSObject {
     static let sharedInstance = User()
     private override init() {}
     
-    // Must get reference to user in database and download postedItems and requestedItems arrays separate from authData init method
-//    init(authData: FIRUser) {
-//        uid = authData.uid
-//        email = authData.email!
-//    }
+    func setupUserProperties() {
+        userRef.queryEqual(toValue: self.uid!).observe(.value, with: { snapshot in
+            self.uid = snapshot.value(forKey: "uid") as? String
+            self.email = snapshot.value(forKey: "email") as? String
+            self.postedItems = snapshot.value(forKey: "postedItems") as? [String]
+            self.requestedItems = snapshot.value(forKey: "requestedItems") as? [String]
+        })
+        
+        
+    }
+    
+    func toDictionary() -> [String: Any?]{
+        let result : [String: Any?] = [
+            "uid": uid,
+            "email": email,
+            "postedItems": postedItems,
+            "requestedItems": requestedItems
+        ]
+        return result
+    }
+    
+    func saveToDatabase() {
+        let currentUserRef = ref.child(self.uid!)
+        currentUserRef.setValue(self.toDictionary())
+    }
 }

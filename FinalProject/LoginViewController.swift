@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
             
             FIRAuth.auth()!.createUser(withEmail: email.text!, password: password.text!) { user, error in
                 if error == nil {
+                    (User.sharedInstance as User).saveToDatabase()
                     self.login(email: email.text!, password: password.text!)
                 } else {
                     print(error!.localizedDescription)
@@ -68,11 +69,8 @@ class LoginViewController: UIViewController {
         
         FIRAuth.auth()!.signIn(withEmail: email, password: password) { user, error in
             if error == nil {
-                let userID = user?.uid
-                let userEmail = user?.email
-                User.sharedInstance.uid = userID
-                User.sharedInstance.email = userEmail
-                
+                let currentUser = User.sharedInstance
+                currentUser.setupUserProperties()
                 self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
             } else {
                 print(error!.localizedDescription)
