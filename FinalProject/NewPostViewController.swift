@@ -51,8 +51,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let imagePickerController = UIImagePickerController()
         
         //alert
-        let pickerAlert = UIAlertController(title: "Get food post image", message: "Would you like to take a photo, or choose an image from your library?", preferredStyle: .actionSheet)
-        
+        let pickerAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Camera",
                                          style: .default) { action in
