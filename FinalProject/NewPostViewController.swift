@@ -9,8 +9,7 @@
 import UIKit
 import Firebase
 
-let storage = FIRStorage.storage()
-let storageRef = storage.reference(forURL: "gs://finalproject-1b778.appspot.com")
+
 
 class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
@@ -52,8 +51,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let imagePickerController = UIImagePickerController()
         
         //alert
-        let pickerAlert = UIAlertController(title: "Get food post image", message: "Would you like to take a photo, or choose an image from your library?", preferredStyle: .actionSheet)
-        
+        let pickerAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Camera",
                                          style: .default) { action in
@@ -91,35 +89,27 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         dismiss(animated: true, completion: nil)
     }
     
-    
+    // MARK: Posting Methods
     
     @IBAction func postButton(_ sender: UIButton) {
-        
-        let imageName = generateImageName()
-        
-        let testRef = storageRef.child("images/\(imageName)")
-        let data = convertImageToData()
-        
-        let uploadTask = testRef.put(data, metadata: nil) { metadata, error in
-            
-            if error == nil {
-                print("\nimage upload successful, url: \(metadata?.downloadURL())")
-            } else {
-                print(error!.localizedDescription)
-            }
+        let imageName = ImageUploader.generateImageName()
+        ImageUploader.upload(image: imageView.image!, withName: imageName) {
+            self.createFoodItem(withImageNamed: imageName)
         }
+        
     }
     
-    func convertImageToData() -> Data {
-        let imageForUpload = imageView.image!
-        let imageData : Data = UIImageJPEGRepresentation(imageForUpload, 0.5)!
-        return imageData
+    func createFoodItem(withImageNamed imageName: String) {
+        let itemName = foodTitleTextField.text!
+        let itemDescription = foodDescription.text
+        let newItem = FoodItem(name: itemName, owner: nil, photo: imageName, description: itemDescription!, tags: [])
+        
+        FoodItem.saveToDatabase(item: newItem)
+        
     }
     
-    func generateImageName() -> String {
-        var uuid = NSUUID().uuidString
-        return uuid + ".jpg"
-    }
+    
+    
     
     @IBAction func downloadImageButton(_ sender: UIButton) {
         let downloadImageRef = storageRef.child("images/373B4D74-853B-4356-9E0E-F45867EA4DB9.jpg")

@@ -10,9 +10,12 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
+let ref = FIRDatabase.database().reference(withPath: "foodItems")
+
 class FoodItem: NSObject {
     
     let name : String
+    var dataBaseRef : String?
     let ownerID : String?
     let photoID : String
     let itemDescription : String
@@ -21,7 +24,19 @@ class FoodItem: NSObject {
     var requesterChosen : Bool
     var acceptedRequester : String?
     
-    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
+    // MARK: Class Methods
+    
+    class func saveToDatabase(item :FoodItem) {
+        let newItemRef = ref.childByAutoId()
+        let referenceString = newItemRef.description()
+        item.dataBaseRef = String(referenceString.characters.suffix(20))
+        newItemRef.setValue(item.toDictionary())
+    }
+    
+    
+    // MARK: Instance Methods
+    
+    init(name: String, owner: String?, photo: String, description: String, tags: [String]) {
         self.name = name
         self.ownerID = owner
         self.photoID = photo
@@ -30,6 +45,7 @@ class FoodItem: NSObject {
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
+        self.dataBaseRef = nil
     }
     
     func toDictionary() -> [String:Any?] {
