@@ -24,12 +24,12 @@ class User: NSObject {
     func setupUserProperties() {
         userRef.queryEqual(toValue: self.uid!).observe(.value, with: { snapshot in
             
-            let snashotValue = snapshot.value as! [String:Any?]
+            let snapshotValue = snapshot.value as! [String:Any?]
             
-            self.uid = snashotValue["uid"] as? String
-            self.email = snashotValue["email"] as? String
-            self.postedItems = snashotValue["postedItems"] as? [String]
-            self.requestedItems = snashotValue["requestedItems"] as? [String]
+            self.uid = snapshotValue["uid"] as? String
+            self.email = snapshotValue["email"] as? String
+            self.postedItems = snapshotValue["postedItems"] as? [String] //do we need this in for loop?
+            self.requestedItems = snapshotValue["requestedItems"] as? [String] //do we need this in for loop?
         })
         
         
@@ -52,4 +52,17 @@ class User: NSObject {
         }
         print("stop")
     }
+    
+    //set user to observe for changes to itself
+    func observeForChanges() {
+        userRef.child(self.uid!).observe(.value, with: { snapshot in
+            let snapshotValue = snapshot.value as! [String: Any?]
+            
+            self.uid  = snapshotValue["uid"] as! String
+            self.email = snapshotValue["email"] as! String
+            self.postedItems = snapshotValue["postedItems"] as! [String]
+            self.requestedItems = snapshotValue["requestedItems"] as! [String]
+        })
+    }
+    
 }

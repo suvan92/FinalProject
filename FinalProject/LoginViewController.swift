@@ -41,8 +41,9 @@ class LoginViewController: UIViewController {
                     let currentUser = User.sharedInstance
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
-//                    currentUser.delegate = self
                     currentUser.saveToDatabase()
+                    
+                    // currentUser.delegate = self
                     self.login(email: email.text!, password: password.text!)
                 } else {
                     print(error!.localizedDescription)
@@ -74,6 +75,8 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()!.signIn(withEmail: email, password: password) { user, error in
             if error == nil {
                 let currentUser = User.sharedInstance
+                currentUser.uid = user?.uid
+                //setup requires uid which hasn't been set in login
                 currentUser.setupUserProperties()
                 self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
             } else {
