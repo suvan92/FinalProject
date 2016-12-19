@@ -103,14 +103,12 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func setUpGestures() {
         // Image selection
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
-        
         tapGesture?.delegate = self
         imageView.addGestureRecognizer(tapGesture!)
         imageView.isUserInteractionEnabled = true
         
         // First Responder Dismissal
         dismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
         dismissGesture?.delegate = self
         view.addGestureRecognizer(dismissGesture!)
     }
@@ -119,7 +117,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         view.endEditing(true)
     }
     
-    // MARK: Database Methods
+    // MARK: Save Method
     
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
@@ -128,5 +126,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
         
         FoodItem.saveToDatabase(item: newItem)
+        
     }
 }

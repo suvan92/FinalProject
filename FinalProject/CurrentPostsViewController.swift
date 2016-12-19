@@ -8,7 +8,7 @@
 
 import UIKit
 
-let vcTitle = "Current Posts"
+let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -16,6 +16,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Properties -
     
     @IBOutlet weak var tableView: UITableView!
+    var arrayOfPosts : [String]?
     
     
     // MARK: - VC Lifecyle -
@@ -23,6 +24,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = vcTitle
+        setUpView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,6 +41,18 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func addButtonTouched(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: createNewItemSegueIdentifier, sender: self)
+    }
+    
+    func setUpView() {
+        arrayOfPosts = User.sharedInstance.postedItems
+        
+        if let arrayOfPosts = arrayOfPosts {
+            // hide image view
+        } else {
+            tableView.isHidden = true
+            // show image view
+        }
+        
     }
 
 

@@ -51,4 +51,14 @@ class User: NSObject {
             completion()
         }
     }
+    
+    func addFoodItem(withID itemRef: String) {
+        if postedItems != nil {
+            self.postedItems?.append(itemRef)
+        } else {
+            self.postedItems = [itemRef]
+        }
+        let currentUserRef = userRef.child(self.uid!)
+        currentUserRef.updateChildValues(["postedItems":self.postedItems!])
+    }
 }
