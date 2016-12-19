@@ -20,17 +20,13 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var postByLabel: UILabel!
     @IBOutlet weak var foodDescription: UITextView!
     var tapGesture: UIGestureRecognizer?
+    var dismissGesture : UIGestureRecognizer?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
-
-        tapGesture?.delegate = self
-        imageView.addGestureRecognizer(tapGesture!)
-        imageView.isUserInteractionEnabled = true
         foodTitleTextField.delegate = self
         foodDescription.delegate = self
+        setUpGestures()
+
     }
     
     //MARK: text field delegate methods
@@ -89,15 +85,41 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Posting Methods
+    // MARK: - Actions -
     
     @IBAction func postButton(_ sender: UIButton) {
         let imageName = ImageUploader.generateImageName()
         ImageUploader.upload(image: imageView.image!, withName: imageName) {
             self.createFoodItem(withImageNamed: imageName)
         }
-        
     }
+    
+    @IBAction func cancelButtonTouched(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Gesuture Methods
+    
+    func setUpGestures() {
+        // Image selection
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
+        
+        tapGesture?.delegate = self
+        imageView.addGestureRecognizer(tapGesture!)
+        imageView.isUserInteractionEnabled = true
+        
+        // First Responder Dismissal
+        dismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        dismissGesture?.delegate = self
+        view.addGestureRecognizer(dismissGesture!)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // MARK: Database Methods
     
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
@@ -106,25 +128,5 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
         
         FoodItem.saveToDatabase(item: newItem)
-        
     }
-    
-    
-    
-    
-    @IBAction func downloadImageButton(_ sender: UIButton) {
-        let downloadImageRef = storageRef.child("images/373B4D74-853B-4356-9E0E-F45867EA4DB9.jpg")
-        downloadImageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let data = data {
-                let image = UIImage(data: data)
-                self.imageView.image = image!
-                self.imageView.contentMode = .scaleAspectFit
-            }
-        }
-    }
-    
-    
-    
 }
