@@ -41,7 +41,8 @@ class User: NSObject {
             "uid": uid,
             "email": email,
             "postedItems": postedItems,
-            "requestedItems": requestedItems
+            "requestedItems": requestedItems,
+            "channels": channels
         ]
         return result
     }

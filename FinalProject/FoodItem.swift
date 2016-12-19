@@ -23,6 +23,7 @@ class FoodItem: NSObject {
     var requesters : [String]
     var requesterChosen : Bool
     var acceptedRequester : String?
+    var channels : [String]?
     
     // MARK: Class Methods
     

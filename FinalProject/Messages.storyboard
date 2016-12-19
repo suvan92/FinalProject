@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,9 +33,31 @@
                                     <action selector="makeNewChannel:" destination="eji-m0-6yr" eventType="touchUpInside" id="NOJ-bc-m3u"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BNS-Sw-q2z">
+                                <rect key="frame" x="16" y="378" width="343" height="237"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrentChannels" id="DuU-o9-XJ4">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DuU-o9-XJ4" id="Wei-2T-cTQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eji-m0-6yr" id="npE-sG-Dzc"/>
+                                    <outlet property="delegate" destination="eji-m0-6yr" id="jfO-8t-swL"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BNS-Sw-q2z" firstAttribute="leading" secondItem="SRY-yh-Yo3" secondAttribute="leadingMargin" id="2KG-Pw-u1j"/>
+                            <constraint firstItem="eHW-vW-8wJ" firstAttribute="top" secondItem="BNS-Sw-q2z" secondAttribute="bottom" constant="52" id="E1K-9G-c6e"/>
+                            <constraint firstItem="BNS-Sw-q2z" firstAttribute="trailing" secondItem="SRY-yh-Yo3" secondAttribute="trailingMargin" id="HW5-iH-leY"/>
+                            <constraint firstItem="BNS-Sw-q2z" firstAttribute="top" secondItem="h31-XZ-KWe" secondAttribute="bottom" constant="29.5" id="n96-bp-Pif"/>
                             <constraint firstItem="h31-XZ-KWe" firstAttribute="centerX" secondItem="SRY-yh-Yo3" secondAttribute="centerX" id="rUw-NC-any"/>
                             <constraint firstItem="h31-XZ-KWe" firstAttribute="centerY" secondItem="SRY-yh-Yo3" secondAttribute="centerY" id="yOe-1G-1x9"/>
                         </constraints>
