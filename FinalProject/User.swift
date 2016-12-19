@@ -52,7 +52,7 @@ class User: NSObject {
         }
     }
     
-    func addFoodItem(withID itemRef: String, completion: @escaping () -> Swift.Void) {
+    func addFoodItem(withID itemRef: String, completion: @escaping (Error?) -> Swift.Void) {
         if postedItems != nil {
             self.postedItems?.append(itemRef)
         } else {
@@ -60,7 +60,7 @@ class User: NSObject {
         }
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
-            completion()
+            completion(error)
         }
     }
 }
