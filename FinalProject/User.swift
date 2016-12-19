@@ -23,7 +23,6 @@ class User: NSObject {
     
     
     func setupUserProperties() {
-        
         userRef.queryOrdered(byChild: self.uid!).observe(.value, with: { snapshot in
             
             for item in snapshot.children {
@@ -32,30 +31,8 @@ class User: NSObject {
                 self.postedItems = snapshotValue["postedItems"] as? [String]
                 self.requestedItems = snapshotValue["requestedItems"] as? [String]
             }
-            
         })
-        
     }
-    
-//    func setupUserProperties() {
-//        
-//        userRef.que
-//        
-//        userRef.queryEqual(toValue: self.uid!).observe(.value, with: { snapshot in
-//            
-//            print(snapshot)
-//            print(self.uid!)
-//            
-//            let snashotValue = snapshot.value as! [String:Any?]
-//            
-//            self.uid = snashotValue["uid"] as? String
-//            self.email = snashotValue["email"] as? String
-//            self.postedItems = snashotValue["postedItems"] as? [String]
-//            self.requestedItems = snashotValue["requestedItems"] as? [String]
-//            
-//        })
-//        
-//    }
     
     func toDictionary() -> [String: Any?]{
         let result : [String: Any?] = [
