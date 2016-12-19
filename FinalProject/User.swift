@@ -22,7 +22,7 @@ class User: NSObject {
     private override init() {}
     
     
-    func setupUserProperties() {
+    func setupUserProperties(completion: @escaping () -> Swift.Void) {
         userRef.queryOrdered(byChild: self.uid!).observe(.value, with: { snapshot in
             
             for item in snapshot.children {
@@ -31,6 +31,7 @@ class User: NSObject {
                 self.postedItems = snapshotValue["postedItems"] as? [String]
                 self.requestedItems = snapshotValue["requestedItems"] as? [String]
             }
+            completion()
         })
     }
     
@@ -44,12 +45,16 @@ class User: NSObject {
         return result
     }
     
-    func saveToDatabase(email: String, password: String) {
+    func saveToDatabase(completion: @escaping () -> Swift.Void) {
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.setValue(self.toDictionary()) { error, ref in
-            FIRAuth.auth()!.signIn(withEmail: email, password: password) { user, error in
-                self.setupUserProperties()
-            }
+            completion()
         }
+    }
+    
+    func logUserIn() {
+        let nCentre = NotificationCenter.default
+        let notification = Notification.init(name: Notification.Name(rawValue: "userSavedToDB"))
+        nCentre.post(notification)
     }
 }

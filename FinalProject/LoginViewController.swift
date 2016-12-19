@@ -41,8 +41,10 @@ class LoginViewController: UIViewController {
                     let currentUser = User.sharedInstance
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
-                    currentUser.saveToDatabase(email: email.text!, password: password.text!)
-                    self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+                    currentUser.saveToDatabase() {
+                        self.login(email: email.text!, password: password.text!)
+                    }
+                    
                 } else {
                     print(error!.localizedDescription)
                 }
@@ -75,8 +77,9 @@ class LoginViewController: UIViewController {
                 let currentUser = User.sharedInstance
                 currentUser.uid = user?.uid
                 currentUser.email = user?.email
-                currentUser.setupUserProperties()
-                self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+                currentUser.setupUserProperties() {
+                    self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+                }
             } else {
                 print(error!.localizedDescription)
             }
