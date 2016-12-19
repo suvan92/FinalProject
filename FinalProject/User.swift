@@ -51,10 +51,4 @@ class User: NSObject {
             completion()
         }
     }
-    
-    func logUserIn() {
-        let nCentre = NotificationCenter.default
-        let notification = Notification.init(name: Notification.Name(rawValue: "userSavedToDB"))
-        nCentre.post(notification)
-    }
 }
