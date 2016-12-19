@@ -24,14 +24,12 @@ class User: NSObject {
     
     
     func setupUserProperties(completion: @escaping () -> Swift.Void) {
-        userRef.queryOrdered(byChild: self.uid!).observe(.value, with: { snapshot in
+        userRef.child(self.uid!).observe(.value, with: { snapshot in
             
-            for item in snapshot.children {
-                let snapshotValue = (item as! FIRDataSnapshot).value as! [String:Any?]
-                print(snapshotValue)
-                self.postedItems = snapshotValue["postedItems"] as? [String]
-                self.requestedItems = snapshotValue["requestedItems"] as? [String]
-            }
+            let snapshotValue = snapshot.value as! [String:Any?]
+            print(snapshotValue)
+            self.postedItems = snapshotValue["postedItems"] as? [String]
+            self.requestedItems = snapshotValue["requestedItems"] as? [String]
             completion()
         })
     }
