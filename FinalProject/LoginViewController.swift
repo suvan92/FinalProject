@@ -41,10 +41,8 @@ class LoginViewController: UIViewController {
                     let currentUser = User.sharedInstance
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
-//                    currentUser.delegate = self
                     currentUser.saveToDatabase(email: email.text!, password: password.text!)
                     self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
-//                    self.login(email: email.text!, password: password.text!)
                 } else {
                     print(error!.localizedDescription)
                 }
