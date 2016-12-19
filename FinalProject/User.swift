@@ -17,20 +17,19 @@ class User: NSObject {
     var email : String?
     var postedItems : [String]?
     var requestedItems : [String]?
+    var channels: [String]?
     
     static let sharedInstance = User()
     private override init() {}
     
     
     func setupUserProperties(completion: @escaping () -> Swift.Void) {
-        userRef.queryOrdered(byChild: self.uid!).observe(.value, with: { snapshot in
+        userRef.child(self.uid!).observe(.value, with: { snapshot in
             
-            for item in snapshot.children {
-                let snapshotValue = (item as! FIRDataSnapshot).value as! [String:Any?]
-                print(snapshotValue)
-                self.postedItems = snapshotValue["postedItems"] as? [String]
-                self.requestedItems = snapshotValue["requestedItems"] as? [String]
-            }
+            let snapshotValue = snapshot.value as! [String:Any?]
+            print(snapshotValue)
+            self.postedItems = snapshotValue["postedItems"] as? [String]
+            self.requestedItems = snapshotValue["requestedItems"] as? [String]
             completion()
         })
     }
@@ -40,7 +39,8 @@ class User: NSObject {
             "uid": uid,
             "email": email,
             "postedItems": postedItems,
-            "requestedItems": requestedItems
+            "requestedItems": requestedItems,
+            "channels": channels
         ]
         return result
     }
