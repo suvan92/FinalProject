@@ -17,6 +17,7 @@ class User: NSObject {
     var email : String?
     var postedItems : [String]?
     var requestedItems : [String]?
+    var channels: [String]?
     
     static let sharedInstance = User()
     private override init() {}

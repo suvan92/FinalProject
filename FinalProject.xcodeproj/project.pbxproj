@@ -26,6 +26,8 @@
 		147918061E03916300727419 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918051E03916300727419 /* Router.swift */; };
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
+		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
+		B01236261E087F1000E7F667 /* MakeChannelTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236251E087F1000E7F667 /* MakeChannelTestVC.swift */; };
 		B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063BEE71E039FF800818E7B /* NewPostViewController.swift */; };
 		B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,8 @@
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
+		B01236231E08737200E7F667 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		B01236251E087F1000E7F667 /* MakeChannelTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeChannelTestVC.swift; sourceTree = "<group>"; };
 		B063BEE71E039FF800818E7B /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0BB9B001E062C09005F8FE8 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				147917F81E03740F00727419 /* FoodItem.swift */,
 				147918051E03916300727419 /* Router.swift */,
 				142583B71E05F7DC00324D32 /* ImageUploader.swift */,
+				B01236231E08737200E7F667 /* Channel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */,
+				B01236251E087F1000E7F667 /* MakeChannelTestVC.swift */,
 			);
 			name = MessangerBranch;
 			sourceTree = "<group>";
@@ -339,9 +345,11 @@
 				147918061E03916300727419 /* Router.swift in Sources */,
 				14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */,
 				B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */,
+				B01236241E08737200E7F667 /* Channel.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
+				B01236261E087F1000E7F667 /* MakeChannelTestVC.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,

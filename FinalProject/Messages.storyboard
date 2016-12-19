@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eji-m0-6yr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eji-m0-6yr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Make Channel TestVC-->
         <scene sceneID="Hzq-o1-ahF">
             <objects>
-                <viewController id="eji-m0-6yr" sceneMemberID="viewController">
+                <viewController id="eji-m0-6yr" customClass="MakeChannelTestVC" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FB2-L0-Ip8"/>
                         <viewControllerLayoutGuide type="bottom" id="eHW-vW-8wJ"/>
@@ -20,12 +20,29 @@
                     <view key="view" contentMode="scaleToFill" id="SRY-yh-Yo3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h31-XZ-KWe">
+                                <rect key="frame" x="96" y="318.5" width="183" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="C2F-yC-QXF"/>
+                                    <constraint firstAttribute="width" constant="183" id="eJh-u0-QKY"/>
+                                </constraints>
+                                <state key="normal" title="Create New Channel"/>
+                                <connections>
+                                    <action selector="makeNewChannel:" destination="eji-m0-6yr" eventType="touchUpInside" id="NOJ-bc-m3u"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h31-XZ-KWe" firstAttribute="centerX" secondItem="SRY-yh-Yo3" secondAttribute="centerX" id="rUw-NC-any"/>
+                            <constraint firstItem="h31-XZ-KWe" firstAttribute="centerY" secondItem="SRY-yh-Yo3" secondAttribute="centerY" id="yOe-1G-1x9"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aN-pY-HGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="174" y="134"/>
+            <point key="canvasLocation" x="173.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
