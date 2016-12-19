@@ -11,7 +11,7 @@ import UIKit
 let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
 
-class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewPostDelegate {
 
     // MARK: - Properties -
     
@@ -46,14 +46,24 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func setUpView() {
         arrayOfPosts = User.sharedInstance.postedItems
         
-        if let arrayOfPosts = arrayOfPosts {
-            // hide image view
+        if arrayOfPosts != nil {
+            // normal
         } else {
             tableView.isHidden = true
-            // show image view
         }
         
     }
-
-
+    
+    // MARK: - Segues -
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == createNewItemSegueIdentifier {
+            let destinationVC = segue.destination as! NewPostViewController
+            destinationVC.delegate = self
+        }
+    }
+    
+    // MARK: - New Post Delegate Methods -
+    func postComplete() {
+        setUpView()
+    }
 }

@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-
+protocol NewPostDelegate {
+    func postComplete() -> Swift.Void
+}
 
 class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
@@ -21,6 +23,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var foodDescription: UITextView!
     var tapGesture: UIGestureRecognizer?
     var dismissGesture : UIGestureRecognizer?
+    var delegate : CurrentPostsViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTitleTextField.delegate = self
@@ -122,10 +126,16 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
         let itemDescription = foodDescription.text
-        let ownerID = User.sharedInstance.uid!
+        let user = User.sharedInstance
+        let ownerID = user.uid!
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
         
-        FoodItem.saveToDatabase(item: newItem)
+        FoodItem.saveToDatabase(item: newItem) { itemID in
+            user.addFoodItem(withID: itemID) {
+                self.delegate?.postComplete()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
         
     }
 }
