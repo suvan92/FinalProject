@@ -30,6 +30,7 @@ class User: NSObject {
             print(snapshotValue)
             self.postedItems = snapshotValue["postedItems"] as? [String]
             self.requestedItems = snapshotValue["requestedItems"] as? [String]
+            self.channels = snapshotValue["channels"] as? [String]
             completion()
         })
     }
@@ -60,6 +61,18 @@ class User: NSObject {
         }
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
+            completion()
+        }
+    }
+    
+    func addChannel(withID itemRef: String, completion: @escaping () -> Swift.Void) {
+        if channels != nil {
+            self.channels?.append(itemRef)
+        } else {
+            self.channels = [itemRef]
+        }
+        let currentUserRef = userRef.child(self.uid!)
+        currentUserRef.updateChildValues(["channels":self.channels!]) { error, ref in
             completion()
         }
     }

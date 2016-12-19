@@ -9,18 +9,20 @@ import UIKit
 import Firebase
 
 let channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
-private var channelRefHandle: FIRDatabaseHandle?
+//private var channelRefHandle: FIRDatabaseHandle?
 
 class Channel: NSObject {
 
     var id: String?
     
-    func savetoDatabase() {
+    func savetoDatabase(completion: @escaping () -> Swift.Void) {
         let newChannelRef = channelRef.childByAutoId()
         let referenceString = newChannelRef.description()
         let id = String(referenceString.characters.suffix(20))
         self.id = id
-        newChannelRef.setValue(self.toDictionary())
+        newChannelRef.setValue(self.toDictionary()) { error, ref in
+            completion()
+        }
     }
 
     func toDictionary() -> [String: Any?] {
