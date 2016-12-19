@@ -30,10 +30,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LqX-wR-KWD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ukg-By-ua5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ukg-By-ua5" customClass="PostedItemTableViewCell" customModule="FinalProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ukg-By-ua5" id="5fB-Rv-EWV">
@@ -50,10 +50,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="LqX-wR-KWD" secondAttribute="trailing" id="Mnf-gj-gN8"/>
-                            <constraint firstItem="euU-gm-gpV" firstAttribute="top" secondItem="LqX-wR-KWD" secondAttribute="bottom" id="PeW-OC-Lln"/>
-                            <constraint firstItem="LqX-wR-KWD" firstAttribute="top" secondItem="te9-Gk-z9V" secondAttribute="top" id="UvB-6G-QGp"/>
-                            <constraint firstItem="LqX-wR-KWD" firstAttribute="leading" secondItem="te9-Gk-z9V" secondAttribute="leading" id="tLE-0D-1cf"/>
+                            <constraint firstItem="euU-gm-gpV" firstAttribute="top" secondItem="LqX-wR-KWD" secondAttribute="bottom" id="M5R-7c-u0a"/>
+                            <constraint firstItem="LqX-wR-KWD" firstAttribute="top" secondItem="eAw-8i-HEk" secondAttribute="bottom" id="U4F-Iw-M6m"/>
+                            <constraint firstAttribute="trailing" secondItem="LqX-wR-KWD" secondAttribute="trailing" id="ZdQ-wW-EfS"/>
+                            <constraint firstItem="LqX-wR-KWD" firstAttribute="leading" secondItem="te9-Gk-z9V" secondAttribute="leading" id="rxK-rK-J8g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pyx-Qh-JWD">

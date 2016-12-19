@@ -27,6 +27,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         setUpView()
     }
     
+    // MARK: - TableVew Methods-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -43,15 +44,13 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: createNewItemSegueIdentifier, sender: self)
     }
     
+    // MARK: - General Methods -
+    
     func setUpView() {
         arrayOfPosts = User.sharedInstance.postedItems
-        
-        if arrayOfPosts != nil {
-            // normal
-        } else {
+        if arrayOfPosts == nil {
             tableView.isHidden = true
         }
-        
     }
     
     // MARK: - Segues -

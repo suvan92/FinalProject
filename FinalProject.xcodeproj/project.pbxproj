@@ -13,6 +13,7 @@
 		14764DDA1E0870E20033449C /* RequestResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DD91E0870E20033449C /* RequestResultsViewController.swift */; };
 		14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDB1E0870F50033449C /* FoodItemDetailViewController.swift */; };
 		14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */; };
+		14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */; };
 		147917DF1E0370B900727419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917DE1E0370B900727419 /* AppDelegate.swift */; };
 		147917E41E0370B900727419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E21E0370B900727419 /* Main.storyboard */; };
 		147917E61E0370B900727419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147917E51E0370B900727419 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		14764DD91E0870E20033449C /* RequestResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestResultsViewController.swift; sourceTree = "<group>"; };
 		14764DDB1E0870F50033449C /* FoodItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemDetailViewController.swift; sourceTree = "<group>"; };
 		14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveMessagesViewController.swift; sourceTree = "<group>"; };
+		14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostedItemTableViewCell.swift; sourceTree = "<group>"; };
 		147917DB1E0370B900727419 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		147917DE1E0370B900727419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		147917E31E0370B900727419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		147917F41E0372EA00727419 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
+				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,
 			);
