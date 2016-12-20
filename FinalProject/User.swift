@@ -53,10 +53,11 @@ class User: NSObject {
     }
     
     func addFoodItem(withID itemRef: String, completion: @escaping (Error?) -> Swift.Void) {
+        let truncatedItemRef = String(itemRef.characters.suffix(20))
         if postedItems != nil {
-            self.postedItems?.append(String(itemRef.characters.suffix(20)))
+            self.postedItems?.append(truncatedItemRef)
         } else {
-            self.postedItems = [String(itemRef.characters.suffix(20))]
+            self.postedItems = [truncatedItemRef]
         }
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
