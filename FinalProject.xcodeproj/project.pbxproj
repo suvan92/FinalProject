@@ -31,6 +31,7 @@
 		B01236261E087F1000E7F667 /* MakeChannelTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236251E087F1000E7F667 /* MakeChannelTestVC.swift */; };
 		B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063BEE71E039FF800818E7B /* NewPostViewController.swift */; };
 		B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */; };
+		B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		B063BEE71E039FF800818E7B /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0BB9B001E062C09005F8FE8 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
+		B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			children = (
 				14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */,
 				B01236251E087F1000E7F667 /* MakeChannelTestVC.swift */,
+				B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */,
 			);
 			name = MessangerBranch;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
+				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
 				B01236261E087F1000E7F667 /* MakeChannelTestVC.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,

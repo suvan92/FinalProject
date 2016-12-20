@@ -32,6 +32,8 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
         setupObservers()
     }
     
+    
+    //MARK: tableview datasource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let source = datasource {
             return source.count
@@ -46,8 +48,28 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-   
-    //
+    //MARK: tableview delegate methods
+    //override??
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let channelId = datasource?[indexPath.row]
+            self.performSegue(withIdentifier: "ShowChannel", sender: channelId)
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let channelId = sender as? String {
+            let chatVc = segue.destination as! ChatViewController
+            let channel = Channel()
+            channel.id = channelId
+            chatVc.channel = channel
+            chatVc.channelRef = channel.databaseRef
+            chatVc.senderDisplayName = User.sharedInstance.email
+        }
+    }
+
+    //MARK: VC observe for channels added or removed to update tableView
     func setupObservers() {
         let user = User.sharedInstance
         
@@ -74,5 +96,7 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         })
     }
+    
+    
 
 }
