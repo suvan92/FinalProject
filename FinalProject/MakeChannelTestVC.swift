@@ -46,8 +46,8 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-   // userRef.child(self.uid!).observe(.value, with:
-    
+   
+    //
     func setupObservers() {
         let user = User.sharedInstance
         
