@@ -56,7 +56,7 @@ class User: NSObject {
         if postedItems != nil {
             self.postedItems?.append(String(itemRef.characters.suffix(20)))
         } else {
-            self.postedItems = [itemRef]
+            self.postedItems = [String(itemRef.characters.suffix(20))]
         }
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
