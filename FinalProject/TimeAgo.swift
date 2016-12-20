@@ -28,7 +28,7 @@ public func timeAgoSince(_ date: Date) -> String {
     }
     
     if let month = components.month, month >= 1 {
-        return "Last month"
+        return "last month"
     }
     
     if let week = components.weekOfYear, week >= 2 {
@@ -36,7 +36,7 @@ public func timeAgoSince(_ date: Date) -> String {
     }
     
     if let week = components.weekOfYear, week >= 1 {
-        return "Last week"
+        return "last week"
     }
     
     if let day = components.day, day >= 2 {
@@ -44,7 +44,7 @@ public func timeAgoSince(_ date: Date) -> String {
     }
     
     if let day = components.day, day >= 1 {
-        return "Yesterday"
+        return "yesterday"
     }
     
     if let hour = components.hour, hour >= 2 {
@@ -52,7 +52,7 @@ public func timeAgoSince(_ date: Date) -> String {
     }
     
     if let hour = components.hour, hour >= 1 {
-        return "An hour ago"
+        return "an hour ago"
     }
     
     if let minute = components.minute, minute >= 2 {
@@ -60,12 +60,12 @@ public func timeAgoSince(_ date: Date) -> String {
     }
     
     if let minute = components.minute, minute >= 1 {
-        return "A minute ago"
+        return "a minute ago"
     }
     
     if let second = components.second, second >= 3 {
         return "\(second) seconds ago"
     }
     
-    return "Just now"
+    return "just now"
 }
