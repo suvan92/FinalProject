@@ -23,6 +23,7 @@ class FoodItem: NSObject {
     var requesters : [String]
     var requesterChosen : Bool
     var acceptedRequester : String?
+    var channels : [String]?
     var postDate : NSDate
     
     // MARK: Class Methods
@@ -59,9 +60,27 @@ class FoodItem: NSObject {
                                      "description":itemDescription,
                                      "tags":itemTags,
                                      "requesters":requesters,
-                                     "requesterChosen":false,
-                                     "acceptedRequester":nil]
+                                     "requesterChosen":requesterChosen,
+                                     "acceptedRequester":acceptedRequester,
+                                     "postDate":DateFormatter().string(from: postDate as Date)]
         return result
+    }
+    
+    init(snapshot: FIRDataSnapshot) {
+        
+        print(snapshot.value)
+        let snapshotValue = snapshot.value as! [String:Any?]
+        
+        name = snapshotValue["name"] as! String
+        ownerID = snapshotValue["ownerId"] as? String
+        photoID = snapshotValue["photoID"] as! String
+        itemDescription = snapshotValue["description"] as! String
+        itemTags = snapshotValue["tags"] as! [String]
+        requesters = snapshotValue["requesters"] as! [String]
+        requesterChosen = snapshotValue["requesterChosen"] as! Bool
+        acceptedRequester = snapshotValue["acceptedRequester"] as? String
+        channels = snapshotValue["channels"] as? [String]
+        postDate = snapshotValue["postDate"] as! NSDate
     }
 
 }

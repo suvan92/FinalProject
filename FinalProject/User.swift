@@ -54,7 +54,7 @@ class User: NSObject {
     
     func addFoodItem(withID itemRef: String, completion: @escaping (Error?) -> Swift.Void) {
         if postedItems != nil {
-            self.postedItems?.append(itemRef)
+            self.postedItems?.append(String(itemRef.characters.suffix(20)))
         } else {
             self.postedItems = [itemRef]
         }

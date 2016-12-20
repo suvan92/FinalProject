@@ -28,12 +28,12 @@ class PostedItemTableViewCell: UITableViewCell {
         imageView?.image = getFoodItemImage(foodItem: foodItem) {
             self.activityIndicator.stopAnimating()
         }
-        
+        postDateLabel.text = timeAgoSince(foodItem.postDate as Date)
     }
     
     func getFoodItemImage(foodItem: FoodItem, completion: @escaping ()->Swift.Void) -> UIImage {
         var result = UIImage()
-        let imagesRef = storageRef.child("images\(foodItem.dataBaseRef!).jpg")
+        let imagesRef = storageRef.child("images/\(foodItem.dataBaseRef!).jpg")
         imagesRef.data(withMaxSize: 1*1024*1024) { data, error in
             if let error = error {
                 // handle error

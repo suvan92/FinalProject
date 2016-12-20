@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
+let itemCellIdentifier = "postCell"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewPostDelegate {
 
     // MARK: - Properties -
     
     @IBOutlet weak var tableView: UITableView!
-    var arrayOfPosts : [String]?
+    var arrayOfPosts : [FoodItem]?
     
     
     // MARK: - VC Lifecyle -
@@ -25,16 +27,23 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         self.title = vcTitle
         setUpView()
+        getDataSource()
     }
     
     // MARK: - TableVew Methods-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let arrayOfPosts = arrayOfPosts {
+            return arrayOfPosts.count
+        }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: itemCellIdentifier, for: indexPath) as! PostedItemTableViewCell
+        if let arrayOfPosts = arrayOfPosts {
+            let foodItem = arrayOfPosts[indexPath.row]
+            cell.setUpCell(withItem: foodItem)
+        }
         return cell
     }
     
@@ -47,10 +56,22 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - General Methods -
     
     func setUpView() {
-        arrayOfPosts = User.sharedInstance.postedItems
         if arrayOfPosts == nil {
             tableView.isHidden = true
         }
+    }
+    
+    func getDataSource() {
+        let currentUser = User.sharedInstance
+        userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
+            
+            for item in snapshot.children {
+//                let foodItem = FoodItem(snapshot: item as! FIRDataSnapshot)
+//                self.arrayOfPosts?.append(foodItem)
+                // ITEM ONLY CONTAINS DATABASE REFERENCE TO FOODITEM, MUST GET FOODITEM FROM DATABASE USING USER'S REFERNCE URL
+                print("current user's posted items: \(item)")
+            }
+        })
     }
     
     // MARK: - Segues -
