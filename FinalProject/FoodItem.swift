@@ -25,6 +25,8 @@ class FoodItem: NSObject {
     var acceptedRequester : String?
     var channels : [String]?
     var postDate : String
+
+
     
     // MARK: Class Methods
     

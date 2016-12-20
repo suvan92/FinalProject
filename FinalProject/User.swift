@@ -17,20 +17,20 @@ class User: NSObject {
     var email : String?
     var postedItems : [String]?
     var requestedItems : [String]?
+    var channels: [String]?
     
     static let sharedInstance = User()
     private override init() {}
     
     
     func setupUserProperties(completion: @escaping () -> Swift.Void) {
-        userRef.queryOrdered(byChild: self.uid!).observe(.value, with: { snapshot in
+        userRef.child(self.uid!).observe(.value, with: { snapshot in
             
-            for item in snapshot.children {
-                let snapshotValue = (item as! FIRDataSnapshot).value as! [String:Any?]
-                print(snapshotValue)
-                self.postedItems = snapshotValue["postedItems"] as? [String]
-                self.requestedItems = snapshotValue["requestedItems"] as? [String]
-            }
+            let snapshotValue = snapshot.value as! [String:Any?]
+            print(snapshotValue)
+            self.postedItems = snapshotValue["postedItems"] as? [String]
+            self.requestedItems = snapshotValue["requestedItems"] as? [String]
+            self.channels = snapshotValue["channels"] as? [String]
             completion()
         })
     }
@@ -40,7 +40,8 @@ class User: NSObject {
             "uid": uid,
             "email": email,
             "postedItems": postedItems,
-            "requestedItems": requestedItems
+            "requestedItems": requestedItems,
+            "channels": channels
         ]
         return result
     }
@@ -62,6 +63,18 @@ class User: NSObject {
         let currentUserRef = userRef.child(self.uid!)
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
             completion(error)
+        }
+    }
+    
+    func addChannel(withID itemRef: String, completion: @escaping () -> Swift.Void) {
+        if channels != nil {
+            self.channels?.append(itemRef)
+        } else {
+            self.channels = [itemRef]
+        }
+        let currentUserRef = userRef.child(self.uid!)
+        currentUserRef.updateChildValues(["channels":self.channels!]) { error, ref in
+            completion()
         }
     }
 }
