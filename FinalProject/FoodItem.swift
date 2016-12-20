@@ -15,8 +15,8 @@ let ref = FIRDatabase.database().reference(withPath: "foodItems")
 class FoodItem: NSObject {
     
     var name : String
-    var dataBaseRef : String?
-    var ownerID : String?
+    var dataBaseRef : String
+    var ownerID : String
     var photoID : String
     var itemDescription : String
     var itemTags : [String]?
@@ -24,7 +24,7 @@ class FoodItem: NSObject {
     var requesterChosen : Bool
     var acceptedRequester : String?
     var channels : [String]?
-//    var postDate : NSDate
+    var postDate : String
     
     // MARK: Class Methods
     
@@ -49,8 +49,8 @@ class FoodItem: NSObject {
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
-        self.dataBaseRef = nil
-//        self.postDate = NSDate()
+        self.dataBaseRef = photo
+        self.postDate = Date().description
     }
     
     func toDictionary() -> [String:Any?] {
@@ -62,7 +62,8 @@ class FoodItem: NSObject {
                                      "requesters":requesters,
                                      "requesterChosen":requesterChosen,
                                      "acceptedRequester":acceptedRequester,
-//                                     "postDate":DateFormatter().string(from: postDate as Date)
+                                     "postDate":postDate,
+                                     "dataBaseRef":dataBaseRef
         ]
         return result
     }
@@ -71,7 +72,7 @@ class FoodItem: NSObject {
         let snapshotValue = snapshot.value as! [String:Any?]
         
         name = snapshotValue["name"] as! String
-        ownerID = snapshotValue["ownerId"] as? String
+        ownerID = snapshotValue["ownerID"] as! String
         photoID = snapshotValue["photoID"] as! String
         itemDescription = snapshotValue["description"] as! String
         itemTags = snapshotValue["tags"] as? [String]
@@ -79,9 +80,8 @@ class FoodItem: NSObject {
         requesterChosen = snapshotValue["requesterChosen"] as! Bool
         acceptedRequester = snapshotValue["acceptedRequester"] as? String
         channels = snapshotValue["channels"] as? [String]
-//        postDate = (snapshotValue["postDate"] as? NSDate)!
-        
-        
+        postDate = snapshotValue["postDate"] as! String
+        dataBaseRef = snapshotValue["dataBaseRef"] as! String
     }
 
 }

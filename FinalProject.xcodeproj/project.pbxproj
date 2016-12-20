@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140433DC1E09B7E800189AC9 /* DateExtension.swift */; };
 		142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142583B71E05F7DC00324D32 /* ImageUploader.swift */; };
 		14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DD51E0870190033449C /* PostPendingRequestsViewController.swift */; };
 		14764DD81E0870D40033449C /* RequestSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DD71E0870D40033449C /* RequestSearchViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140433DC1E09B7E800189AC9 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		142583B71E05F7DC00324D32 /* ImageUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		14764DD51E0870190033449C /* PostPendingRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPendingRequestsViewController.swift; sourceTree = "<group>"; };
 		14764DD71E0870D40033449C /* RequestSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSearchViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				147918051E03916300727419 /* Router.swift */,
 				142583B71E05F7DC00324D32 /* ImageUploader.swift */,
 				14764DE11E08BD7B0033449C /* TimeAgo.swift */,
+				140433DC1E09B7E800189AC9 /* DateExtension.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
+				140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,

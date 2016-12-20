@@ -26,7 +26,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = vcTitle
-        setUpView()
+        arrayOfPosts = []
         getDataSource()
     }
     
@@ -56,9 +56,11 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - General Methods -
     
     func setUpView() {
-        if arrayOfPosts == nil {
-            tableView.isHidden = true
-        }
+//        if arrayOfPosts.count == 0 {
+//            tableView.isHidden = true
+//        } else {
+//            tableView.isHidden = false
+//        }
     }
     
     func getDataSource() {
@@ -70,10 +72,10 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                 ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
                     let foodItem = FoodItem(snapshot: snap)
                     self.arrayOfPosts?.append(foodItem)
-//                    ITEM ONLY CONTAINS DATABASE REFERENCE TO FOODITEM, MUST GET FOODITEM FROM DATABASE USING USER'S REFERNCE URL
-                
+                    self.tableView.reloadData()
+                    print("stop")
                 })
-                print("current user's posted items: \(item)")
+                self.setUpView()
             }
         })
     }
