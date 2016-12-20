@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140433DC1E09B7E800189AC9 /* DateExtension.swift */; };
 		142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142583B71E05F7DC00324D32 /* ImageUploader.swift */; };
 		14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DD51E0870190033449C /* PostPendingRequestsViewController.swift */; };
 		14764DD81E0870D40033449C /* RequestSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DD71E0870D40033449C /* RequestSearchViewController.swift */; };
@@ -14,6 +15,7 @@
 		14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDB1E0870F50033449C /* FoodItemDetailViewController.swift */; };
 		14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */; };
 		14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */; };
+		14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14764DE11E08BD7B0033449C /* TimeAgo.swift */; };
 		147917DF1E0370B900727419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147917DE1E0370B900727419 /* AppDelegate.swift */; };
 		147917E41E0370B900727419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147917E21E0370B900727419 /* Main.storyboard */; };
 		147917E61E0370B900727419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147917E51E0370B900727419 /* Assets.xcassets */; };
@@ -34,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140433DC1E09B7E800189AC9 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		142583B71E05F7DC00324D32 /* ImageUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		14764DD51E0870190033449C /* PostPendingRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPendingRequestsViewController.swift; sourceTree = "<group>"; };
 		14764DD71E0870D40033449C /* RequestSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSearchViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		14764DDB1E0870F50033449C /* FoodItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemDetailViewController.swift; sourceTree = "<group>"; };
 		14764DDD1E08714C0033449C /* ActiveMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveMessagesViewController.swift; sourceTree = "<group>"; };
 		14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostedItemTableViewCell.swift; sourceTree = "<group>"; };
+		14764DE11E08BD7B0033449C /* TimeAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgo.swift; sourceTree = "<group>"; };
 		147917DB1E0370B900727419 /* FinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		147917DE1E0370B900727419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		147917E31E0370B900727419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +120,10 @@
 				147917F81E03740F00727419 /* FoodItem.swift */,
 				147918051E03916300727419 /* Router.swift */,
 				142583B71E05F7DC00324D32 /* ImageUploader.swift */,
+				14764DE11E08BD7B0033449C /* TimeAgo.swift */,
+				140433DC1E09B7E800189AC9 /* DateExtension.swift */,
 				B01236231E08737200E7F667 /* Channel.swift */,
+
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -351,9 +358,11 @@
 				B01236241E08737200E7F667 /* Channel.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
+				140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				B01236261E087F1000E7F667 /* MakeChannelTestVC.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
+				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,

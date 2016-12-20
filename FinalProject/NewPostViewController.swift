@@ -131,9 +131,13 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
         
         FoodItem.saveToDatabase(item: newItem) { itemID in
-            user.addFoodItem(withID: itemID) {
-                self.delegate?.postComplete()
-                self.dismiss(animated: true, completion: nil)
+            user.addFoodItem(withID: itemID) { error in
+                if error == nil {                    
+                    self.delegate?.postComplete()
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // handle error
+                }
             }
         }
         

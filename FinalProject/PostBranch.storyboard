@@ -29,17 +29,59 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LqX-wR-KWD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LqX-wR-KWD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ukg-By-ua5" customClass="PostedItemTableViewCell" customModule="FinalProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="80" id="Ukg-By-ua5" customClass="PostedItemTableViewCell" customModule="FinalProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ukg-By-ua5" id="5fB-Rv-EWV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XjL-eP-ieL">
+                                                    <rect key="frame" x="8" y="2" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="XC3-NK-pyU"/>
+                                                        <constraint firstAttribute="height" constant="75" id="gnM-aO-uIK"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fk-lq-vi8">
+                                                    <rect key="frame" x="91" y="2" width="276" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 1 day ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8r-In-37L">
+                                                    <rect key="frame" x="91" y="30.5" width="276" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cc4-PX-NpN">
+                                                    <rect key="frame" x="35" y="29" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cc4-PX-NpN" firstAttribute="leading" secondItem="5fB-Rv-EWV" secondAttribute="leadingMargin" constant="27" id="1YJ-c4-Hef"/>
+                                                <constraint firstItem="5fk-lq-vi8" firstAttribute="leading" secondItem="XjL-eP-ieL" secondAttribute="trailing" constant="8" id="6Oi-9e-aqx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="s8r-In-37L" secondAttribute="trailing" id="712-yt-KVy"/>
+                                                <constraint firstItem="5fk-lq-vi8" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="top" constant="2" id="DRP-OX-pw9"/>
+                                                <constraint firstItem="XjL-eP-ieL" firstAttribute="leading" secondItem="5fB-Rv-EWV" secondAttribute="leading" constant="8" id="P7M-SQ-kXq"/>
+                                                <constraint firstAttribute="trailing" secondItem="5fk-lq-vi8" secondAttribute="trailing" constant="8" id="RJc-Xq-bP6"/>
+                                                <constraint firstItem="s8r-In-37L" firstAttribute="top" secondItem="5fk-lq-vi8" secondAttribute="bottom" constant="2" id="Rj2-JY-LH6"/>
+                                                <constraint firstItem="XjL-eP-ieL" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="top" constant="2" id="ZEu-jX-JMN"/>
+                                                <constraint firstItem="s8r-In-37L" firstAttribute="leading" secondItem="XjL-eP-ieL" secondAttribute="trailing" constant="8" id="mcx-dm-sWL"/>
+                                                <constraint firstItem="cc4-PX-NpN" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="topMargin" constant="21" id="qfJ-Je-EwB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="cc4-PX-NpN" id="EGg-2y-9gc"/>
+                                            <outlet property="itemImageView" destination="XjL-eP-ieL" id="ZFU-JS-yp1"/>
+                                            <outlet property="itemTitleLabel" destination="5fk-lq-vi8" id="mic-sR-hke"/>
+                                            <outlet property="postDateLabel" destination="s8r-In-37L" id="AJF-B3-m0a"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

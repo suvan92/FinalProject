@@ -14,16 +14,19 @@ let ref = FIRDatabase.database().reference(withPath: "foodItems")
 
 class FoodItem: NSObject {
     
-    let name : String
-    var dataBaseRef : String?
-    let ownerID : String?
-    let photoID : String
-    let itemDescription : String
-    var itemTags : [String]
-    var requesters : [String]
+    var name : String
+    var dataBaseRef : String
+    var ownerID : String
+    var photoID : String
+    var itemDescription : String
+    var itemTags : [String]?
+    var requesters : [String]?
     var requesterChosen : Bool
     var acceptedRequester : String?
     var channels : [String]?
+    var postDate : String
+
+
     
     // MARK: Class Methods
     
@@ -39,7 +42,7 @@ class FoodItem: NSObject {
     
     // MARK: Instance Methods
     
-    init(name: String, owner: String?, photo: String, description: String, tags: [String]) {
+    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
         self.name = name
         self.ownerID = owner
         self.photoID = photo
@@ -48,7 +51,8 @@ class FoodItem: NSObject {
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
-        self.dataBaseRef = nil
+        self.dataBaseRef = photo
+        self.postDate = Date().description
     }
     
     func toDictionary() -> [String:Any?] {
@@ -58,9 +62,28 @@ class FoodItem: NSObject {
                                      "description":itemDescription,
                                      "tags":itemTags,
                                      "requesters":requesters,
-                                     "requesterChosen":false,
-                                     "acceptedRequester":nil]
+                                     "requesterChosen":requesterChosen,
+                                     "acceptedRequester":acceptedRequester,
+                                     "postDate":postDate,
+                                     "dataBaseRef":dataBaseRef
+        ]
         return result
+    }
+    
+    init(snapshot: FIRDataSnapshot) {
+        let snapshotValue = snapshot.value as! [String:Any?]
+        
+        name = snapshotValue["name"] as! String
+        ownerID = snapshotValue["ownerID"] as! String
+        photoID = snapshotValue["photoID"] as! String
+        itemDescription = snapshotValue["description"] as! String
+        itemTags = snapshotValue["tags"] as? [String]
+        requesters = snapshotValue["requesters"] as? [String]
+        requesterChosen = snapshotValue["requesterChosen"] as! Bool
+        acceptedRequester = snapshotValue["acceptedRequester"] as? String
+        channels = snapshotValue["channels"] as? [String]
+        postDate = snapshotValue["postDate"] as! String
+        dataBaseRef = snapshotValue["dataBaseRef"] as! String
     }
 
 }

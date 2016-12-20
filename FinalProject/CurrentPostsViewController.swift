@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
+let itemCellIdentifier = "postCell"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewPostDelegate {
 
     // MARK: - Properties -
     
     @IBOutlet weak var tableView: UITableView!
-    var arrayOfPosts : [String]?
+    var arrayOfPosts : [FoodItem]?
     
     
     // MARK: - VC Lifecyle -
@@ -24,17 +26,24 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = vcTitle
-        setUpView()
+        arrayOfPosts = []
+        getDataSource()
     }
     
     // MARK: - TableVew Methods-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let arrayOfPosts = arrayOfPosts {
+            return arrayOfPosts.count
+        }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: itemCellIdentifier, for: indexPath) as! PostedItemTableViewCell
+        if let arrayOfPosts = arrayOfPosts {
+            let foodItem = arrayOfPosts[indexPath.row]
+            cell.setUpCell(withItem: foodItem)
+        }
         return cell
     }
     
@@ -47,10 +56,28 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - General Methods -
     
     func setUpView() {
-        arrayOfPosts = User.sharedInstance.postedItems
-        if arrayOfPosts == nil {
-            tableView.isHidden = true
-        }
+//        if arrayOfPosts.count == 0 {
+//            tableView.isHidden = true
+//        } else {
+//            tableView.isHidden = false
+//        }
+    }
+    
+    func getDataSource() {
+        let currentUser = User.sharedInstance
+        userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
+            
+            for item in snapshot.children {
+                let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
+                ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
+                    let foodItem = FoodItem(snapshot: snap)
+                    self.arrayOfPosts?.append(foodItem)
+                    self.tableView.reloadData()
+                    print("stop")
+                })
+                self.setUpView()
+            }
+        })
     }
     
     // MARK: - Segues -
