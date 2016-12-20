@@ -16,7 +16,7 @@ let storageRef = storage.reference(forURL: "gs://finalproject-1b778.appspot.com"
 
 class ImageUploader: NSObject {
     
-    class func upload(image: UIImage, withName imageName: String, completion: @escaping () -> Swift.Void) {
+    class func upload(image: UIImage, withName imageName: String, completion: @escaping (Error?) -> Swift.Void) {
         
         let testRef = storageRef.child("images/\(imageName)")
         let data = ImageUploader.convertImageToData(image: image)
@@ -24,11 +24,9 @@ class ImageUploader: NSObject {
         testRef.put(data, metadata: nil) { metadata, error in
             
             if error == nil {
-                // how to return for parent function
-                print("image upload successful: \(imageName)")
-                completion()
+                completion(nil)
             } else {
-                print(error!.localizedDescription)
+                completion(error)
             }
         }
     }
