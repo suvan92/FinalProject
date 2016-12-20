@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let userRef = FIRDatabase.database().reference(withPath: "users")
+    
     @IBOutlet weak var tableView: UITableView!
     var datasource: [String]?
     
@@ -17,23 +20,16 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
         let user = User.sharedInstance
         let channel = Channel()
         channel.savetoDatabase() {
-            if user.channels == nil {
-                user.channels = [channel.id!]
-            } else {
-                user.channels?.append(channel.id!)
-            }
             user.addChannel(withID: channel.id!, completion: {
-                //vc pull data in completion
                 self.tableView.reloadData()
             })
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        datasource = User.sharedInstance.channels as [String]?
+        setupObservers()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +46,33 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
+   // userRef.child(self.uid!).observe(.value, with:
     
+    func setupObservers() {
+        let user = User.sharedInstance
+        
+        userRef.child(user.uid!).child("channels").observe(.childAdded, with: { snapshot in
+            guard let channel = snapshot.value as? String else { return }
+            if self.datasource == nil {
+                self.datasource = [channel]
+            } else {
+                self.datasource?.append(channel)
+            }
+            let row = (self.datasource?.count)! - 1
+            let indexPath = IndexPath(row: row, section: 0)
+            self.tableView.insertRows(at: [indexPath], with: .top)
+        })
+        
+        userRef.child(user.uid!).child("channels").observe(.childRemoved, with: { snapshot in
+            guard let channelToFind = snapshot.value as? String else { return }
+            for (index, channel) in (self.datasource?.enumerated())! {
+                if channel == channelToFind {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    self.datasource?.remove(at: index)
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        })
+    }
 
 }
