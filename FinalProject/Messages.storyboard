@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eji-m0-6yr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cIh-Iw-xuL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Make Channel TestVC-->
+        <!--Active Messages View Controller-->
         <scene sceneID="Hzq-o1-ahF">
             <objects>
-                <viewController id="eji-m0-6yr" customClass="MakeChannelTestVC" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eji-m0-6yr" customClass="ActiveMessagesViewController" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FB2-L0-Ip8"/>
                         <viewControllerLayoutGuide type="bottom" id="eHW-vW-8wJ"/>
@@ -62,14 +62,15 @@
                             <constraint firstItem="h31-XZ-KWe" firstAttribute="centerY" secondItem="SRY-yh-Yo3" secondAttribute="centerY" id="yOe-1G-1x9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1ve-Pf-K4S"/>
                     <connections>
-                        <outlet property="tableView" destination="BNS-Sw-q2z" id="qaR-yd-j4v"/>
+                        <outlet property="tableView" destination="BNS-Sw-q2z" id="OFO-f6-DVY"/>
                         <segue destination="Fid-gF-98I" kind="show" identifier="ShowChannel" id="nB6-Na-hgh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aN-pY-HGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1112.8" y="133.5832083958021"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="hss-QS-lfo">
@@ -87,7 +88,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nW-OB-wy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928" y="136"/>
+            <point key="canvasLocation" x="1866.4000000000001" y="135.38230884557723"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s2w-9P-UCr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cIh-Iw-xuL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xP5-y7-4c6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eji-m0-6yr" kind="relationship" relationship="rootViewController" id="E8F-hx-shw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2f-I6-Rdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="134"/>
         </scene>
     </scenes>
 </document>

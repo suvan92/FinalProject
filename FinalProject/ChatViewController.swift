@@ -24,6 +24,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         senderId = FIRAuth.auth()?.currentUser?.uid
         observeMessages()
         observeTyping()
