@@ -66,7 +66,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func getDataSource() {
         let currentUser = User.sharedInstance
         userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
-            
+            self.arrayOfPosts = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
                 ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
