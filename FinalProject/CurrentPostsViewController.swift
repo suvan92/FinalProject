@@ -66,9 +66,13 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
             
             for item in snapshot.children {
-//                let foodItem = FoodItem(snapshot: item as! FIRDataSnapshot)
-//                self.arrayOfPosts?.append(foodItem)
-                // ITEM ONLY CONTAINS DATABASE REFERENCE TO FOODITEM, MUST GET FOODITEM FROM DATABASE USING USER'S REFERNCE URL
+                let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
+                ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
+                    let foodItem = FoodItem(snapshot: snap)
+                    self.arrayOfPosts?.append(foodItem)
+//                    ITEM ONLY CONTAINS DATABASE REFERENCE TO FOODITEM, MUST GET FOODITEM FROM DATABASE USING USER'S REFERNCE URL
+                
+                })
                 print("current user's posted items: \(item)")
             }
         })

@@ -28,7 +28,7 @@ class PostedItemTableViewCell: UITableViewCell {
         imageView?.image = getFoodItemImage(foodItem: foodItem) {
             self.activityIndicator.stopAnimating()
         }
-        postDateLabel.text = timeAgoSince(foodItem.postDate as Date)
+//        postDateLabel.text = timeAgoSince(foodItem.postDate as! Date)
     }
     
     func getFoodItemImage(foodItem: FoodItem, completion: @escaping ()->Swift.Void) -> UIImage {

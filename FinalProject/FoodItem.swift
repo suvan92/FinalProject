@@ -14,17 +14,17 @@ let ref = FIRDatabase.database().reference(withPath: "foodItems")
 
 class FoodItem: NSObject {
     
-    let name : String
+    var name : String
     var dataBaseRef : String?
-    let ownerID : String?
-    let photoID : String
-    let itemDescription : String
-    var itemTags : [String]
-    var requesters : [String]
+    var ownerID : String?
+    var photoID : String
+    var itemDescription : String
+    var itemTags : [String]?
+    var requesters : [String]?
     var requesterChosen : Bool
     var acceptedRequester : String?
     var channels : [String]?
-    var postDate : NSDate
+//    var postDate : NSDate
     
     // MARK: Class Methods
     
@@ -40,7 +40,7 @@ class FoodItem: NSObject {
     
     // MARK: Instance Methods
     
-    init(name: String, owner: String?, photo: String, description: String, tags: [String]) {
+    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
         self.name = name
         self.ownerID = owner
         self.photoID = photo
@@ -50,7 +50,7 @@ class FoodItem: NSObject {
         self.requesterChosen = false
         self.acceptedRequester = nil
         self.dataBaseRef = nil
-        self.postDate = NSDate()
+//        self.postDate = NSDate()
     }
     
     func toDictionary() -> [String:Any?] {
@@ -62,25 +62,26 @@ class FoodItem: NSObject {
                                      "requesters":requesters,
                                      "requesterChosen":requesterChosen,
                                      "acceptedRequester":acceptedRequester,
-                                     "postDate":DateFormatter().string(from: postDate as Date)]
+//                                     "postDate":DateFormatter().string(from: postDate as Date)
+        ]
         return result
     }
     
     init(snapshot: FIRDataSnapshot) {
-        
-        print(snapshot.value)
         let snapshotValue = snapshot.value as! [String:Any?]
         
         name = snapshotValue["name"] as! String
         ownerID = snapshotValue["ownerId"] as? String
         photoID = snapshotValue["photoID"] as! String
         itemDescription = snapshotValue["description"] as! String
-        itemTags = snapshotValue["tags"] as! [String]
-        requesters = snapshotValue["requesters"] as! [String]
+        itemTags = snapshotValue["tags"] as? [String]
+        requesters = snapshotValue["requesters"] as? [String]
         requesterChosen = snapshotValue["requesterChosen"] as! Bool
         acceptedRequester = snapshotValue["acceptedRequester"] as? String
         channels = snapshotValue["channels"] as? [String]
-        postDate = snapshotValue["postDate"] as! NSDate
+//        postDate = (snapshotValue["postDate"] as? NSDate)!
+        
+        
     }
 
 }
