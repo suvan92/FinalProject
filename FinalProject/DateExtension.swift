@@ -23,3 +23,12 @@ extension Date {
         return Formatter.longDate.string(from: self)
     }
 }
+
+extension String {
+    func dateFromString() -> Date {
+        let strTime = self
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        return formatter.date(from: strTime)!
+    }
+}

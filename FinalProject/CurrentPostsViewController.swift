@@ -55,14 +55,6 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - General Methods -
     
-    func setUpView() {
-//        if arrayOfPosts.count == 0 {
-//            tableView.isHidden = true
-//        } else {
-//            tableView.isHidden = false
-//        }
-    }
-    
     func getDataSource() {
         let currentUser = User.sharedInstance
         userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
@@ -73,9 +65,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                     let foodItem = FoodItem(snapshot: snap)
                     self.arrayOfPosts?.append(foodItem)
                     self.tableView.reloadData()
-                    print("stop")
                 })
-                self.setUpView()
             }
         })
     }
@@ -90,6 +80,6 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - New Post Delegate Methods -
     func postComplete() {
-        setUpView()
+//        setUpView()
     }
 }

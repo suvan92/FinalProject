@@ -23,20 +23,23 @@ class PostedItemTableViewCell: UITableViewCell {
     
     // MARK: - Cell set up -
     func setUpCell(withItem foodItem: FoodItem) {
+        self.activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         itemTitleLabel.text = foodItem.name
         getFoodItemImage(foodItem: foodItem) { image in
-            self.imageView?.image = image
-            self.imageView?.contentMode = .scaleAspectFit
+            self.itemImageView.image = image
+            self.itemImageView.contentMode = .scaleAspectFit
             self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
         }
-        postDateLabel.text = foodItem.postDate
+        postDateLabel.text = "Posted " + timeAgoSince(foodItem.postDate)
     }
     
     func getFoodItemImage(foodItem: FoodItem, completion: @escaping (_ image: UIImage)->Swift.Void) {
         var result = UIImage()
-        let imagesRef = storageRef.child("images/\(foodItem.dataBaseRef).jpg")
-        imagesRef.data(withMaxSize: 1*1024*1024) { data, error in
+        let imagesRef = storageRef.child("images")
+        let photoRef = imagesRef.child(foodItem.photoID)
+        photoRef.data(withMaxSize: 1*1024*1024) { data, error in
             if let error = error {
                 print(error)
             } else {
