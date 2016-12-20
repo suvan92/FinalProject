@@ -33,7 +33,7 @@ class Channel: NSObject {
     }
     
     var databaseRef : FIRDatabaseReference? {
-        if let channelId = id {
+        if let channelId = self.id {
            return channelRef.child(channelId) as FIRDatabaseReference
         } else {
             return nil

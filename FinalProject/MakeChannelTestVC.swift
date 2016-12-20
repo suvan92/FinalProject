@@ -96,7 +96,4 @@ class MakeChannelTestVC: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         })
     }
-    
-    
-
 }
