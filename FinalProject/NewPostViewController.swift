@@ -24,6 +24,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var tapGesture: UIGestureRecognizer?
     var dismissGesture : UIGestureRecognizer?
     var delegate : CurrentPostsViewController?
+    var postAlert : UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,9 +93,14 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     // MARK: - Actions -
     
     @IBAction func postButton(_ sender: UIButton) {
+        showPostingAlert()
         let imageName = ImageUploader.generateImageName()
-        ImageUploader.upload(image: imageView.image!, withName: imageName) {
-            self.createFoodItem(withImageNamed: imageName)
+        ImageUploader.upload(image: imageView.image!, withName: imageName) { error in
+            if error == nil {
+                self.createFoodItem(withImageNamed: imageName)
+            } else {
+                self.showErrorAlert()
+            }
         }
     }
     
@@ -133,13 +139,33 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         FoodItem.saveToDatabase(item: newItem) { itemID in
             user.addFoodItem(withID: itemID) { error in
                 if error == nil {                    
-                    self.delegate?.postComplete()
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismissView()
                 } else {
-                    // handle error
+                    self.showErrorAlert()
                 }
             }
         }
-        
     }
+    
+    func showPostingAlert() {
+        postAlert = UIAlertController(title: "Posting...", message: nil, preferredStyle: .alert)
+        present(postAlert!, animated: true, completion: nil)
+    }
+    
+    func dismissView() {
+        delegate?.postComplete()
+        postAlert!.title = "Post complete!"
+        postAlert!.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func showErrorAlert() {
+        postAlert!.title = "Post failed"
+        postAlert!.message = "Please try again later"
+        let dismissAction = UIAlertAction(title: "Ok", style: .default, handler: {action in
+            self.postAlert!.dismiss(animated: true, completion: nil)
+        })
+        postAlert?.addAction(dismissAction)
+    }
+    
 }

@@ -123,7 +123,6 @@
 				14764DE11E08BD7B0033449C /* TimeAgo.swift */,
 				140433DC1E09B7E800189AC9 /* DateExtension.swift */,
 				B01236231E08737200E7F667 /* Channel.swift */,
-
 			);
 			name = Models;
 			sourceTree = "<group>";
