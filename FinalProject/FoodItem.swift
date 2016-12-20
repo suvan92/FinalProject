@@ -24,7 +24,7 @@ class FoodItem: NSObject {
     var requesterChosen : Bool
     var acceptedRequester : String?
     var channels : [String]?
-    var postDate : String
+    var postDate : Date
 
 
     
@@ -52,7 +52,7 @@ class FoodItem: NSObject {
         self.requesterChosen = false
         self.acceptedRequester = nil
         self.dataBaseRef = photo
-        self.postDate = Date().description
+        self.postDate = Date()
     }
     
     func toDictionary() -> [String:Any?] {
@@ -64,7 +64,7 @@ class FoodItem: NSObject {
                                      "requesters":requesters,
                                      "requesterChosen":requesterChosen,
                                      "acceptedRequester":acceptedRequester,
-                                     "postDate":postDate,
+                                     "postDate":postDate.description,
                                      "dataBaseRef":dataBaseRef
         ]
         return result
@@ -82,7 +82,7 @@ class FoodItem: NSObject {
         requesterChosen = snapshotValue["requesterChosen"] as! Bool
         acceptedRequester = snapshotValue["acceptedRequester"] as? String
         channels = snapshotValue["channels"] as? [String]
-        postDate = snapshotValue["postDate"] as! String
+        postDate = (snapshotValue["postDate"] as! String).dateFromString()
         dataBaseRef = snapshotValue["dataBaseRef"] as! String
     }
 
