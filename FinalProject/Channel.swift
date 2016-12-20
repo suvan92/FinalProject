@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 let channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
-//private var channelRefHandle: FIRDatabaseHandle?
 
 class Channel: NSObject {
 
@@ -31,6 +30,14 @@ class Channel: NSObject {
         ]
         
         return result
+    }
+    
+    var databaseRef : FIRDatabaseReference? {
+        if let channelId = self.id {
+           return channelRef.child(channelId) as FIRDatabaseReference
+        } else {
+            return nil
+        }
     }
     
     

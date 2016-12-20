@@ -27,7 +27,7 @@ class User: NSObject {
         userRef.child(self.uid!).observe(.value, with: { snapshot in
             
             let snapshotValue = snapshot.value as! [String:Any?]
-            print(snapshotValue)
+            //print(snapshotValue)
             self.postedItems = snapshotValue["postedItems"] as? [String]
             self.requestedItems = snapshotValue["requestedItems"] as? [String]
             self.channels = snapshotValue["channels"] as? [String]
