@@ -23,6 +23,7 @@ class FoodItem: NSObject {
     var requesters : [String]
     var requesterChosen : Bool
     var acceptedRequester : String?
+    var postDate : NSDate
     
     // MARK: Class Methods
     
@@ -48,6 +49,7 @@ class FoodItem: NSObject {
         self.requesterChosen = false
         self.acceptedRequester = nil
         self.dataBaseRef = nil
+        self.postDate = NSDate()
     }
     
     func toDictionary() -> [String:Any?] {
