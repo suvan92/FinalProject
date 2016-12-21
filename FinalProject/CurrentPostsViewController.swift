@@ -13,7 +13,7 @@ let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
 let itemCellIdentifier = "postCell"
 
-class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewPostDelegate {
+class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties -
     
@@ -74,18 +74,5 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                 })
             }
         })
-    }
-    
-    // MARK: - Segues -
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == createNewItemSegueIdentifier {
-            let destinationVC = segue.destination as! NewPostViewController
-            destinationVC.delegate = self
-        }
-    }
-    
-    // MARK: - New Post Delegate Methods -
-    func postComplete() {
-//        setUpView()
     }
 }

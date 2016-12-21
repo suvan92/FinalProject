@@ -1,76 +1,51 @@
 //
-//  NewPostViewController.swift
+//  NewPostTableViewController.swift
 //  FinalProject
 //
-//  Created by Tim Beals on 2016-12-15.
+//  Created by Tim Beals on 2016-12-20.
 //  Copyright © 2016 suvanr. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-protocol NewPostDelegate {
-    func postComplete() -> Swift.Void
-}
-
-class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
+class NewPostTableViewController: UITableViewController, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - Properties -
     
-
     @IBOutlet weak var foodTitleTextField: UITextField!
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var postByLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var foodDescription: UITextView!
-    var tapGesture: UIGestureRecognizer?
+    @IBOutlet weak var tabcell: TagTextFieldTableViewCell!
+    var tapGesture : UITapGestureRecognizer?
     var dismissGesture : UIGestureRecognizer?
-    var delegate : CurrentPostsViewController?
     var postAlert : UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        foodTitleTextField.delegate = self
-        foodDescription.delegate = self
+        tableView.separatorStyle = .none
         setUpGestures()
-
+        tabcell.setup()
     }
     
-    //MARK: text field delegate methods
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    //MARK: text view delegate methods
-    func textViewDidEndEditing(_ textView: UITextView) {
-        textView.resignFirstResponder()
-    }
-    
-    //MARK: tap gesture
+    // MARK: - Tap Gesture -
     @objc func selectImage() {
-        //instantiate image picker
         let imagePickerController = UIImagePickerController()
         
-        //alert
+        // alert
         let pickerAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Camera",
-                                         style: .default) { action in
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in
             imagePickerController.sourceType = .camera
             imagePickerController.delegate = self
             self.present(imagePickerController, animated: true, completion: nil)
-        }
-        
-        //set library for image picker's source type
-        let libraryAction = UIAlertAction(title: "Library",
-                                          style: .default) { action in
+        })
+        let libraryAction = UIAlertAction(title: "Library", style: .default) { action in
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.delegate = self
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         
         pickerAlert.addAction(cameraAction)
         pickerAlert.addAction(libraryAction)
@@ -78,8 +53,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         present(pickerAlert, animated: true, completion: nil)
     }
     
-    
-    //MARK: Image picker controller methods
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -89,13 +62,27 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         self.imageView.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
     
     // MARK: - Actions -
     
-    @IBAction func postButton(_ sender: UIButton) {
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func postButtonTouched(_ sender: UIBarButtonItem) {
         showPostingAlert()
         let imageName = ImageUploader.generateImageName()
-        ImageUploader.upload(image: imageView.image!, withName: imageName) { error in
+        ImageUploader.upload(image: imageView.image!, withName: imageName) { (error) in
             if error == nil {
                 self.createFoodItem(withImageNamed: imageName)
             } else {
@@ -104,14 +91,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
     }
     
-    @IBAction func cancelButtonTouched(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Gesuture Methods
-    
     func setUpGestures() {
-        // Image selection
+        // Image Selection
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         tapGesture?.delegate = self
         imageView.addGestureRecognizer(tapGesture!)
@@ -127,23 +108,24 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         view.endEditing(true)
     }
     
-    // MARK: Save Method
+    // MARK: - Save Method -
     
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
-        let itemDescription = foodDescription.text
+        let itemDescription = foodDescription.text!
         let user = User.sharedInstance
         let ownerID = user.uid!
-        let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription!, tags: [])
+        let tags = tabcell.tags
+        let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription, tags: tags)
         
         FoodItem.saveToDatabase(item: newItem) { itemID in
-            user.addFoodItem(withID: itemID) { error in
-                if error == nil {                    
+            user.addFoodItem(withID: itemID, completion: { (error) in
+                if error == nil {
                     self.dismissView()
                 } else {
                     self.showErrorAlert()
                 }
-            }
+            })
         }
     }
     
@@ -153,7 +135,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     func dismissView() {
-        delegate?.postComplete()
         postAlert!.title = "Post complete!"
         postAlert!.dismiss(animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
@@ -162,10 +143,11 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     func showErrorAlert() {
         postAlert!.title = "Post failed"
         postAlert!.message = "Please try again later"
-        let dismissAction = UIAlertAction(title: "Ok", style: .default, handler: {action in
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
             self.postAlert!.dismiss(animated: true, completion: nil)
-        })
+        }
         postAlert?.addAction(dismissAction)
     }
     
+
 }

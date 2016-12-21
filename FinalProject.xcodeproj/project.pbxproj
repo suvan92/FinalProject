@@ -30,7 +30,8 @@
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
-		B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063BEE71E039FF800818E7B /* NewPostViewController.swift */; };
+		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
+		B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */; };
 		B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */; };
 		B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
@@ -63,7 +64,8 @@
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
 		B01236231E08737200E7F667 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		B063BEE71E039FF800818E7B /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewController.swift; sourceTree = "<group>"; };
+		B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0BB9B001E062C09005F8FE8 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
 		B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */,
+				B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -191,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				147918071E03921000727419 /* CurrentPostsViewController.swift */,
-				B063BEE71E039FF800818E7B /* NewPostViewController.swift */,
+				B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */,
 				14764DD51E0870190033449C /* PostPendingRequestsViewController.swift */,
 			);
 			name = PostBranch;
@@ -353,13 +356,14 @@
 				14764DD81E0870D40033449C /* RequestSearchViewController.swift in Sources */,
 				147918061E03916300727419 /* Router.swift in Sources */,
 				14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */,
-				B063BEE81E039FF800818E7B /* NewPostViewController.swift in Sources */,
 				B01236241E08737200E7F667 /* Channel.swift in Sources */,
+				B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
 				140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
+				B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
