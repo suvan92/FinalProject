@@ -51,7 +51,7 @@ class FoodItem: NSObject {
         self.requesters = []
         self.requesterChosen = false
         self.acceptedRequester = nil
-        self.dataBaseRef = photo
+        self.dataBaseRef = ""
         self.postDate = Date()
     }
     
