@@ -49,6 +49,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - WSTagsField (2.0.0)
 
 DEPENDENCIES:
   - Firebase
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
+  - WSTagsField (~> 2.0)
 
 SPEC CHECKSUMS:
   Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
@@ -72,7 +74,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  WSTagsField: df3f020590e1c0f26d85293e4ce24c5d4fcc3c80
 
-PODFILE CHECKSUM: 546bf3a6dcce954753a1f5d5e8bb6ab04bf56f17
+PODFILE CHECKSUM: a2b12cdd2fda252a0d384ae9670bd7a3ba21b8a2
 
 COCOAPODS: 1.1.1

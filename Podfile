@@ -11,7 +11,7 @@ pod ‘Firebase/Database’
 pod ‘Firebase/Auth’
 pod ‘JSQMessagesViewController’
 pod ‘Firebase/Storage’
-
+pod 'WSTagsField', '~> 2.0'
   # Pods for FinalProject
 
 end
