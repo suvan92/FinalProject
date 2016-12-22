@@ -26,7 +26,7 @@ class User: NSObject {
     func setupUserProperties(completion: @escaping () -> Swift.Void) {
         userRef.child(self.uid!).observe(.value, with: { snapshot in
             
-            let snapshotValue = snapshot.value as! [String:Any?]
+            let snapshotValue = snapshot.value as! [String: Any?]
             self.postedItems = snapshotValue["postedItems"] as? [String]
             self.requestedItems = snapshotValue["requestedItems"] as? [String]
             self.channels = snapshotValue["channels"] as? [String]

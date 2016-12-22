@@ -7,13 +7,49 @@
 //
 
 import UIKit
+import Firebase
 
 class RequestSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        let searchEntry = "chocolate" //we can get this from the text field...
+        let distance = 20 //We could get this from user settings, or a slider in the search vc
+        let tagsRef = FIRDatabase.database().reference(withPath: "tags")
+        
+        tagsRef.queryEqual(toValue: searchEntry, childKey: "string").observe(.childAdded, with:  { snapshot in
+            
+            //some equation to convert the location into distance from user...
+            //snapshot.value["location"]
+            
+            let posterDistance = 6
+            
+//            if posterDistance < distance {
+//                returner
+//                let age = snapshot.value["age"] as! Int
+//                let fbKey = snapshot.key!
+//                
+//                print("array: \(fbKey)  \(age)  \(distance)")
+//            }
+        })
+        
+        
+//        usersRef.queryOrderedByChild("age").queryStartingAtValue(20)
+//            .queryEndingAtValue(25).observeEventType(.ChildAdded, withBlock: { snapshot in
+//                
+//                let distance = snapshot.value["distance"] as! Int
+//                
+//                if distance < 100 {
+//                    let age = snapshot.value["age"] as! Int
+//                    let fbKey = snapshot.key!
+//                    
+//                    print("array: \(fbKey)  \(age)  \(distance)")
+//                }
+//            })
+        
+       
     }
 
     override func didReceiveMemoryWarning() {
