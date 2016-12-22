@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let requestVCTitle = "Active Requests"
 let searchButtonSegueIdentifier = "searchButtonSegue"
