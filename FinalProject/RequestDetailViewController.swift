@@ -49,7 +49,7 @@ class RequestDetailViewController: UIViewController {
                 self.requestCompleteAlert()
                 self.dismissDetailView()
             } else {
-                // handle error
+                self.requestFailedAlert()
             }
         }
     }
