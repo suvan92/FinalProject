@@ -9,23 +9,18 @@
 import UIKit
 import Firebase
 
-class RequestSearchViewController: UIViewController {
-    
-    // MARK: - Properties -
-    
+let requestVCTitle = "Active Requests"
+let searchButtonSegueIdentifier = "searchButtonSegue"
+
+class RequestSearchViewController: UIViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        self.title = requestVCTitle
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSegue(withIdentifier: searchButtonSegueIdentifier, sender: self)
     }
-    
-
-
 
 }
