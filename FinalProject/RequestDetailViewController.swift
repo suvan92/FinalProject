@@ -8,8 +8,6 @@
 
 import UIKit
 
-let activeRequestsCellRI = "activeRequestsCell"
-
 class RequestDetailViewController: UIViewController {
     
     // MARK: - Properties -
