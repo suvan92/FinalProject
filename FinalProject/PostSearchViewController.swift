@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+let searchCellReuseIdentifier = "searchResultCell"
+
+class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties -
 
@@ -32,6 +34,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
             print(foodItems)
             self.collectionView.reloadData()
         })
+        view.endEditing(true)
     }
     
     // MARK: - Collection View Methods -
@@ -40,9 +43,17 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchCellReuseIdentifier, for: indexPath) as! PostSearchCollectionViewCell
+        
+        cell.setUpWithFoodItem(dataSource[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = self.collectionView.frame.width*0.48
+        let cellHeight : CGFloat = 200.0
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 
 }

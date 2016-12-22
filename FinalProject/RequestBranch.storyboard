@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -97,21 +98,55 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zyW-V9-HYl">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="171" height="190"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5PI-RL-Q5a">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchResultCell" id="5PI-RL-Q5a" customClass="PostSearchCollectionViewCell" customModule="FinalProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="171" height="190"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="171" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSW-pM-5nN">
+                                                    <rect key="frame" x="8" y="8" width="155" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDA-Qt-NUp">
+                                                    <rect key="frame" x="8" y="31" width="155" height="151"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="w1M-Vb-7vz">
+                                                    <rect key="frame" x="75" y="85" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="NDA-Qt-NUp" firstAttribute="leading" secondItem="5PI-RL-Q5a" secondAttribute="leadingMargin" id="1Wp-zK-2WQ"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="kSW-pM-5nN" secondAttribute="trailing" id="KEx-4e-1Wa"/>
+                                            <constraint firstItem="NDA-Qt-NUp" firstAttribute="bottom" secondItem="5PI-RL-Q5a" secondAttribute="bottomMargin" id="OkS-kk-0xu"/>
+                                            <constraint firstItem="NDA-Qt-NUp" firstAttribute="trailing" secondItem="5PI-RL-Q5a" secondAttribute="trailingMargin" id="Um0-6g-tgm"/>
+                                            <constraint firstItem="kSW-pM-5nN" firstAttribute="leading" secondItem="5PI-RL-Q5a" secondAttribute="leadingMargin" id="cGo-cB-raz"/>
+                                            <constraint firstItem="w1M-Vb-7vz" firstAttribute="centerY" secondItem="5PI-RL-Q5a" secondAttribute="centerY" id="j6V-ZT-V7R"/>
+                                            <constraint firstItem="NDA-Qt-NUp" firstAttribute="top" secondItem="kSW-pM-5nN" secondAttribute="bottom" constant="2" id="vXe-MP-erx"/>
+                                            <constraint firstItem="kSW-pM-5nN" firstAttribute="top" secondItem="5PI-RL-Q5a" secondAttribute="topMargin" id="wP1-Xe-GKe"/>
+                                            <constraint firstItem="w1M-Vb-7vz" firstAttribute="centerX" secondItem="5PI-RL-Q5a" secondAttribute="centerX" id="xia-ua-esp"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="w1M-Vb-7vz" id="w5A-KO-p0c"/>
+                                            <outlet property="foodItemTitle" destination="kSW-pM-5nN" id="1iC-Cl-wVt"/>
+                                            <outlet property="imageView" destination="NDA-Qt-NUp" id="UXK-tx-dbF"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="pOs-lJ-6lj" id="BeM-L9-XsM"/>
+                                    <outlet property="delegate" destination="pOs-lJ-6lj" id="pNM-R9-liE"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

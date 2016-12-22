@@ -29,6 +29,8 @@
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
 		147E71651E0B5EC00031838D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E71641E0B5EC00031838D /* SearchManager.swift */; };
 		148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */; };
+		148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */; };
+		148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
 		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
@@ -63,6 +65,8 @@
 		147918071E03921000727419 /* CurrentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPostsViewController.swift; sourceTree = "<group>"; };
 		147E71641E0B5EC00031838D /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchViewController.swift; sourceTree = "<group>"; };
+		148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				B01236231E08737200E7F667 /* Channel.swift */,
 				B09A9F051E0B49390044DFBC /* TagManager.swift */,
 				147E71641E0B5EC00031838D /* SearchManager.swift */,
+				148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */,
 				B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */,
+				148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -356,8 +362,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */,
 				147917F91E03740F00727419 /* FoodItem.swift in Sources */,
 				147917DF1E0370B900727419 /* AppDelegate.swift in Sources */,
+				148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */,
 				14764DD81E0870D40033449C /* ActiveRequestsViewController.swift in Sources */,
 				147918061E03916300727419 /* Router.swift in Sources */,
 				14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */,
