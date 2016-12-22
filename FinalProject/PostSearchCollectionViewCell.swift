@@ -18,9 +18,11 @@ class PostSearchCollectionViewCell: UICollectionViewCell {
     
     func setUpWithFoodItem(_ foodItem: FoodItem) {
         foodItemTitle.text = foodItem.name
+        activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         ImageDownloader.getFoodItemImage(foodItem: foodItem, completion: { image in
             self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
             self.imageView.image = image
             self.imageView.contentMode = .scaleAspectFit
         })
