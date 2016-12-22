@@ -9,28 +9,44 @@
 
 import UIKit
 
-class PostPendingRequestsViewController: UIViewController {
+let requesterCellReuseIdentifier = "requesterCell"
 
+class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: - Properties -
+    var foodItem : FoodItem?
+    var dataSource : [RequestUser]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        getDataSource()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - TableView Methods -
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dataSource = dataSource {
+            return dataSource.count
+        }
+        return 0
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: requesterCellReuseIdentifier, for: indexPath) as! RequesterTableViewCell
+        
+        if let dataSource = dataSource {
+            cell.setUpCellWith(requestUser: dataSource[indexPath.row])
+        }
+        
+        return cell
+    }
+    
+    // MARK: - General Methods -
+    
+    func getDataSource() {
+        if let foodItem = foodItem {
+            let requestedUserRef = ref.child()
+        }
+    }
 
 }

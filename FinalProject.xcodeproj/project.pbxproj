@@ -29,6 +29,8 @@
 		147E71651E0B5EC00031838D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E71641E0B5EC00031838D /* SearchManager.swift */; };
 		148117511E0C6370000AC5B7 /* NewRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148117501E0C6370000AC5B7 /* NewRequestManager.swift */; };
 		148117531E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148117521E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift */; };
+		148117551E0C865B000AC5B7 /* RequesterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148117541E0C865B000AC5B7 /* RequesterTableViewCell.swift */; };
+		148117571E0C9595000AC5B7 /* RequestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148117561E0C9595000AC5B7 /* RequestUser.swift */; };
 		148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */; };
 		148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */; };
 		148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */; };
@@ -67,6 +69,8 @@
 		147E71641E0B5EC00031838D /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		148117501E0C6370000AC5B7 /* NewRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestManager.swift; sourceTree = "<group>"; };
 		148117521E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRequestsTableViewCell.swift; sourceTree = "<group>"; };
+		148117541E0C865B000AC5B7 /* RequesterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequesterTableViewCell.swift; sourceTree = "<group>"; };
+		148117561E0C9595000AC5B7 /* RequestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestUser.swift; sourceTree = "<group>"; };
 		148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchViewController.swift; sourceTree = "<group>"; };
 		148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 				147E71641E0B5EC00031838D /* SearchManager.swift */,
 				148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */,
 				148117501E0C6370000AC5B7 /* NewRequestManager.swift */,
+				148117561E0C9595000AC5B7 /* RequestUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				148117521E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift */,
 				B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */,
 				148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */,
+				148117541E0C865B000AC5B7 /* RequesterTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 			files = (
 				148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */,
 				147917F91E03740F00727419 /* FoodItem.swift in Sources */,
+				148117571E0C9595000AC5B7 /* RequestUser.swift in Sources */,
 				147917DF1E0370B900727419 /* AppDelegate.swift in Sources */,
 				148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */,
 				14764DD81E0870D40033449C /* ActiveRequestsViewController.swift in Sources */,
@@ -389,6 +396,7 @@
 				B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
+				148117551E0C865B000AC5B7 /* RequesterTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,
