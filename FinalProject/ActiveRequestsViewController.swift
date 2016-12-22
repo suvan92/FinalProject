@@ -1,5 +1,5 @@
 //
-//  RequestSearchViewController.swift
+//  ActiveRequestsViewController.swift
 //  FinalProject
 //
 //  Created by Suvan Ramani on 2016-12-19.
@@ -12,15 +12,11 @@ import Firebase
 let requestVCTitle = "Active Requests"
 let searchButtonSegueIdentifier = "searchButtonSegue"
 
-class RequestSearchViewController: UIViewController, UISearchBarDelegate {
+class ActiveRequestsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = requestVCTitle
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        performSegue(withIdentifier: searchButtonSegueIdentifier, sender: self)
     }
 
 }

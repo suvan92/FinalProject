@@ -47,11 +47,11 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let foodItem = arrayOfPosts![indexPath.row]
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let foodItem = arrayOfPosts![indexPath.row]
+//        }
+//    }
     
     // MARK: - Actions -
     
