@@ -13,8 +13,6 @@ let tagsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("ta
 
 class TagManager: NSObject {
     
-    
-    
     func saveToDatabase(foodItem: FoodItem, completion: @escaping () -> Swift.Void)
     {
         if let tagsArray = foodItem.itemTags {
@@ -34,6 +32,8 @@ class TagManager: NSObject {
             }
         }
     }
+    
+    
     
     
 

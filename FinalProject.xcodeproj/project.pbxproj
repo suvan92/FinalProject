@@ -28,6 +28,7 @@
 		147918041E037D9600727419 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147918031E037D9600727419 /* Messages.storyboard */; };
 		147918061E03916300727419 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918051E03916300727419 /* Router.swift */; };
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
+		147E71651E0B5EC00031838D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E71641E0B5EC00031838D /* SearchManager.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
 		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
@@ -61,6 +62,7 @@
 		147918031E037D9600727419 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		147918051E03916300727419 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		147918071E03921000727419 /* CurrentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPostsViewController.swift; sourceTree = "<group>"; };
+		147E71641E0B5EC00031838D /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				140433DC1E09B7E800189AC9 /* DateExtension.swift */,
 				B01236231E08737200E7F667 /* Channel.swift */,
 				B09A9F051E0B49390044DFBC /* TagManager.swift */,
+				147E71641E0B5EC00031838D /* SearchManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
 				B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
+				147E71651E0B5EC00031838D /* SearchManager.swift in Sources */,
 				B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
