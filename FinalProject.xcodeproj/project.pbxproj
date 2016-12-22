@@ -27,6 +27,7 @@
 		147918061E03916300727419 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918051E03916300727419 /* Router.swift */; };
 		147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147918071E03921000727419 /* CurrentPostsViewController.swift */; };
 		147E71651E0B5EC00031838D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147E71641E0B5EC00031838D /* SearchManager.swift */; };
+		148117511E0C6370000AC5B7 /* NewRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148117501E0C6370000AC5B7 /* NewRequestManager.swift */; };
 		148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */; };
 		148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */; };
 		148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */; };
@@ -63,6 +64,7 @@
 		147918051E03916300727419 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		147918071E03921000727419 /* CurrentPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPostsViewController.swift; sourceTree = "<group>"; };
 		147E71641E0B5EC00031838D /* SearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		148117501E0C6370000AC5B7 /* NewRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestManager.swift; sourceTree = "<group>"; };
 		148B6D491E0B6A7900E956BD /* PostSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchViewController.swift; sourceTree = "<group>"; };
 		148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				B09A9F051E0B49390044DFBC /* TagManager.swift */,
 				147E71641E0B5EC00031838D /* SearchManager.swift */,
 				148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */,
+				148117501E0C6370000AC5B7 /* NewRequestManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -264,7 +267,6 @@
 				TargetAttributes = {
 					147917DA1E0370B900727419 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 9NXK8LBV53;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -378,6 +380,7 @@
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
 				B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */,
+				148117511E0C6370000AC5B7 /* NewRequestManager.swift in Sources */,
 				147E71651E0B5EC00031838D /* SearchManager.swift in Sources */,
 				B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
@@ -509,7 +512,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FinalProject/FinalProject.entitlements;
-				DEVELOPMENT_TEAM = 9NXK8LBV53;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -525,7 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FinalProject/FinalProject.entitlements;
-				DEVELOPMENT_TEAM = 9NXK8LBV53;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -76,4 +76,12 @@ class User: NSObject {
             completion()
         }
     }
+    
+    func addNewRequest(for foodItem: FoodItem) {
+        if var requestsArray = self.requestedItems {
+            requestsArray.append(foodItem.dataBaseRef)
+        } else {
+            self.requestedItems = [foodItem.dataBaseRef]
+        }
+    }
 }

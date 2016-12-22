@@ -17,13 +17,19 @@ class RequestDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var foodItem : FoodItem?
+    var requestStatusAlert : UIAlertController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addRequestButton()
         if let foodItem = foodItem {
             setUpViewWithItem(foodItem)
         }
-        
+    }
+    
+    func addRequestButton() {
+        let requestButton = UIBarButtonItem(title: "Request", style: .done, target: self, action: #selector(sendRequest))
+        self.navigationItem.rightBarButtonItem = requestButton
     }
     
     func setUpViewWithItem(_ foodItem: FoodItem) {
@@ -31,7 +37,51 @@ class RequestDetailViewController: UIViewController {
         ImageDownloader.getFoodItemImage(foodItem: foodItem) { image in
             self.imageView.image = image
         }
-        descriptionLabel.text = foodItem.description
+        descriptionLabel.text = foodItem.itemDescription
+    }
+    
+    func sendRequest() {
+        showRequestingAlert()
+        NewRequestManager.makeRequest(for: foodItem!) { error,canAdd in
+            if canAdd != nil {
+                self.requestAlreadyMadeAlert()
+            } else if error == nil {
+                self.requestCompleteAlert()
+                self.dismissDetailView()
+            } else {
+                // handle error
+            }
+        }
+    }
+    
+    func showRequestingAlert() {
+        requestStatusAlert = UIAlertController(title: "Requesting...", message: nil, preferredStyle: .alert)
+        present(requestStatusAlert!, animated: true, completion: nil)
+    }
+    
+    func requestCompleteAlert() {
+        requestStatusAlert?.title = "Request successful!"
+    }
+    
+    func requestAlreadyMadeAlert() {
+        requestStatusAlert?.title = "You have already requested this item"
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { action in
+            self.dismissDetailView()
+        }
+        requestStatusAlert?.addAction(dismissAction)
+    }
+    
+    func requestFailedAlert() {
+        requestStatusAlert?.title = "Request failed"
+        requestStatusAlert?.message = "Please try again later"
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { action in
+            self.dismissDetailView()
+        }
+        requestStatusAlert?.addAction(dismissAction)
+    }
+    
+    func dismissDetailView() {
+        navigationController?.popViewController(animated: true)
     }
     
 

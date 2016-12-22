@@ -9,6 +9,7 @@
 import UIKit
 
 let searchCellReuseIdentifier = "searchResultCell"
+let showRequestDetailSegueIdentifier = "showRequestDetail"
 
 class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -17,6 +18,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource : [FoodItem] = []
+    var selectedFoodItem : FoodItem?
     
     
     override func viewDidLoad() {
@@ -56,8 +58,20 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         return CGSize(width: cellWidth, height: cellHeight)
     }
     
+    // MARK: - Segues -
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        selectedFoodItem = dataSource[indexPath.row]
+        performSegue(withIdentifier: showRequestDetailSegueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showRequestDetailSegueIdentifier {
+            let destinationVC = segue.destination as! RequestDetailViewController
+            if let selectedFoodItem = selectedFoodItem {
+                destinationVC.foodItem = selectedFoodItem
+            }
+        }
     }
 
 }
