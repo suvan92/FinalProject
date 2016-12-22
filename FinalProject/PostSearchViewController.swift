@@ -25,9 +25,11 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let searchArray = searchBar.text!.components(separatedBy: " ")
+        print(searchArray)
         let searchManager = SearchManager()
         searchManager.searchForItems(searchArray: searchArray, completion: {(foodItems) in
             self.dataSource = foodItems
+            print(foodItems)
             self.collectionView.reloadData()
         })
     }

@@ -41,9 +41,7 @@ class SearchManager: NSObject {
                 } else {
                     let foodItemRefs = snapshot.value as! [String]
                     for ref in foodItemRefs {
-                        DispatchQueue.main.async {
-                            self.foodItemsToPull.insert(ref)
-                        }
+                        self.foodItemsToPull.insert(ref)
                     }
                     self.currentCallNumber += 1
                     if self.currentCallNumber == self.totalCallNumber {
@@ -70,11 +68,4 @@ class SearchManager: NSObject {
             })
         }
     }
-    
-//    ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
-//    let foodItem = FoodItem(snapshot: snap)
-//    self.arrayOfPosts?.append(foodItem)
-//    self.tableView.reloadData()
-//    })
-
-} // class
+}
