@@ -32,6 +32,7 @@
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
 		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
 		B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */; };
+		B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A9F051E0B49390044DFBC /* TagManager.swift */; };
 		B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */; };
 		B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		B01236231E08737200E7F667 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewController.swift; sourceTree = "<group>"; };
 		B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		B09A9F051E0B49390044DFBC /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 		B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0BB9B001E062C09005F8FE8 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
 		B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				14764DE11E08BD7B0033449C /* TimeAgo.swift */,
 				140433DC1E09B7E800189AC9 /* DateExtension.swift */,
 				B01236231E08737200E7F667 /* Channel.swift */,
+				B09A9F051E0B49390044DFBC /* TagManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
 				B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */,
 				14764DDC1E0870F50033449C /* FoodItemDetailViewController.swift in Sources */,
+				B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,

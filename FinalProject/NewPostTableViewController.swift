@@ -121,7 +121,10 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         FoodItem.saveToDatabase(item: newItem) { itemID in
             user.addFoodItem(withID: itemID, completion: { (error) in
                 if error == nil {
-                    self.dismissView()
+                    let tagManager = TagManager()
+                    tagManager.saveToDatabase(foodItem: newItem, completion: {
+                        self.dismissView()
+                    })
                 } else {
                     self.showErrorAlert()
                 }
