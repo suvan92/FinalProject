@@ -8,6 +8,8 @@
 
 import UIKit
 
+let activeRequestsCellRI = "activeRequestsCell"
+
 class RequestDetailViewController: UIViewController {
     
     // MARK: - Properties -
@@ -81,6 +83,7 @@ class RequestDetailViewController: UIViewController {
     }
     
     func dismissDetailView() {
+        requestStatusAlert?.dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
     }
     
