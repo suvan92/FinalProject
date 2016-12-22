@@ -55,5 +55,9 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         let cellHeight : CGFloat = 200.0
         return CGSize(width: cellWidth, height: cellHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 
 }
