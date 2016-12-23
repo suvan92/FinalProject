@@ -50,8 +50,12 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedItem = arrayOfPosts?[indexPath.row]
-        performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
+        if (arrayOfPosts?[indexPath.row].requesterChosen)! {
+            // go to chat
+        } else {
+            selectedItem = arrayOfPosts?[indexPath.row]
+            performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +75,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func getDataSource() {
         let currentUser = User.sharedInstance
-        userRef.child(currentUser.uid!).child("postedItems").observe(.value, with: { snapshot in
+        userRef.child(currentUser.uid!).child("postedItems").queryOrdered(byChild: "requesterChosen").observe(.value, with: { snapshot in
             self.arrayOfPosts = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
