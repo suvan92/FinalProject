@@ -16,7 +16,6 @@ class AcceptanceManager: NSObject {
         // update local object and push to database
         foodItem.acceptedRequester = requestUser.uid
         foodItem.requesterChosen = true
-        foodItem.requesters = []
         acceptedFoodItemRef.setValue(foodItem.toDictionary()) { error, ref in
             completion()
         }

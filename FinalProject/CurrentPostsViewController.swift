@@ -75,6 +75,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func getDataSource() {
         let currentUser = User.sharedInstance
+        // ordered query not working
         userRef.child(currentUser.uid!).child("postedItems").queryOrdered(byChild: "requesterChosen").observe(.value, with: { snapshot in
             self.arrayOfPosts = []
             for item in snapshot.children {
