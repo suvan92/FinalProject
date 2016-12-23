@@ -31,11 +31,12 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.title = "User Settings"
+        //setUpGestures()
+        tableView.separatorStyle = .none
+        self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
+        self.imageView.clipsToBounds = true
+        //setupView()
     }
 
     // MARK: - Table view data source
@@ -52,7 +53,61 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     
     @IBAction func searchRelativeClicked(_ sender: Any) {
     }
-
+    
+    //MARK: Gesture handling
+    func setUpGestures() {
+        // Image Selection
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
+        tapGesture?.delegate = self
+        imageView.addGestureRecognizer(tapGesture!)
+        imageView.isUserInteractionEnabled = true
+        
+        // First Responder Dismissal
+        dismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        dismissGesture?.delegate = self
+        view.addGestureRecognizer(dismissGesture!)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // MARK: - Image Picker -
+    @objc func selectImage() {
+        let imagePickerController = UIImagePickerController()
+        
+        // setup alert
+        let pickerAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in
+            imagePickerController.sourceType = .camera
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true, completion: nil)
+        })
+        let libraryAction = UIAlertAction(title: "Library", style: .default) { action in
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.delegate = self
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        
+        pickerAlert.addAction(cameraAction)
+        pickerAlert.addAction(libraryAction)
+        pickerAlert.addAction(cancelAction)
+        present(pickerAlert, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage!
+        self.imageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 
 
