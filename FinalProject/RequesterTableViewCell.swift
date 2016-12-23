@@ -16,21 +16,26 @@ class RequesterTableViewCell: UITableViewCell {
     @IBOutlet weak var requesterDistanceLabel: NSLayoutConstraint!
     @IBOutlet weak var acceptButton: UIButton!
     var cellRequestUser : RequestUser?
+    var foodItem : FoodItem?
     
     var user : RequestUser?
     
     // MARK: - General Methods -
     
-    func setUpCellWith(requestUser: RequestUser) {
+    func setUpCellWith(requestUser: RequestUser, and foodItem: FoodItem) {
         cellRequestUser = requestUser
         user = requestUser
         requesterNameLabel.text = requestUser.email
+        self.foodItem = foodItem
     }
     
     // MARK: - Actions -
     
     @IBAction func acceptButtonTouched(_ sender: UIButton) {
-        AcceptanceManager.accept(requestUser: cellRequestUser!)
+        AcceptanceManager.accept(requestUser: cellRequestUser!, and: foodItem!) {
+            // generate channel
+        }
+        
     }
 
 }

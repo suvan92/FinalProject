@@ -10,8 +10,16 @@ import UIKit
 
 class AcceptanceManager: NSObject {
     
-    class func accept(requestUser: RequestUser) {
-        
+    class func accept(requestUser: RequestUser, and foodItem: FoodItem, completion: @escaping () -> Swift.Void) {
+        // get reference to foodItem in database
+        let acceptedFoodItemRef = foodRef.child(foodItem.dataBaseRef)
+        // update local object and push to database
+        foodItem.acceptedRequester = requestUser.uid
+        foodItem.requesterChosen = true
+        foodItem.requesters = []
+        acceptedFoodItemRef.setValue(foodItem.toDictionary()) { error, ref in
+            completion()
+        }
     }
 
 }

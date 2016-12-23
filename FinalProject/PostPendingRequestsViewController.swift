@@ -38,7 +38,8 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
         let cell = tableView.dequeueReusableCell(withIdentifier: requesterCellReuseIdentifier, for: indexPath) as! RequesterTableViewCell
         
         if let dataSource = dataSource {
-            cell.setUpCellWith(requestUser: dataSource[indexPath.row])
+            let requestUser = dataSource[indexPath.row]
+            cell.setUpCellWith(requestUser: requestUser, and: foodItem!)
         }
         
         return cell
