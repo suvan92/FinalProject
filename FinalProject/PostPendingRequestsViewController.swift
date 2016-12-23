@@ -48,7 +48,7 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     
     func getDataSource() {
         if let foodItem = foodItem {
-            let itemRef = ref.child(foodItem.dataBaseRef)
+            let itemRef = foodRef.child(foodItem.dataBaseRef)
             itemRef.child("requesters").observeSingleEvent(of: .value, with: { (snapshot) in
                 self.dataSource = []
                 for item in snapshot.children {

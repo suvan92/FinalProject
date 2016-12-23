@@ -138,7 +138,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     }
     
     func dismissView() {
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
         postAlert!.title = "Post complete!"
         postAlert!.dismiss(animated: true) { [unowned self] in
             self.dismiss(animated: true, completion: nil)

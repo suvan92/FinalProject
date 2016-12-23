@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-let ref = FIRDatabase.database().reference(withPath: "foodItems")
+let foodRef = FIRDatabase.database().reference(withPath: "foodItems")
 
 class FoodItem: NSObject {
     
@@ -31,7 +31,7 @@ class FoodItem: NSObject {
     // MARK: Class Methods
     
     class func saveToDatabase(item :FoodItem, completion: @escaping (_ itemID: String) -> Swift.Void) {
-        let newItemRef = ref.childByAutoId()
+        let newItemRef = foodRef.childByAutoId()
         let referenceString = newItemRef.description()
         item.dataBaseRef = String(referenceString.characters.suffix(20))
         newItemRef.setValue(item.toDictionary()) { error, ref in

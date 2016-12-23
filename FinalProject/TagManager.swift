@@ -20,7 +20,9 @@ class TagManager: NSObject {
                 let newTagRef = tagsRef.child(tag.lowercased())
                 newTagRef.observeSingleEvent(of: .value, with: { snapshot in
                     if snapshot.value is NSNull {
-                        newTagRef.setValue([foodItem.dataBaseRef])
+                        newTagRef.setValue([foodItem.dataBaseRef]) { error, ref in
+                            completion()
+                        }
                     } else {
                         var results = snapshot.value as! [String]
                         results.append(foodItem.dataBaseRef)

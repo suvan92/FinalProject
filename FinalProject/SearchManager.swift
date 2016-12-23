@@ -60,7 +60,7 @@ class SearchManager: NSObject {
         currentCallNumber = 0
         totalCallNumber = itemRefs.count
         for itemRef in itemRefs {
-            ref.child(itemRef).observeSingleEvent(of: .value, with: { (snapshot) in
+            foodRef.child(itemRef).observeSingleEvent(of: .value, with: { (snapshot) in
                 let foodItem = FoodItem(snapshot: snapshot)
                 self.instantiatedFoodItems.append(foodItem)
                 self.currentCallNumber += 1
