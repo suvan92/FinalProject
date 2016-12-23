@@ -108,7 +108,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LqX-wR-KWD" id="qws-xA-b7S"/>
-                        <segue destination="slT-VS-Wzp" kind="show" id="u9Z-Ts-yvQ"/>
+                        <segue destination="slT-VS-Wzp" kind="show" identifier="showPendingRequestsVC" id="u9Z-Ts-yvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKa-qC-kgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,6 +193,9 @@
                             <constraint firstItem="95s-sb-Zn4" firstAttribute="leading" secondItem="NE1-5N-Uy2" secondAttribute="leading" id="eWl-MK-x8P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="95s-sb-Zn4" id="2xj-DI-kqf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZi-s0-y4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

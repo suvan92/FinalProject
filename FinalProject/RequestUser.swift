@@ -14,10 +14,15 @@ class RequestUser: NSObject {
     // MARK: - Properties -
     var name : String
     var email : String
-    var requestedItems : [String]
+    var uid: String
     
-//    init(snapshot: FIRDataSnapshot) {
-//        
-//    }
+    init(snapshot: FIRDataSnapshot) {
+        let snapshotValue = snapshot.value as! [String:Any?]
+        
+        name = snapshotValue["email"] as! String
+        email = snapshotValue["email"] as! String
+        uid = snapshotValue["uid"] as! String
+        
+    }
 
 }

@@ -12,6 +12,7 @@ import Firebase
 let vcTitle = "Active Posts"
 let createNewItemSegueIdentifier = "createNewPost"
 let itemCellIdentifier = "postCell"
+let pendingPostsVCSegueIdentifier = "showPendingRequestsVC"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,6 +20,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     var arrayOfPosts : [FoodItem]?
+    var selectedItem : FoodItem?
     
     
     // MARK: - VC Lifecyle -
@@ -47,11 +49,17 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let foodItem = arrayOfPosts![indexPath.row]
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedItem = arrayOfPosts?[indexPath.row]
+        performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == pendingPostsVCSegueIdentifier {
+            let destinationVC = segue.destination as! PostPendingRequestsViewController
+            destinationVC.foodItem = selectedItem
+        }
+    }
     
     // MARK: - Actions -
     

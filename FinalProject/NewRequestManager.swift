@@ -32,9 +32,17 @@ class NewRequestManager: NSObject {
             currentUserRef.updateChildValues(["requestedItems":user.requestedItems!]){ error, ref in
                 if error == nil {
                     let itemRef = ref.child(foodItem.dataBaseRef)
-                    itemRef.updateChildValues(["requesters":foodItem.requesters!]) {error,ref in
-                        completion(error,nil)
-                    }
+                    itemRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.value is NSNull {
+                            itemRef.child("requesters").setValue(foodItem.requesters!) { error, ref in
+                                completion(error,nil)
+                            }
+                        } else {
+                            itemRef.updateChildValues(["requesters":foodItem.requesters!]) { error, ref in
+                                completion(error,nil)
+                            }
+                        }
+                    })
                 } else {
                     completion(error,nil)
                 }

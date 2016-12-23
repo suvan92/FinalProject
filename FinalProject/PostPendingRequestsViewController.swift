@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import Firebase
 
 let requesterCellReuseIdentifier = "requesterCell"
 
@@ -16,6 +17,8 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     // MARK: - Properties -
     var foodItem : FoodItem?
     var dataSource : [RequestUser]?
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,21 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     
     func getDataSource() {
         if let foodItem = foodItem {
-            let requestedUserRef = ref.child()
+            let itemRef = ref.child(foodItem.dataBaseRef)
+            itemRef.child("requesters").observeSingleEvent(of: .value, with: { (snapshot) in
+                self.dataSource = []
+                for item in snapshot.children {
+                    let requestUserRef = ((item as! FIRDataSnapshot).value as! String)
+                    
+                    userRef.child(requestUserRef).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let requestUser = RequestUser(snapshot: snapshot)
+                        self.dataSource?.append(requestUser)
+                        self.tableView.reloadData()
+                        
+                    })
+                }
+            })
         }
     }
 
