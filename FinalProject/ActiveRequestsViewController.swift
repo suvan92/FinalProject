@@ -52,7 +52,7 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
             self.dataSource = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
-                ref.child(itemReferenceValue).observeSingleEvent(of: .value, with: { snap in
+                foodRef.child(itemReferenceValue).observe(.value, with: { snap in
                     let foodItem = FoodItem(snapshot: snap)
                     self.dataSource?.append(foodItem)
                     self.tableView.reloadData()

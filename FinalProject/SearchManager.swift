@@ -35,9 +35,11 @@ class SearchManager: NSObject {
             tagRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.value is NSNull {
                     self.currentCallNumber += 1
-//                    if self.currentCallNumber == self.totalCallNumber {
-//                        completion(self.foodItemsToPull)
-//                    }
+                    if self.currentCallNumber == self.totalCallNumber {
+                        self.getFoodItemObjects(itemRefs: self.foodItemsToPull, completion: { (foodItems) in
+                            completion(foodItems)
+                        })
+                    }
                 } else {
                     let foodItemRefs = snapshot.value as! [String]
                     for ref in foodItemRefs {
@@ -58,7 +60,7 @@ class SearchManager: NSObject {
         currentCallNumber = 0
         totalCallNumber = itemRefs.count
         for itemRef in itemRefs {
-            ref.child(itemRef).observeSingleEvent(of: .value, with: { (snapshot) in
+            foodRef.child(itemRef).observeSingleEvent(of: .value, with: { (snapshot) in
                 let foodItem = FoodItem(snapshot: snapshot)
                 self.instantiatedFoodItems.append(foodItem)
                 self.currentCallNumber += 1

@@ -8,29 +8,69 @@
 //
 
 import UIKit
+import Firebase
 
-class PostPendingRequestsViewController: UIViewController {
+let requesterCellReuseIdentifier = "requesterCell"
 
+class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: - Properties -
+    var foodItem : FoodItem?
+    var dataSource : [RequestUser]?
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let nCentre = NotificationCenter.default
+        nCentre.addObserver(self, selector: #selector(dismissView), name: Notification.Name("requesterChosen"), object: nil)
+        getDataSource()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - TableView Methods -
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dataSource = dataSource {
+            return dataSource.count
+        }
+        return 0
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: requesterCellReuseIdentifier, for: indexPath) as! RequesterTableViewCell
+        
+        if let dataSource = dataSource {
+            let requestUser = dataSource[indexPath.row]
+            cell.setUpCellWith(requestUser: requestUser, and: foodItem!)
+        }
+        
+        return cell
+    }
+    
+    // MARK: - General Methods -
+    
+    func getDataSource() {
+        if let foodItem = foodItem {
+            let itemRef = foodRef.child(foodItem.dataBaseRef)
+            itemRef.child("requesters").observeSingleEvent(of: .value, with: { (snapshot) in
+                self.dataSource = []
+                for item in snapshot.children {
+                    let requestUserRef = ((item as! FIRDataSnapshot).value as! String)
+                    
+                    userRef.child(requestUserRef).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let requestUser = RequestUser(snapshot: snapshot)
+                        self.dataSource?.append(requestUser)
+                        self.tableView.reloadData()
+                        
+                    })
+                }
+            })
+        }
+    }
+    
+    func dismissView() {
+        navigationController?.popViewController(animated: true)
+    }
 
 }

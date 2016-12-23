@@ -12,34 +12,38 @@ class NewRequestManager: NSObject {
     
     class func makeRequest(for foodItem: FoodItem, completion: @escaping (Error?,Bool?) -> Swift.Void) {
         var canMakeRequest = false
+        var requestsArrayExists = false
         let user = User.sharedInstance
-        if var requestArray = foodItem.requesters {
-            if requestArray.contains(user.uid!) {
-                completion(nil,false)
-            } else {
-                canMakeRequest = true
-                user.addNewRequest(for: foodItem)
-                requestArray.append(user.uid!)
-            }
+        
+        // create requests array to be updated
+        var requestsArray : [String]?
+        if let temp = foodItem.requesters {
+            requestsArrayExists = true
+            requestsArray = temp
+        } else {
+            requestsArray = []
+        }
+        
+        // update requestsArray
+        if (requestsArray?.contains(user.uid!))! {
+            completion(nil,false)
         } else {
             canMakeRequest = true
             user.addNewRequest(for: foodItem)
-            foodItem.requesters = [user.uid!]
+            requestsArray?.append(user.uid!)
         }
-        
+        // make appropriate update or set network call to database
         if canMakeRequest {
-            let currentUserRef = userRef.child(user.uid!)
-            currentUserRef.updateChildValues(["requestedItems":user.requestedItems!]){ error, ref in
-                if error == nil {
-                    let itemRef = ref.child(foodItem.dataBaseRef)
-                    itemRef.updateChildValues(["requesters":foodItem.requesters!]) {error,ref in
-                        completion(error,nil)
-                    }
-                } else {
+            let itemRef = foodRef.child(foodItem.dataBaseRef)
+            if requestsArrayExists {
+                itemRef.updateChildValues(["requesters":requestsArray!]) { error, ref in
+                    completion(error,nil)
+                }
+            } else {
+                itemRef.child("requesters").setValue(requestsArray!) { error, ref in
                     completion(error,nil)
                 }
             }
         }
     }
-
 }
