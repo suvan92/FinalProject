@@ -49,8 +49,25 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        locationFromTextFields()
-    
+        
+        let user = User.sharedInstance
+        
+        ImageUploader.upload(profileImage: imageView.image!, foruser: user.uid!, completion: { (error) in
+            if error == nil {
+                self.locationFromTextFields(completion: { (error) in
+                    if error == nil {
+                        //set user properties
+                        
+                        
+                        
+                    }
+                })
+                
+            } else {
+                print("error uploading profie image")
+                //self.showErrorAlert()
+            }
+        })
     }
     
     @IBAction func searchRelativeClicked(_ sender: Any) {
@@ -63,14 +80,24 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         }
     }
     
+    @IBAction func radiusSliderChanged(_ sender: Any) {
+        let intValue = Int(self.searchRadiusSlider.value)
+        self.searchRadiusLabel.text =  "\(intValue) km"
+    }
+    
     //MARK - address handling
-    func locationFromTextFields() {
+    func locationFromTextFields(completion: @escaping (Error?) -> Swift.Void) {
         let locationString: String = "\(addressStreetTF.text!) \(addressCityTF.text!) \(addressPostCodeTF.text!) \(addressCountryTF.text!)"
         if locationString != "" {
             self.locationManager = LocationManager()
-            self.locationManager?.placemarkFromString(address: locationString)
-            self.locationLatitude = self.locationManager?.returnLatitudeString()
-            self.locationLongitude = self.locationManager?.returnLongitudeString()
+            self.locationManager?.placemarkFromString(address: locationString, completion: { error in
+                if error != nil {
+                } else {
+                    self.locationLatitude = self.locationManager?.returnLatitudeString()
+                    self.locationLongitude = self.locationManager?.returnLongitudeString()
+                }
+                completion(error)
+            })            
         }
     }
     
