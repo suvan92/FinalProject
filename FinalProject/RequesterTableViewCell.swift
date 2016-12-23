@@ -15,21 +15,22 @@ class RequesterTableViewCell: UITableViewCell {
     @IBOutlet weak var requesterNameLabel: UILabel!
     @IBOutlet weak var requesterDistanceLabel: NSLayoutConstraint!
     @IBOutlet weak var acceptButton: UIButton!
+    var cellRequestUser : RequestUser?
     
     var user : RequestUser?
     
     // MARK: - General Methods -
     
     func setUpCellWith(requestUser: RequestUser) {
+        cellRequestUser = requestUser
         user = requestUser
         requesterNameLabel.text = requestUser.email
-        acceptButton.layer.borderColor = UIColor.blue.cgColor
-        acceptButton.layer.borderWidth = 2
     }
     
     // MARK: - Actions -
     
     @IBAction func acceptButtonTouched(_ sender: UIButton) {
+        AcceptanceManager.accept(requestUser: cellRequestUser!)
     }
 
 }
