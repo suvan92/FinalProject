@@ -38,8 +38,10 @@
 		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
 		B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */; };
 		B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A9F051E0B49390044DFBC /* TagManager.swift */; };
-		B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */; };
 		B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */; };
+		B0E604FD1E0DC03200B4AC3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0E604FC1E0DC03200B4AC3E /* GoogleService-Info.plist */; };
+		B0E604FF1E0DC09F00B4AC3E /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E604FE1E0DC09F00B4AC3E /* UserSettings.storyboard */; };
+		B0E605011E0DC13E00B4AC3E /* UserSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E605001E0DC13E00B4AC3E /* UserSettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,9 +80,11 @@
 		B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewController.swift; sourceTree = "<group>"; };
 		B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		B09A9F051E0B49390044DFBC /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
-		B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0BB9B001E062C09005F8FE8 /* FinalProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinalProject.entitlements; sourceTree = "<group>"; };
 		B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		B0E604FC1E0DC03200B4AC3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B0E604FE1E0DC09F00B4AC3E /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
+		B0E605001E0DC13E00B4AC3E /* UserSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 				1479180B1E03922800727419 /* PostBranch */,
 				1479180A1E03922600727419 /* RequestBranch */,
 				147918091E03922300727419 /* MessangerBranch */,
+				B0E605001E0DC13E00B4AC3E /* UserSettingsTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 		147917F51E0372EB00727419 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B0E604FE1E0DC09F00B4AC3E /* UserSettings.storyboard */,
 				147917E71E0370B900727419 /* LaunchScreen.storyboard */,
 				147917E21E0370B900727419 /* Main.storyboard */,
 				147917FF1E037D8400727419 /* PostBranch.storyboard */,
@@ -182,7 +188,7 @@
 		147917FA1E037B5000727419 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B0BB9AFE1E062B43005F8FE8 /* GoogleService-Info.plist */,
+				B0E604FC1E0DC03200B4AC3E /* GoogleService-Info.plist */,
 				147917E51E0370B900727419 /* Assets.xcassets */,
 				147917EA1E0370B900727419 /* Info.plist */,
 			);
@@ -308,7 +314,8 @@
 				147918041E037D9600727419 /* Messages.storyboard in Resources */,
 				147918001E037D8400727419 /* PostBranch.storyboard in Resources */,
 				147917E41E0370B900727419 /* Main.storyboard in Resources */,
-				B0BB9AFF1E062B43005F8FE8 /* GoogleService-Info.plist in Resources */,
+				B0E604FF1E0DC09F00B4AC3E /* UserSettings.storyboard in Resources */,
+				B0E604FD1E0DC03200B4AC3E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +395,7 @@
 				147E71651E0B5EC00031838D /* SearchManager.swift in Sources */,
 				B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */,
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
+				B0E605011E0DC13E00B4AC3E /* UserSettingsTableViewController.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */,
