@@ -22,6 +22,8 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let nCentre = NotificationCenter.default
+        nCentre.addObserver(self, selector: #selector(dismissView), name: Notification.Name("requesterChosen"), object: nil)
         getDataSource()
     }
     
@@ -65,6 +67,10 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
                 }
             })
         }
+    }
+    
+    func dismissView() {
+        navigationController?.popViewController(animated: true)
     }
 
 }
