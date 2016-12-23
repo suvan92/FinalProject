@@ -20,7 +20,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var addressCountryTF: UITextField!
     @IBOutlet weak var searchRadiusSlider: UISlider!
     @IBOutlet weak var searchRadiusLabel: UILabel!
-    //var locationManager: LocationManager?
+    var locationManager: LocationManager?
     var locationLatitude: String?
     var locationLongitude: String?
     var tapGesture : UITapGestureRecognizer?
@@ -32,7 +32,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         super.viewDidLoad()
 
         self.title = "User Settings"
-        //setUpGestures()
+        setUpGestures()
         tableView.separatorStyle = .none
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
         self.imageView.clipsToBounds = true
@@ -49,9 +49,29 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
+        locationFromTextFields()
+    
     }
     
     @IBAction func searchRelativeClicked(_ sender: Any) {
+        if searchRelativeSwitch.isOn {
+            searchRelativeLabel.text = "Search relative to home address"
+            isSearchByAddress = true
+        } else {
+            searchRelativeLabel.text = "Search relative to current location"
+            isSearchByAddress = false
+        }
+    }
+    
+    //MARK - address handling
+    func locationFromTextFields() {
+        let locationString: String = "\(addressStreetTF.text!) \(addressCityTF.text!) \(addressPostCodeTF.text!) \(addressCountryTF.text!)"
+        if locationString != "" {
+            self.locationManager = LocationManager()
+            self.locationManager?.placemarkFromString(address: locationString)
+            self.locationLatitude = self.locationManager?.returnLatitudeString()
+            self.locationLongitude = self.locationManager?.returnLongitudeString()
+        }
     }
     
     //MARK: Gesture handling

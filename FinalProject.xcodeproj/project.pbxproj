@@ -42,6 +42,7 @@
 		B0E604FD1E0DC03200B4AC3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0E604FC1E0DC03200B4AC3E /* GoogleService-Info.plist */; };
 		B0E604FF1E0DC09F00B4AC3E /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E604FE1E0DC09F00B4AC3E /* UserSettings.storyboard */; };
 		B0E605011E0DC13E00B4AC3E /* UserSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E605001E0DC13E00B4AC3E /* UserSettingsTableViewController.swift */; };
+		B0E605031E0DC6FD00B4AC3E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E605021E0DC6FD00B4AC3E /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		B0E604FC1E0DC03200B4AC3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0E604FE1E0DC09F00B4AC3E /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		B0E605001E0DC13E00B4AC3E /* UserSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewController.swift; sourceTree = "<group>"; };
+		B0E605021E0DC6FD00B4AC3E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		147917F01E0372E300727419 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B0E605021E0DC6FD00B4AC3E /* LocationManager.swift */,
 				147917DE1E0370B900727419 /* AppDelegate.swift */,
 				147917F61E0373E100727419 /* User.swift */,
 				147917F81E03740F00727419 /* FoodItem.swift */,
@@ -400,6 +403,7 @@
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */,
 				147917F71E0373E100727419 /* User.swift in Sources */,
+				B0E605031E0DC6FD00B4AC3E /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
