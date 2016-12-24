@@ -57,9 +57,18 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
                 self.locationFromTextFields(completion: { (error) in
                     if error == nil {
                         //set user properties
-                        
-                        
-                        
+                        user.username = self.usernameTextField.text
+                        user.isSearchByAddress = self.isSearchByAddress
+                        user.addressStreet = self.addressStreetTF.text
+                        user.addressCity = self.addressCityTF.text
+                        user.addressPostCode = self.addressPostCodeTF.text
+                        user.addressCountry = self.addressCountryTF.text
+                        if let radius = Int(self.searchRadiusLabel.text! as String) {
+                            user.searchRadius = radius
+                        }
+                        user.updateUserSettings() { error in
+                            print("HOORAY?!")
+                        }
                     }
                 })
                 
