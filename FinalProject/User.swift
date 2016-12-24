@@ -18,6 +18,13 @@ class User: NSObject {
     var postedItems : [String]?
     var requestedItems : [String]?
     var channels: [String]?
+    var username: String?
+    var isSearchByAddress: Bool?
+    var addressStreet: String?
+    var addressCity: String?
+    var addressPostCode: String?
+    var addressCountry: String?
+    var searchRadius: Int?
     
     static let sharedInstance = User()
     private override init() {}
@@ -25,23 +32,36 @@ class User: NSObject {
     
     func setupUserProperties(completion: @escaping () -> Swift.Void) {
         userRef.child(self.uid!).observe(.value, with: { snapshot in
-            
             let snapshotValue = snapshot.value as! [String: Any?]
             self.postedItems = snapshotValue["postedItems"] as? [String]
             self.requestedItems = snapshotValue["requestedItems"] as? [String]
             self.channels = snapshotValue["channels"] as? [String]
+            self.username = snapshotValue["username"] as? String
+            self.isSearchByAddress = snapshotValue["isSearchByAddress"] as? Bool
+            self.addressStreet = snapshotValue["addressStreet"] as? String
+            self.addressCity = snapshotValue["addressCity"] as? String
+            self.addressPostCode = snapshotValue["addressPostCode"] as? String
+            self.addressCountry = snapshotValue["addressCountry"] as? String
+            self.searchRadius = snapshotValue["searchRadius"] as? Int
             completion()
         })
     }
     
     func toDictionary() -> [String: Any?]{
-        let result : [String: Any?] = [
-            "uid": uid,
-            "email": email,
-            "postedItems": postedItems,
-            "requestedItems": requestedItems,
-            "channels": channels
-        ]
+        var result : [String:Any?] = [:]
+        result["uid"] = uid
+        result["email"] = email
+        result["postedItems"] = postedItems
+        result["requestedItems"] = requestedItems
+        result["channels"] = channels
+        result["username"] = username
+        result["isSearchByAddress"] = isSearchByAddress
+        result["addressStreet"] = addressStreet
+        result["addressCity"] = addressCity
+        result["addressPostCode"] = addressPostCode
+        result["addressCountry"] = addressCountry
+        result["searchRadius"] = searchRadius
+        
         return result
     }
     
@@ -63,6 +83,12 @@ class User: NSObject {
         currentUserRef.updateChildValues(["postedItems":self.postedItems!]) { error, ref in
             completion(error)
         }
+    }
+    
+    func updateUserSettings(completion: @escaping (Error?) -> Swift.Void) {
+        userRef.updateChildValues([self.uid!: self.toDictionary()], withCompletionBlock: { error, ref in
+            completion(error)
+        })
     }
     
     func addChannel(withID itemRef: String, completion: @escaping () -> Swift.Void) {

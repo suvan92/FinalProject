@@ -31,6 +31,19 @@ class ImageUploader: NSObject {
         }
     }
     
+    class func upload(profileImage: UIImage, foruser userid: String, completion: @escaping (Error?) -> Swift.Void) {
+        let profileImageRef = storageRef.child("profileImages/\(userid)")
+        let data = ImageUploader.convertImageToData(image: profileImage)
+        profileImageRef.put(data, metadata: nil) { metadata, error in
+            
+            if error == nil {
+                completion(nil)
+            } else {
+                completion(error)
+            }
+        }
+    }
+    
     class func convertImageToData(image: UIImage) -> Data {
         let imageData : Data = UIImageJPEGRepresentation(image, 0.5)!
         return imageData
