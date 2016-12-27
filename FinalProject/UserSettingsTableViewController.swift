@@ -20,13 +20,15 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var addressCountryTF: UITextField!
     @IBOutlet weak var searchRadiusSlider: UISlider!
     @IBOutlet weak var searchRadiusLabel: UILabel!
+    var searchRadius: Int = 1
     var locationManager: LocationManager?
     var locationLatitude: String?
     var locationLongitude: String?
     var tapGesture : UITapGestureRecognizer?
     var dismissGesture : UIGestureRecognizer?
     var isSearchByAddress: Bool = false
-    
+    let user: User = User.sharedInstance
+    var postAlert : UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,49 +51,32 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     }
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        
-        let user = User.sharedInstance
-        
+        self.showPostingAlert()
         ImageUploader.upload(profileImage: imageView.image!, foruser: user.uid!, completion: { (error) in
             if error == nil {
                 self.locationFromTextFields(completion: { (error) in
-                    if error == nil {
-                        //set user properties
-                        user.username = self.usernameTextField.text
-                        user.isSearchByAddress = self.isSearchByAddress
-                        user.addressStreet = self.addressStreetTF.text
-                        user.addressCity = self.addressCityTF.text
-                        user.addressPostCode = self.addressPostCodeTF.text
-                        user.addressCountry = self.addressCountryTF.text
-                        if let radius = Int(self.searchRadiusLabel.text! as String) {
-                            user.searchRadius = radius
-                        }
-                        user.updateUserSettings() { error in
-                            print("HOORAY?!")
-                        }
-                    }
+                        self.setUserProperties()
                 })
                 
             } else {
-                print("error uploading profie image")
-                //self.showErrorAlert()
+                self.showErrorAlert()
             }
         })
     }
     
     @IBAction func searchRelativeClicked(_ sender: Any) {
         if searchRelativeSwitch.isOn {
-            searchRelativeLabel.text = "Search relative to home address"
-            isSearchByAddress = true
-        } else {
             searchRelativeLabel.text = "Search relative to current location"
             isSearchByAddress = false
+        } else {
+            searchRelativeLabel.text = "Search relative to home address"
+            isSearchByAddress = true
         }
     }
     
     @IBAction func radiusSliderChanged(_ sender: Any) {
-        let intValue = Int(self.searchRadiusSlider.value)
-        self.searchRadiusLabel.text =  "\(intValue) km"
+        self.searchRadius = Int(self.searchRadiusSlider.value)
+        self.searchRadiusLabel.text =  "\(self.searchRadius) km"
     }
     
     //MARK - address handling
@@ -163,6 +148,46 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         dismiss(animated: true, completion: nil)
     }
     
+    
+    func setUserProperties(){
+        user.username = self.usernameTextField.text
+        user.isSearchByAddress = self.isSearchByAddress
+        user.addressStreet = self.addressStreetTF.text
+        user.addressCity = self.addressCityTF.text
+        user.addressPostCode = self.addressPostCodeTF.text
+        user.addressCountry = self.addressCountryTF.text
+        user.homeLatitude = self.locationLatitude
+        user.homeLongitude = self.locationLongitude
+        user.searchRadius = self.searchRadius
+        user.updateUserSettings() { error in
+            if error != nil {
+                self.showErrorAlert()
+            } else {
+                self.dismissView()
+            }
+            
+        }
+    }
+    
+    func showPostingAlert() {
+        postAlert = UIAlertController(title: "Updating user settings...", message: nil, preferredStyle: .alert)
+        present(postAlert!, animated: true, completion: nil)
+    }
+    
+    func dismissView() {
+        postAlert!.title = "Update complete!"
+        postAlert!.dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+    }
+    
+    func showErrorAlert() {
+        postAlert!.title = "Update failed"
+        postAlert!.message = "Please try again later"
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            self.postAlert!.dismiss(animated: true, completion: nil)
+        }
+        postAlert?.addAction(dismissAction)
+    }
     
 }
 

@@ -37,7 +37,7 @@ class LocationManager: NSObject {
     }
     
     func returnLongitudeString() -> String {
-        if let long = self.userlatitude {
+        if let long = self.userlongitude {
             return long
         } else {
             return "error"

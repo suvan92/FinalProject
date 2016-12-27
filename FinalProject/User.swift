@@ -25,6 +25,8 @@ class User: NSObject {
     var addressPostCode: String?
     var addressCountry: String?
     var searchRadius: Int?
+    var homeLatitude: String?
+    var homeLongitude: String?
     
     static let sharedInstance = User()
     private override init() {}
@@ -43,6 +45,8 @@ class User: NSObject {
             self.addressPostCode = snapshotValue["addressPostCode"] as? String
             self.addressCountry = snapshotValue["addressCountry"] as? String
             self.searchRadius = snapshotValue["searchRadius"] as? Int
+            self.homeLatitude = snapshotValue["homeLatitude"] as? String
+            self.homeLongitude = snapshotValue["homeLongitude"] as? String
             completion()
         })
     }
@@ -61,7 +65,8 @@ class User: NSObject {
         result["addressPostCode"] = addressPostCode
         result["addressCountry"] = addressCountry
         result["searchRadius"] = searchRadius
-        
+        result["homeLatitude"] = homeLatitude
+        result["homeLongitude"] = homeLongitude
         return result
     }
     

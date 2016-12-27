@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    var isFirstLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class LoginViewController: UIViewController {
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
                     currentUser.saveToDatabase() {
+                        self.isFirstLogin = true
                         self.login(email: email.text!, password: password.text!)
                     }
                     
@@ -87,7 +89,13 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
-    
+    //NOT WORKING! if first login, segue to user settings.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if self.isFirstLogin {
+            if let tabVC = segue.destination as? UITabBarController{
+                tabVC.selectedIndex = 4
+            }
+        }
+    }
 
 }
