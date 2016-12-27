@@ -87,6 +87,16 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // Segue preparation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == loginSegueIdentifier {
+//            let destinationVC = segue.destination as! UITabBarController
+//            for tab in destinationVC.viewControllers! {
+//                tab.loadView()
+//            }
+//        }
+//    }
+    
     
     
 

@@ -37,9 +37,9 @@
 		148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */; };
 		148B6D501E0C5D3F00E956BD /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4F1E0C5D3F00E956BD /* RequestDetailViewController.swift */; };
 		14D664F81E0DD09300CC44B2 /* OwnerSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D664F71E0DD09300CC44B2 /* OwnerSearchFilter.swift */; };
+		14D664F91E0E068800CC44B2 /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
-		B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
 		B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */; };
 		B09A9F061E0B49390044DFBC /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09A9F051E0B49390044DFBC /* TagManager.swift */; };
 		B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BC51E41E08C641002E0DE0 /* ChatViewController.swift */; };
@@ -389,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D664F91E0E068800CC44B2 /* NewPostTableViewController.swift in Sources */,
 				148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */,
 				147917F91E03740F00727419 /* FoodItem.swift in Sources */,
 				148117571E0C9595000AC5B7 /* RequestUser.swift in Sources */,
@@ -399,7 +400,6 @@
 				148117531E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift in Sources */,
 				14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */,
 				B01236241E08737200E7F667 /* Channel.swift in Sources */,
-				B04BEA791E0A163600C20F8D /* NewPostTableViewController.swift in Sources */,
 				148B6D501E0C5D3F00E956BD /* RequestDetailViewController.swift in Sources */,
 				147917FE1E037D5000727419 /* LoginViewController.swift in Sources */,
 				142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */,
