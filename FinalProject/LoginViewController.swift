@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    var isFirstLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class LoginViewController: UIViewController {
                     currentUser.uid = user?.uid
                     currentUser.email = user?.email
                     currentUser.saveToDatabase() {
+                        self.isFirstLogin = true
                         self.login(email: email.text!, password: password.text!)
                     }
                     
@@ -83,21 +85,17 @@ class LoginViewController: UIViewController {
             } else {
                 print(error!.localizedDescription)
             }
-            
         }
     }
     
-    // Segue preparation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == loginSegueIdentifier {
-//            let destinationVC = segue.destination as! UITabBarController
-//            for tab in destinationVC.viewControllers! {
-//                tab.loadView()
-//            }
-//        }
-//    }
-    
-    
-    
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if self.isFirstLogin {
+            if let tabVC = segue.destination as? UITabBarController {
+                tabVC.selectedIndex = 3
+                let navVC = tabVC.viewControllers?[3] as! UINavigationController
+                let destVC = navVC.topViewController as! UserSettingsTableViewController
+                destVC.isFirstVisit = true
+            }
+        }
+    }
 }
