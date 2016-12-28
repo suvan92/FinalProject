@@ -112,10 +112,16 @@ class User: NSObject {
     }
     
     func addNewRequest(for foodItem: FoodItem) {
-        if var requestsArray = self.requestedItems {
-            requestsArray.append(foodItem.dataBaseRef)
+        let currentUser = User.sharedInstance
+        let currentUserRef = userRef.child(currentUser.uid!)
+        var newRequestsArray : [String] = []
+        if let requestsArray = currentUser.requestedItems {
+            newRequestsArray = requestsArray
+            newRequestsArray.append(foodItem.dataBaseRef)
+            currentUserRef.updateChildValues(["requestedItems":newRequestsArray])
         } else {
-            self.requestedItems = [foodItem.dataBaseRef]
+            newRequestsArray.append(foodItem.dataBaseRef)
+            currentUserRef.child("requestedItems").setValue(newRequestsArray)
         }
     }
 }
