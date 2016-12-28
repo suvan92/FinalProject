@@ -85,17 +85,19 @@ class LoginViewController: UIViewController {
             } else {
                 print(error!.localizedDescription)
             }
-            
         }
     }
     
-    //NOT WORKING! if first login, segue to user settings.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if self.isFirstLogin {
-            if let tabVC = segue.destination as? UITabBarController{
-                tabVC.selectedIndex = 4
+            if let tabVC = segue.destination as? UITabBarController {
+                tabVC.selectedIndex = 3
+                let navVC = tabVC.viewControllers?[3] as! UINavigationController
+                let destVC = navVC.topViewController as! UserSettingsTableViewController
+                destVC.isFirstVisit = true
             }
         }
     }
+
 
 }

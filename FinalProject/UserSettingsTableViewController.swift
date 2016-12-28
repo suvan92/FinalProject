@@ -17,6 +17,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     @IBOutlet weak var addressStreetTF: UITextField!
     @IBOutlet weak var addressCityTF: UITextField!
     @IBOutlet weak var addressPostCodeTF: UITextField!
+    @IBOutlet weak var addressProvinceTF: UITextField!
     @IBOutlet weak var addressCountryTF: UITextField!
     @IBOutlet weak var searchRadiusSlider: UISlider!
     @IBOutlet weak var searchRadiusLabel: UILabel!
@@ -27,18 +28,28 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     var tapGesture : UITapGestureRecognizer?
     var dismissGesture : UIGestureRecognizer?
     var isSearchByAddress: Bool = false
+    var isFirstVisit: Bool = false
+    var hasLoadedSettings: Bool = false
     let user: User = User.sharedInstance
     var postAlert : UIAlertController?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = "User Settings"
         setUpGestures()
         tableView.separatorStyle = .none
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
         self.imageView.clipsToBounds = true
-        //setupView()
+        if isFirstVisit {
+            welcomeAlert()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if !hasLoadedSettings && !isFirstVisit {
+            setUpViews()
+        }
     }
 
     // MARK: - Table view data source
@@ -47,7 +58,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 9
     }
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
@@ -81,7 +92,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     
     //MARK - address handling
     func locationFromTextFields(completion: @escaping (Error?) -> Swift.Void) {
-        let locationString: String = "\(addressStreetTF.text!) \(addressCityTF.text!) \(addressPostCodeTF.text!) \(addressCountryTF.text!)"
+        let locationString: String = "\(addressStreetTF.text!) \(addressCityTF.text!) \(addressPostCodeTF.text!) \(addressProvinceTF.text!)\(addressCountryTF.text!)"
         if locationString != "" {
             self.locationManager = LocationManager()
             self.locationManager?.placemarkFromString(address: locationString, completion: { error in
@@ -155,6 +166,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         user.addressStreet = self.addressStreetTF.text
         user.addressCity = self.addressCityTF.text
         user.addressPostCode = self.addressPostCodeTF.text
+        user.addressProvince = self.addressProvinceTF.text
         user.addressCountry = self.addressCountryTF.text
         user.homeLatitude = self.locationLatitude
         user.homeLongitude = self.locationLongitude
@@ -165,7 +177,6 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
             } else {
                 self.dismissView()
             }
-            
         }
     }
     
@@ -177,7 +188,6 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     func dismissView() {
         postAlert!.title = "Update complete!"
         postAlert!.dismiss(animated: true, completion: nil)
-        //dismiss(animated: true, completion: nil)
     }
     
     func showErrorAlert() {
@@ -189,6 +199,39 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         postAlert?.addAction(dismissAction)
     }
     
+    func welcomeAlert() {
+        postAlert = UIAlertController(title: "Welcome", message: "Please complete your user profile to help you share with other users in your area.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            self.postAlert!.dismiss(animated: true, completion: nil)
+        }
+        postAlert?.addAction(dismissAction)
+        present(postAlert!, animated: true, completion: nil)
+    }
+    
+
+    func setUpViews() {
+        self.hasLoadedSettings = true
+        self.usernameTextField.text = user.username
+        self.isSearchByAddress = user.isSearchByAddress!
+        if isSearchByAddress {
+            searchRelativeLabel.text = "Search relative to home address"
+            searchRelativeSwitch.setOn(false, animated: true)
+        } else {
+            searchRelativeLabel.text = "Search relative to current location"
+            searchRelativeSwitch.setOn(true, animated: true)
+        }
+        self.addressStreetTF.text = user.addressStreet
+        self.addressCityTF.text = user.addressCity
+        self.addressPostCodeTF.text = user.addressPostCode
+        self.addressProvinceTF.text = user.addressProvince
+        self.addressCountryTF.text = user.addressCountry
+        self.searchRadius = user.searchRadius!
+        self.searchRadiusSlider.value = Float(self.searchRadius)
+        self.searchRadiusLabel.text = "\(self.searchRadius) km"
+        ImageDownloader.getProfileImage(userId: user.uid!, completion: { image in
+            self.imageView.image = image
+        })
+    }
 }
 
 

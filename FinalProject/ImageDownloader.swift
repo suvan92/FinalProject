@@ -23,5 +23,18 @@ class ImageDownloader: NSObject {
             }
         }
     }
-
+    
+    class func getProfileImage(userId: String, completion: @escaping(_ image: UIImage) -> Swift.Void) {
+        var result = UIImage()
+        let profileImagesRef = storageRef.child("profileImages")
+        let photoRef = profileImagesRef.child(userId)
+        photoRef.data(withMaxSize: 1*1024*1024) { data, error in
+            if let error = error {
+                print(error)
+            } else {
+                result = UIImage(data: data!)!
+                completion(result)
+            }
+        }
+    }
 }
