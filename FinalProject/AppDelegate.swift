@@ -17,6 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.tintColor = ColorManager.red()
+        navigationBarAppearance.barTintColor = ColorManager.lightRed()
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName:ColorManager.red()]
+        
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.barTintColor = ColorManager.red()
+        tabBarAppearance.tintColor = UIColor.white
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         return true
     }
 

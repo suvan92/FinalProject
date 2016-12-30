@@ -14,6 +14,7 @@ let loginSegueIdentifier = "loginSegue"
 class LoginViewController: UIViewController {
 
     
+    @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var isFirstLogin: Bool = false
@@ -21,6 +22,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.isSecureTextEntry = true
+        buttonView.layer.cornerRadius = 6
+        buttonView.layer.masksToBounds = true
     }
     
     @IBAction func signupButton(_ sender: UIButton) {
