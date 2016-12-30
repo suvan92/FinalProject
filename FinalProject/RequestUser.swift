@@ -12,17 +12,16 @@ import Firebase
 class RequestUser: NSObject {
     
     // MARK: - Properties -
-    var name : String
+    var username : String
     var email : String
     var uid: String
     
     init(snapshot: FIRDataSnapshot) {
         let snapshotValue = snapshot.value as! [String:Any?]
         
-        name = snapshotValue["email"] as! String
+        username = snapshotValue["username"] as! String
         email = snapshotValue["email"] as! String
         uid = snapshotValue["uid"] as! String
-        
     }
 
 }

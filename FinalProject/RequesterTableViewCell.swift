@@ -33,7 +33,8 @@ class RequesterTableViewCell: UITableViewCell {
     
     @IBAction func acceptButtonTouched(_ sender: UIButton) {
         AcceptanceManager.accept(requestUser: cellRequestUser!, and: foodItem!) {
-            // generate channel
+            // generate channel ***
+            
             self.notifyAcceptance()
         }
         

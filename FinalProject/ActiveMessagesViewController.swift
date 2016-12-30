@@ -16,15 +16,15 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     var datasource: [String]?
     
-    @IBAction func makeNewChannel(_ sender: Any) {
-        let user = User.sharedInstance
-        let channel = Channel()
-        channel.savetoDatabase() {
-            user.addChannel(withID: channel.id!, completion: {
-                self.tableView.reloadData()
-            })
-        }
-    }
+//    @IBAction func makeNewChannel(_ sender: Any) {
+//        let user = User.sharedInstance
+//        let channel = Channel()
+//        channel.savetoDatabase() {
+//            user.addChannel(withID: channel.id!, completion: {
+//                self.tableView.reloadData()
+//            })
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

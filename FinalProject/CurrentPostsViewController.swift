@@ -51,7 +51,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
-            // go to chat
+            // go to chat ***
         } else {
             selectedItem = arrayOfPosts?[indexPath.row]
             performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)

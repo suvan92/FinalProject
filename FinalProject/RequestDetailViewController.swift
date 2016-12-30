@@ -42,7 +42,7 @@ class RequestDetailViewController: UIViewController {
     
     func sendRequest() {
         showRequestingAlert()
-        NewRequestManager.makeRequest(for: foodItem!) { error,canAdd in
+        NewRequestManager.makeRequest(for: foodItem!) { error, canAdd in
             if canAdd != nil {
                 self.requestAlreadyMadeAlert()
             } else if error == nil {

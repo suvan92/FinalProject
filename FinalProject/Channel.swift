@@ -13,6 +13,10 @@ let channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child(
 class Channel: NSObject {
 
     var id: String?
+    var ownerId: String
+    var ownerUsername: String
+    var requesterId: String
+    var requesterUsername: String
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
         let newChannelRef = channelRef.childByAutoId()
@@ -26,9 +30,12 @@ class Channel: NSObject {
 
     func toDictionary() -> [String: Any?] {
         let result = [
-            "id": id
+            "id": id,
+            "ownerId": ownerId,
+            "ownerUsername": ownerUsername,
+            "requesterId": requesterId,
+            "requesterUsername": requesterUsername
         ]
-        
         return result
     }
     
@@ -40,6 +47,14 @@ class Channel: NSObject {
         }
     }
     
+    init(with requester: RequestUser) {
+        self.id = ""
+        let user = User.sharedInstance
+        self.ownerId = user.uid!
+        self.ownerUsername = user.username!
+        self.requesterId = requester.uid
+        self.requesterUsername = requester.username
+    }
     
 }
 
