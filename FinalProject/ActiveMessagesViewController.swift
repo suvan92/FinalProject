@@ -59,18 +59,18 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if let channelId = sender as? String {
-            let chatVc = segue.destination as! ChatViewController
-            let channel = Channel()
-            channel.id = channelId
-            chatVc.channel = channel
-            chatVc.channelRef = channel.databaseRef
-            chatVc.senderDisplayName = User.sharedInstance.email
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        
+//        if let channelId = sender as? String {
+//            let chatVc = segue.destination as! ChatViewController
+//            let channel = Channel()
+//            channel.id = channelId
+//            chatVc.channel = channel
+//            chatVc.channelRef = channel.databaseRef
+//            chatVc.senderDisplayName = User.sharedInstance.email
+//        }
+//    }
     
     //MARK: VC observe for channels added or removed to update tableView
     func setupObservers() {

@@ -33,16 +33,15 @@ class RequesterTableViewCell: UITableViewCell {
     
     @IBAction func acceptButtonTouched(_ sender: UIButton) {
         AcceptanceManager.accept(requestUser: cellRequestUser!, and: foodItem!) {
-            // generate channel ***
-            
+            //create channel through notification
             self.notifyAcceptance()
         }
-        
     }
     
     func notifyAcceptance() {
+        let requester: [AnyHashable: Any] = ["requester": cellRequestUser!]
         let nCentre = NotificationCenter.default
-        let notification = Notification(name: Notification.Name(rawValue: "requesterChosen"))
+        let notification = Notification(name: Notification.Name(rawValue: "requesterChosen"), object: self, userInfo: requester)
         nCentre.post(notification)
     }
 

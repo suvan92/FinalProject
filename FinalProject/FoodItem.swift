@@ -23,7 +23,7 @@ class FoodItem: NSObject {
     var requesters : [String]?
     var requesterChosen : Bool
     var acceptedRequester : String?
-    var channels : [String]?
+    var channel : String?
     var postDate : Date
 
 
@@ -81,7 +81,7 @@ class FoodItem: NSObject {
         requesters = snapshotValue["requesters"] as? [String]
         requesterChosen = snapshotValue["requesterChosen"] as! Bool
         acceptedRequester = snapshotValue["acceptedRequester"] as? String
-        channels = snapshotValue["channels"] as? [String]
+        channel = snapshotValue["channel"] as? String
         postDate = (snapshotValue["postDate"] as! String).dateFromString()
         dataBaseRef = snapshotValue["dataBaseRef"] as! String
     }
