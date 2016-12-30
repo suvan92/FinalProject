@@ -26,7 +26,11 @@ class DeletionManager: NSObject {
                             // delete owner's ref to foodItem
                             DeletionManager.deleteOwnerRef(for: foodItem) {
                                 // delete item itself
-                                DeletionManager.deleteItem(foodItem) {completion()}
+//                                DeletionManager.deleteImageFor(foodItem)
+                                DeletionManager.removeTagRefsFor(foodItem)
+                                DeletionManager.deleteItem(foodItem) {
+                                    completion()
+                                }
                             }
                         }
                     }
@@ -34,7 +38,11 @@ class DeletionManager: NSObject {
             }
         } else { // if there are no requesters go straight to removing owner ref and deleting item
             DeletionManager.deleteOwnerRef(for: foodItem) {
-                DeletionManager.deleteItem(foodItem) {completion()}
+//                DeletionManager.deleteImageFor(foodItem)
+                DeletionManager.removeTagRefsFor(foodItem)
+                DeletionManager.deleteItem(foodItem) {
+                    completion()
+                }
             }
         }
     }
@@ -66,6 +74,25 @@ class DeletionManager: NSObject {
         foodRef.child(foodItem.dataBaseRef).removeAllObservers()
         foodRef.child(foodItem.dataBaseRef).removeValue() { error, ref in
             completion()
+        }
+    }
+    
+    class private func deleteImageFor(_ foodItem: FoodItem) {
+        storageRef.child("images/\(foodItem.photoID)").delete()
+    }
+    
+    class private func removeTagRefsFor(_ foodItem: FoodItem) {
+        for tag in foodItem.itemTags! {
+            tagsRef.child(tag).observeSingleEvent(of: .value, with: { (snapshot) in
+                let tagArray = snapshot.value as! [String]
+                let updatedArray = tagArray.filter{ $0 != foodItem.dataBaseRef }
+                if updatedArray.count > 0 {
+                    tagsRef.updateChildValues([tag:updatedArray])
+                } else {
+                    tagsRef.child(tag).removeAllObservers()
+                    tagsRef.child(tag).removeValue()
+                }
+            })
         }
     }
 
