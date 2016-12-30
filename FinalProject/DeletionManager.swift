@@ -26,15 +26,25 @@ class DeletionManager: NSObject {
                             // delete owner's ref to foodItem
                             DeletionManager.deleteOwnerRef(for: foodItem) {
                                 // delete item itself
-                                DeletionManager.deleteItem(foodItem) {completion()}
+                                DeletionManager.deleteImageFor(foodItem) {
+                                    DeletionManager.removeTagRefsFor(foodItem)
+                                    DeletionManager.deleteItem(foodItem) {
+                                        completion()
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-        } else { // if there are no requesters go straight to removing owner ref and deleting item
+        } else { // if there are no requesters go straight to removing owner/tag refs, image, and deleting item
             DeletionManager.deleteOwnerRef(for: foodItem) {
-                DeletionManager.deleteItem(foodItem) {completion()}
+                DeletionManager.deleteImageFor(foodItem) {
+                    DeletionManager.removeTagRefsFor(foodItem)
+                    DeletionManager.deleteItem(foodItem) {
+                        completion()
+                    }
+                }
             }
         }
     }
@@ -68,5 +78,30 @@ class DeletionManager: NSObject {
             completion()
         }
     }
-
+    
+    class private func deleteImageFor(_ foodItem: FoodItem, completion: @escaping () -> Swift.Void) {
+        storageRef.child("images/\(foodItem.photoID)").delete() { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                completion()
+            }
+        }
+    }
+    
+    class private func removeTagRefsFor(_ foodItem: FoodItem) {
+        for tag in foodItem.itemTags! {
+            tagsRef.child(tag).observeSingleEvent(of: .value, with: { (snapshot) in
+                let tagArray = snapshot.value as! [String]
+                let updatedArray = tagArray.filter{ $0 != foodItem.dataBaseRef }
+                if updatedArray.count > 0 {
+                    tagsRef.updateChildValues([tag:updatedArray])
+                } else {
+                    tagsRef.child(tag).removeAllObservers()
+                    tagsRef.child(tag).removeValue()
+                }
+            })
+        }
+    }
+    
 }
