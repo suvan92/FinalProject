@@ -26,22 +26,24 @@ class DeletionManager: NSObject {
                             // delete owner's ref to foodItem
                             DeletionManager.deleteOwnerRef(for: foodItem) {
                                 // delete item itself
-//                                DeletionManager.deleteImageFor(foodItem)
-                                DeletionManager.removeTagRefsFor(foodItem)
-                                DeletionManager.deleteItem(foodItem) {
-                                    completion()
+                                DeletionManager.deleteImageFor(foodItem) {
+                                    DeletionManager.removeTagRefsFor(foodItem)
+                                    DeletionManager.deleteItem(foodItem) {
+                                        completion()
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        } else { // if there are no requesters go straight to removing owner ref and deleting item
+        } else { // if there are no requesters go straight to removing owner/tag refs, image, and deleting item
             DeletionManager.deleteOwnerRef(for: foodItem) {
-//                DeletionManager.deleteImageFor(foodItem)
-                DeletionManager.removeTagRefsFor(foodItem)
-                DeletionManager.deleteItem(foodItem) {
-                    completion()
+                DeletionManager.deleteImageFor(foodItem) {
+                    DeletionManager.removeTagRefsFor(foodItem)
+                    DeletionManager.deleteItem(foodItem) {
+                        completion()
+                    }
                 }
             }
         }
@@ -77,8 +79,14 @@ class DeletionManager: NSObject {
         }
     }
     
-    class private func deleteImageFor(_ foodItem: FoodItem) {
-        storageRef.child("images/\(foodItem.photoID)").delete()
+    class private func deleteImageFor(_ foodItem: FoodItem, completion: @escaping () -> Swift.Void) {
+        storageRef.child("images/\(foodItem.photoID)").delete() { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                completion()
+            }
+        }
     }
     
     class private func removeTagRefsFor(_ foodItem: FoodItem) {
@@ -95,5 +103,5 @@ class DeletionManager: NSObject {
             })
         }
     }
-
+    
 }
