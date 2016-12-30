@@ -58,6 +58,16 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let foodItem = arrayOfPosts?[indexPath.row]
+            DeletionManager.delete(foodItem: foodItem!) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - Segues -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == pendingPostsVCSegueIdentifier {
             let destinationVC = segue.destination as! PostPendingRequestsViewController

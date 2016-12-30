@@ -70,7 +70,7 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     }
     
     func dismissView() {
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
 
 }
