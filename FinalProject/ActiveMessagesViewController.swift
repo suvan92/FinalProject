@@ -54,6 +54,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     //MARK: tableview delegate methods
     //override??
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let channelId = datasource?[indexPath.row]
         self.performSegue(withIdentifier: "ShowChannel", sender: channelId)
     }

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-let channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
+let chanRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
 
 class Channel: NSObject {
 
@@ -19,7 +19,7 @@ class Channel: NSObject {
     var requesterUsername: String
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
-        let newChannelRef = channelRef.childByAutoId()
+        let newChannelRef = chanRef.childByAutoId()
         let referenceString = newChannelRef.description()
         let id = String(referenceString.characters.suffix(20))
         self.id = id
@@ -41,7 +41,7 @@ class Channel: NSObject {
     
     var databaseRef : FIRDatabaseReference? {
         if let channelId = self.id {
-           return channelRef.child(channelId) as FIRDatabaseReference
+           return chanRef.child(channelId) as FIRDatabaseReference
         } else {
             return nil
         }
@@ -56,6 +56,15 @@ class Channel: NSObject {
         self.requesterUsername = requester.username
     }
     
+    init(snapshot: FIRDataSnapshot) {
+        let snapshotValue = snapshot.value as! [String:Any?]
+        
+        self.id = snapshotValue["id"] as! String
+        self.ownerId = snapshotValue["ownerId"] as! String
+        self.ownerUsername = snapshotValue["ownerUsername"] as! String
+        self.requesterId = snapshotValue["requesterId"] as! String
+        self.requesterUsername = snapshotValue["requesterUsername"] as! String
+    }
 }
 
 

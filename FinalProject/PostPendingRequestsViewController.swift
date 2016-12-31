@@ -67,7 +67,7 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
             })
         }
     }
-    //***
+
     func createChannel(notification: Notification) -> Void {
         if notification.userInfo != nil {
             let requester = notification.userInfo?["requester"] as? RequestUser
