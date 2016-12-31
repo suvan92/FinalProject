@@ -32,6 +32,10 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         getDataSource()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: - TableVew Methods-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let arrayOfPosts = arrayOfPosts {
@@ -50,14 +54,35 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
-            // go to chat
+            let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
+            let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
+            let selectedItem = arrayOfPosts?[indexPath.row]
+            let channelId = selectedItem?.channel
+            getChannel(with: channelId!, completion: { (channel) in
+                dest.foodItem = selectedItem
+                dest.channel = channel
+                dest.channelRef = channel.databaseRef
+                dest.senderDisplayName = channel.ownerUsername
+                dest.title = channel.requesterUsername
+                self.navigationController?.pushViewController(dest, animated: true)
+            })
         } else {
             selectedItem = arrayOfPosts?[indexPath.row]
             performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
         }
     }
     
+
+    //MARK: setupChannel
+    func getChannel(with id: String, completion: @escaping(Channel) -> Swift.Void) {
+        chanRef.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            let channel = Channel(snapshot: snapshot)
+            completion(channel)
+        })
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let foodItem = arrayOfPosts?[indexPath.row]
@@ -68,6 +93,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     // MARK: - Segues -
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == pendingPostsVCSegueIdentifier {
             let destinationVC = segue.destination as! PostPendingRequestsViewController

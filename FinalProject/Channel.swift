@@ -8,14 +8,18 @@
 import UIKit
 import Firebase
 
-let channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
+let chanRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
 
 class Channel: NSObject {
 
     var id: String?
+    var ownerId: String
+    var ownerUsername: String
+    var requesterId: String
+    var requesterUsername: String
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
-        let newChannelRef = channelRef.childByAutoId()
+        let newChannelRef = chanRef.childByAutoId()
         let referenceString = newChannelRef.description()
         let id = String(referenceString.characters.suffix(20))
         self.id = id
@@ -26,21 +30,41 @@ class Channel: NSObject {
 
     func toDictionary() -> [String: Any?] {
         let result = [
-            "id": id
+            "id": id,
+            "ownerId": ownerId,
+            "ownerUsername": ownerUsername,
+            "requesterId": requesterId,
+            "requesterUsername": requesterUsername
         ]
-        
         return result
     }
     
     var databaseRef : FIRDatabaseReference? {
         if let channelId = self.id {
-           return channelRef.child(channelId) as FIRDatabaseReference
+           return chanRef.child(channelId) as FIRDatabaseReference
         } else {
             return nil
         }
     }
     
+    init(with requester: RequestUser) {
+        self.id = ""
+        let user = User.sharedInstance
+        self.ownerId = user.uid!
+        self.ownerUsername = user.username!
+        self.requesterId = requester.uid
+        self.requesterUsername = requester.username
+    }
     
+    init(snapshot: FIRDataSnapshot) {
+        let snapshotValue = snapshot.value as! [String:Any?]
+        
+        self.id = snapshotValue["id"] as! String
+        self.ownerId = snapshotValue["ownerId"] as! String
+        self.ownerUsername = snapshotValue["ownerUsername"] as! String
+        self.requesterId = snapshotValue["requesterId"] as! String
+        self.requesterUsername = snapshotValue["requesterUsername"] as! String
+    }
 }
 
 

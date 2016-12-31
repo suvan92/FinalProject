@@ -23,7 +23,7 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         let nCentre = NotificationCenter.default
-        nCentre.addObserver(self, selector: #selector(dismissView), name: Notification.Name("requesterChosen"), object: nil)
+        nCentre.addObserver(forName: Notification.Name("requesterChosen"), object: nil, queue: nil, using: createChannel)
         getDataSource()
     }
     
@@ -62,15 +62,25 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
                         let requestUser = RequestUser(snapshot: snapshot)
                         self.dataSource?.append(requestUser)
                         self.tableView.reloadData()
-                        
                     })
                 }
             })
         }
     }
-    
-    func dismissView() {
-        let _ = navigationController?.popViewController(animated: true)
-    }
 
+    func createChannel(notification: Notification) -> Void {
+        if notification.userInfo != nil {
+            let requester = notification.userInfo?["requester"] as? RequestUser
+            let channel = Channel(with: requester!)
+            channel.savetoDatabase {
+                self.foodItem?.addChannel(withID: channel.id!, completion: {
+                    print("channel added to foodItem succesfully")
+                })
+            }
+        } else {
+            print("failed to send requester")
+            return
+        }
+        navigationController?.popViewController(animated: true)
+    }
 }

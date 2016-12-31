@@ -60,6 +60,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     // MARK: - Segues -
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         selectedFoodItem = dataSource[indexPath.row]
         performSegue(withIdentifier: showRequestDetailSegueIdentifier, sender: self)
     }

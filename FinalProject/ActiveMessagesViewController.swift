@@ -16,15 +16,15 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     var datasource: [String]?
     
-    @IBAction func makeNewChannel(_ sender: Any) {
-        let user = User.sharedInstance
-        let channel = Channel()
-        channel.savetoDatabase() {
-            user.addChannel(withID: channel.id!, completion: {
-                self.tableView.reloadData()
-            })
-        }
-    }
+//    @IBAction func makeNewChannel(_ sender: Any) {
+//        let user = User.sharedInstance
+//        let channel = Channel()
+//        channel.savetoDatabase() {
+//            user.addChannel(withID: channel.id!, completion: {
+//                self.tableView.reloadData()
+//            })
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,23 +54,24 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     //MARK: tableview delegate methods
     //override??
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let channelId = datasource?[indexPath.row]
         self.performSegue(withIdentifier: "ShowChannel", sender: channelId)
     }
     
     // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if let channelId = sender as? String {
-            let chatVc = segue.destination as! ChatViewController
-            let channel = Channel()
-            channel.id = channelId
-            chatVc.channel = channel
-            chatVc.channelRef = channel.databaseRef
-            chatVc.senderDisplayName = User.sharedInstance.email
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        
+//        if let channelId = sender as? String {
+//            let chatVc = segue.destination as! ChatViewController
+//            let channel = Channel()
+//            channel.id = channelId
+//            chatVc.channel = channel
+//            chatVc.channelRef = channel.databaseRef
+//            chatVc.senderDisplayName = User.sharedInstance.email
+//        }
+//    }
     
     //MARK: VC observe for channels added or removed to update tableView
     func setupObservers() {

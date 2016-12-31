@@ -13,6 +13,7 @@ import JSQMessagesViewController
 class ChatViewController: JSQMessagesViewController {
     
     //MARK: Properties
+    var foodItem: FoodItem? //NEEDED??
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     var channelRef: FIRDatabaseReference?
@@ -20,7 +21,6 @@ class ChatViewController: JSQMessagesViewController {
     private lazy var messageRef: FIRDatabaseReference = self.channelRef!.child("messages")
     private var newMessageRefHandle: FIRDatabaseHandle?
     var messages = [JSQMessage]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

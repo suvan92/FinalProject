@@ -17,14 +17,13 @@ class RequesterTableViewCell: UITableViewCell {
     @IBOutlet weak var acceptButton: UIButton!
     var cellRequestUser : RequestUser?
     var foodItem : FoodItem?
-    
-    var user : RequestUser?
+    //var user : RequestUser?
     
     // MARK: - General Methods -
     
     func setUpCellWith(requestUser: RequestUser, and foodItem: FoodItem) {
         cellRequestUser = requestUser
-        user = requestUser
+        //user = requestUser
         requesterNameLabel.text = requestUser.email
         self.foodItem = foodItem
     }
@@ -33,15 +32,15 @@ class RequesterTableViewCell: UITableViewCell {
     
     @IBAction func acceptButtonTouched(_ sender: UIButton) {
         AcceptanceManager.accept(requestUser: cellRequestUser!, and: foodItem!) {
-            // generate channel
+            //create channel through notification
             self.notifyAcceptance()
         }
-        
     }
     
     func notifyAcceptance() {
+        let requester: [AnyHashable: Any] = ["requester": cellRequestUser!]
         let nCentre = NotificationCenter.default
-        let notification = Notification(name: Notification.Name(rawValue: "requesterChosen"))
+        let notification = Notification(name: Notification.Name(rawValue: "requesterChosen"), object: self, userInfo: requester)
         nCentre.post(notification)
     }
 
