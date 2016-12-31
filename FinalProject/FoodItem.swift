@@ -23,11 +23,9 @@ class FoodItem: NSObject {
     var requesters : [String]?
     var requesterChosen : Bool
     var acceptedRequester : String?
-    var channel : String?
+    var channel : String
     var postDate : Date
 
-
-    
     // MARK: Class Methods
     
     class func saveToDatabase(item :FoodItem, completion: @escaping (_ itemID: String) -> Swift.Void) {
@@ -38,7 +36,6 @@ class FoodItem: NSObject {
             completion(referenceString)
         }
     }
-    
     
     // MARK: Instance Methods
     
@@ -53,6 +50,7 @@ class FoodItem: NSObject {
         self.acceptedRequester = nil
         self.dataBaseRef = ""
         self.postDate = Date()
+        self.channel = ""
     }
     
     func toDictionary() -> [String:Any?] {
@@ -65,7 +63,8 @@ class FoodItem: NSObject {
                                      "requesterChosen":requesterChosen,
                                      "acceptedRequester":acceptedRequester,
                                      "postDate":postDate.description,
-                                     "dataBaseRef":dataBaseRef
+                                     "dataBaseRef":dataBaseRef,
+                                     "channel": channel
         ]
         return result
     }
@@ -81,9 +80,16 @@ class FoodItem: NSObject {
         requesters = snapshotValue["requesters"] as? [String]
         requesterChosen = snapshotValue["requesterChosen"] as! Bool
         acceptedRequester = snapshotValue["acceptedRequester"] as? String
-        channel = snapshotValue["channel"] as? String
+        channel = snapshotValue["channel"] as! String
         postDate = (snapshotValue["postDate"] as! String).dateFromString()
         dataBaseRef = snapshotValue["dataBaseRef"] as! String
     }
-
+    
+    func addChannel(withID id: String, completion: @escaping () -> Swift.Void) {
+        self.channel = id
+        let ref = foodRef.child(dataBaseRef)
+        ref.updateChildValues(["channel": self.channel]) { error, ref in
+            completion()
+        }
+    }
 }

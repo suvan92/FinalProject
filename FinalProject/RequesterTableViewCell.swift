@@ -17,14 +17,13 @@ class RequesterTableViewCell: UITableViewCell {
     @IBOutlet weak var acceptButton: UIButton!
     var cellRequestUser : RequestUser?
     var foodItem : FoodItem?
-    
-    var user : RequestUser?
+    //var user : RequestUser?
     
     // MARK: - General Methods -
     
     func setUpCellWith(requestUser: RequestUser, and foodItem: FoodItem) {
         cellRequestUser = requestUser
-        user = requestUser
+        //user = requestUser
         requesterNameLabel.text = requestUser.email
         self.foodItem = foodItem
     }

@@ -52,6 +52,16 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
             // go to chat ***
+            let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
+            let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
+            self.navigationController?.pushViewController(dest, animated: true)
+            //set channel as the current food item channel
+            //dest.channel =
+            
+            
+            
+            
+            
         } else {
             selectedItem = arrayOfPosts?[indexPath.row]
             performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)

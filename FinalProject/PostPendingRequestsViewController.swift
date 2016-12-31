@@ -62,29 +62,25 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
                         let requestUser = RequestUser(snapshot: snapshot)
                         self.dataSource?.append(requestUser)
                         self.tableView.reloadData()
-                        
                     })
                 }
             })
         }
     }
-    
-    //>>YOU ARE HERE
+    //***
     func createChannel(notification: Notification) -> Void {
         if notification.userInfo != nil {
             let requester = notification.userInfo?["requester"] as? RequestUser
             let channel = Channel(with: requester!)
             channel.savetoDatabase {
-                //channel created. Now add it to food item
-                //foodItem?.channel
-                print("channel created")
+                self.foodItem?.addChannel(withID: channel.id!, completion: {
+                    print("channel added to foodItem succesfully")
+                })
             }
-
         } else {
             print("failed to send requester")
             return
         }
         navigationController?.popViewController(animated: true)
     }
-
 }
