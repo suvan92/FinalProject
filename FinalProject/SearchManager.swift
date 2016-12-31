@@ -36,7 +36,7 @@ class SearchManager: NSObject {
                 if snapshot.value is NSNull {
                     self.currentCallNumber += 1
                     if self.currentCallNumber == self.totalCallNumber {
-                        self.getFoodItemObjects(itemRefs: self.foodItemsToPull, completion: { (foodItems) in
+                        self.getFoodItemObjects(itemRefs: self.foodItemsToPull, completion: { foodItems in
                             completion(foodItems)
                         })
                     }

@@ -74,6 +74,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+
     //MARK: setupChannel
     func getChannel(with id: String, completion: @escaping(Channel) -> Swift.Void) {
         chanRef.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -81,7 +82,18 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
             completion(channel)
         })
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let foodItem = arrayOfPosts?[indexPath.row]
+            DeletionManager.delete(foodItem: foodItem!) {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
+    // MARK: - Segues -
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == pendingPostsVCSegueIdentifier {
             let destinationVC = segue.destination as! PostPendingRequestsViewController
