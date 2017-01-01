@@ -80,6 +80,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     }
     
     @IBAction func postButtonTouched(_ sender: UIBarButtonItem) {
+        view.endEditing(true)
         showPostingAlert()
         let imageName = ImageUploader.generateImageName()
         ImageUploader.upload(image: imageView.image!, withName: imageName) { (error) in
@@ -108,7 +109,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         view.endEditing(true)
     }
     
-    // MARK: - Save Method -
+    // MARK: - Save Methods -
     
     func createFoodItem(withImageNamed imageName: String) {
         let itemName = foodTitleTextField.text!
@@ -138,7 +139,6 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     }
     
     func dismissView() {
-//        self.view.endEditing(true)
         postAlert!.title = "Post complete!"
         postAlert!.dismiss(animated: true) { [unowned self] in
             self.dismiss(animated: true, completion: nil)
