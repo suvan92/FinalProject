@@ -13,12 +13,13 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     var postedItemsChannels: [Channel]? = []
+    var postChanCount: Int = 0
     var requestedItemsData: [FoodItem]?
     
     override func viewDidLoad() {
+        self.title = "Active Chats"
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,56 +29,48 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     
     //MARK: tableview datasource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if let source = datasource {
-//            return source.count
-//        } else {
-        return 0
+        return (postedItemsChannels?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrentChannels", for: indexPath)
-//        cell.textLabel?.text = User.sharedInstance.channels?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveChatTableViewCell", for: indexPath) as! ActiveChatTableViewCell
+        let channel = (self.postedItemsChannels?[indexPath.row])! as Channel
+        cell.setUpCellWith(channel: channel, isPostItem: true)
         return cell
     }
     
     //MARK: tableview delegate methods
-    //override??
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
 //        let channelId = datasource?[indexPath.row]
 //        self.performSegue(withIdentifier: "ShowChannel", sender: channelId)
     }
 
+    
+    //MARK: datasource for posted items channels
     func getPostItems() {
+        self.postedItemsChannels = []
         let currentUser = User.sharedInstance
         let currentUserRef = userRef.child(currentUser.uid!)
         currentUserRef.child("postedItems").observe(.value, with: { (snapshot) in
-            var postedItems: [FoodItem] = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
                 foodRef.child(itemReferenceValue).observe(.value, with: { snap in
                     let foodItem = FoodItem(snapshot: snap)
-                    postedItems.append(foodItem)
-                    print("FOOD ITEM: \(foodItem.name) POSTED ITEMS COUNT: \(postedItems.count)")
-                    self.getPostChannels(foodItems: postedItems)
+                    self.getPostChannel(foodItem: foodItem)
                 })
             }
         })
     }
     
-    //you are here!! *** WHY DOES THE CHANNEL GET ADDED TWICE?
-    func getPostChannels(foodItems: [FoodItem]) {
-        var channelRefs: [String] = []
-        for item in foodItems {
-            if item.requesterChosen {
-                channelRefs.append(item.channel)
-            }
-        }
-        print("CHANNEL REFS COUNT: \(channelRefs.count)")
-        for ref in channelRefs {
+    func getPostChannel(foodItem: FoodItem) {
+        let item = foodItem
+        if item.requesterChosen {
+            postChanCount += 1
+            let ref = item.channel
             getChannel(with: ref, completion: { (channel) in
                 self.postedItemsChannels?.append(channel)
-                print("CHANNEL ADDED: \(channel.id). CHANNEL COUNT: \(self.postedItemsChannels?.count)")
+                self.tableView.reloadData()
             })
         }
     }

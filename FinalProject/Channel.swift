@@ -17,6 +17,7 @@ class Channel: NSObject {
     var ownerUsername: String
     var requesterId: String
     var requesterUsername: String
+    var foodItemName: String
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
         let newChannelRef = chanRef.childByAutoId()
@@ -34,7 +35,8 @@ class Channel: NSObject {
             "ownerId": ownerId,
             "ownerUsername": ownerUsername,
             "requesterId": requesterId,
-            "requesterUsername": requesterUsername
+            "requesterUsername": requesterUsername,
+            "foodItemName": foodItemName
         ]
         return result
     }
@@ -47,13 +49,14 @@ class Channel: NSObject {
         }
     }
     
-    init(with requester: RequestUser) {
+    init(with requester: RequestUser, foodItemName: String) {
         self.id = ""
         let user = User.sharedInstance
         self.ownerId = user.uid!
         self.ownerUsername = user.username!
         self.requesterId = requester.uid
         self.requesterUsername = requester.username
+        self.foodItemName = foodItemName
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -64,6 +67,7 @@ class Channel: NSObject {
         self.ownerUsername = snapshotValue["ownerUsername"] as! String
         self.requesterId = snapshotValue["requesterId"] as! String
         self.requesterUsername = snapshotValue["requesterUsername"] as! String
+        self.foodItemName = snapshotValue["foodItemName"] as! String
     }
 }
 

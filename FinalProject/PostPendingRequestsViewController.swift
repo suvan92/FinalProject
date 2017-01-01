@@ -71,9 +71,10 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
     func createChannel(notification: Notification) -> Void {
         if notification.userInfo != nil {
             let requester = notification.userInfo?["requester"] as? RequestUser
-            let channel = Channel(with: requester!)
+            let channel = Channel(with: requester!, foodItemName: (self.foodItem?.name)!)
             channel.savetoDatabase {
-                self.foodItem?.addChannel(withID: channel.id!, completion: {
+                let id = channel.id
+                self.foodItem?.addChannel(withID: id!, completion: {
                     print("channel added to foodItem succesfully")
                 })
             }
