@@ -153,6 +153,4 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         }
         postAlert?.addAction(dismissAction)
     }
-    
-
 }
