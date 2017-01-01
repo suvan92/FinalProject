@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    var statusAlert : UIAlertController?
+    var tapGesture : UITapGestureRecognizer?
     var isFirstLogin: Bool = false
     
     // MARK: - VCLifeCycle Methods -
@@ -27,6 +29,8 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         buttonView.layer.cornerRadius = 6
         buttonView.layer.masksToBounds = true
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(endViewEditing))
+        view.addGestureRecognizer(tapGesture!)
     }
     
     // MARK: - Actions -
@@ -41,7 +45,7 @@ class LoginViewController: UIViewController {
         let signupAction = UIAlertAction(title: "Register",
                                          style: .default)
         { action in
-            
+            self.showCreatingAccountAlert()
             let email = signupController.textFields![0].text!
             let password = signupController.textFields![1].text!
             
@@ -49,6 +53,7 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
+                    self.statusAlert?.dismiss(animated: true, completion: nil)
                     self.isFirstLogin = true
                     self.login(email: email, password: password)
                 }
@@ -76,13 +81,32 @@ class LoginViewController: UIViewController {
     // MARK: - General Methods
     
     func login(email: String, password: String) {
+        showLoggingInAlert()
         AuthenticationManager.logUserIn(withEmail: email, password: password, completion: { (error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+                self.statusAlert?.dismiss(animated: true, completion: {
+                    self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
+                })
             }
         })
+    }
+    
+    func endViewEditing() {
+        view.endEditing(true)
+    }
+    
+    func showCreatingAccountAlert() {
+        endViewEditing()
+        statusAlert = UIAlertController(title: "Creating account...", message: nil, preferredStyle: .alert)
+        present(statusAlert!, animated: true, completion: nil)
+    }
+    
+    func showLoggingInAlert() {
+        endViewEditing()
+        statusAlert = UIAlertController(title: "Logging in...", message: nil, preferredStyle: .alert)
+        present(statusAlert!, animated: true, completion: nil)
     }
     
     // MARK: - Segues -
