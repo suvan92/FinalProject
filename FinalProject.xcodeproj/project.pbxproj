@@ -37,6 +37,7 @@
 		148B6D4C1E0B81B100E956BD /* PostSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */; };
 		148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */; };
 		148B6D501E0C5D3F00E956BD /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148B6D4F1E0C5D3F00E956BD /* RequestDetailViewController.swift */; };
+		149F5E301E18B617009748AD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F5E2F1E18B617009748AD /* AuthenticationManager.swift */; };
 		14CC06551E126A1E00A16E7F /* DeletionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC06541E126A1E00A16E7F /* DeletionManager.swift */; };
 		14D664F81E0DD09300CC44B2 /* OwnerSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D664F71E0DD09300CC44B2 /* OwnerSearchFilter.swift */; };
 		14D664F91E0E068800CC44B2 /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
@@ -84,6 +85,7 @@
 		148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		148B6D4D1E0B85EA00E956BD /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		148B6D4F1E0C5D3F00E956BD /* RequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailViewController.swift; sourceTree = "<group>"; };
+		149F5E2F1E18B617009748AD /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		14CC06541E126A1E00A16E7F /* DeletionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletionManager.swift; sourceTree = "<group>"; };
 		14D664F71E0DD09300CC44B2 /* OwnerSearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerSearchFilter.swift; sourceTree = "<group>"; };
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				B0E605021E0DC6FD00B4AC3E /* LocationManager.swift */,
+				149F5E2F1E18B617009748AD /* AuthenticationManager.swift */,
 				147917DE1E0370B900727419 /* AppDelegate.swift */,
 				147917F61E0373E100727419 /* User.swift */,
 				147917F81E03740F00727419 /* FoodItem.swift */,
@@ -422,6 +425,7 @@
 				14764DE21E08BD7B0033449C /* TimeAgo.swift in Sources */,
 				B0E605011E0DC13E00B4AC3E /* UserSettingsTableViewController.swift in Sources */,
 				14764DE01E08960C0033449C /* PostedItemTableViewCell.swift in Sources */,
+				149F5E301E18B617009748AD /* AuthenticationManager.swift in Sources */,
 				148117551E0C865B000AC5B7 /* RequesterTableViewCell.swift in Sources */,
 				14764DDE1E08714C0033449C /* ActiveMessagesViewController.swift in Sources */,
 				148B6D4A1E0B6A7900E956BD /* PostSearchViewController.swift in Sources */,
