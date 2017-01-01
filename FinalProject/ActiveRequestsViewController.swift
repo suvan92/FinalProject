@@ -63,6 +63,28 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
+        let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
+        let selectedItem = dataSource?[indexPath.row]
+        let channelId = selectedItem?.channel
+        getChannel(with: channelId!, completion: { (channel) in
+            if channel.requesterId == User.sharedInstance.uid {
+                dest.foodItem = selectedItem
+                dest.channel = channel
+                dest.channelRef = channel.databaseRef
+                dest.senderDisplayName = channel.ownerUsername
+                dest.title = channel.requesterUsername
+                self.navigationController?.pushViewController(dest, animated: true)
+            }
+        })
     }
     
+    //MARK: setupChannel
+    func getChannel(with id: String, completion: @escaping(Channel) -> Swift.Void) {
+        chanRef.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            let channel = Channel(snapshot: snapshot)
+            completion(channel)
+        })
+    }
+
 }
