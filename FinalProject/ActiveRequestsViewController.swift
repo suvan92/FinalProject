@@ -26,6 +26,10 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
         getDataSource()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: - TableView Methods -
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

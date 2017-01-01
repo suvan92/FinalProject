@@ -14,10 +14,12 @@ class ActiveRequestsTableViewCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var itemTitleLabel: UILabel!
     @IBOutlet weak var acceptanceLabel: UILabel!
+    @IBOutlet weak var checkIcon: UIImageView!
     
     @IBOutlet weak var postDateLabel: UILabel!
     // MARK: - Cell set up -
     func setUpCell(withItem foodItem: FoodItem) {
+        checkIcon.isHidden = true
         self.activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         itemTitleLabel.text = foodItem.name
@@ -34,16 +36,14 @@ class ActiveRequestsTableViewCell: UITableViewCell {
             let channelId = foodItem.channel
             getChannel(with: channelId, completion: { (channel) in
                 if channel.requesterId == User.sharedInstance.uid {
-                    self.acceptanceLabel.text = "Status: Accepted!"
-                    self.acceptanceLabel.textColor = UIColor.green
+                    self.checkIcon.isHidden = false
+                    self.acceptanceLabel.text = "Tap to message"
                 } else {
-                    self.acceptanceLabel.text = "Status: Pending"
-                    self.acceptanceLabel.textColor = UIColor.red
+                    self.acceptanceLabel.text = "Request pending"
                 }
             })
         } else {
-            acceptanceLabel.text = "Status: Pending"
-            acceptanceLabel.textColor = UIColor.red
+            acceptanceLabel.text = "Request pending"
         }
     }
     
