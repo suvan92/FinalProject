@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var statusAlert : UIAlertController?
+    var errorAlert : UIAlertController?
     var tapGesture : UITapGestureRecognizer?
     var isFirstLogin: Bool = false
     
@@ -46,12 +47,12 @@ class LoginViewController: UIViewController {
                                          style: .default)
         { action in
             self.showCreatingAccountAlert()
-            let email = signupController.textFields![0].text!
-            let password = signupController.textFields![1].text!
+            let email = signupController.textFields![0].text ?? ""
+            let password = signupController.textFields![1].text ?? ""
             
             AuthenticationManager.createUser(withEmail: email, password: password, completion: { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
+                if error != nil {
+                    self.showErrorAlert()
                 } else {
                     self.statusAlert?.dismiss(animated: true, completion: nil)
                     self.isFirstLogin = true
@@ -83,8 +84,10 @@ class LoginViewController: UIViewController {
     func login(email: String, password: String) {
         showLoggingInAlert()
         AuthenticationManager.logUserIn(withEmail: email, password: password, completion: { (error) in
-            if let error = error {
-                print(error.localizedDescription)
+            if error != nil {
+                self.statusAlert?.dismiss(animated: true, completion: {
+                    self.showErrorAlert()
+                })
             } else {
                 self.statusAlert?.dismiss(animated: true, completion: {
                     self.performSegue(withIdentifier: loginSegueIdentifier, sender: nil)
@@ -107,6 +110,15 @@ class LoginViewController: UIViewController {
         endViewEditing()
         statusAlert = UIAlertController(title: "Logging in...", message: nil, preferredStyle: .alert)
         present(statusAlert!, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert() {
+        errorAlert = UIAlertController(title: "Invalid email/password", message: nil, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { alert in
+            self.errorAlert?.dismiss(animated: true, completion: nil)
+        }
+        errorAlert?.addAction(dismissAction)
+        present(errorAlert!, animated: true, completion: nil)
     }
     
     // MARK: - Segues -
