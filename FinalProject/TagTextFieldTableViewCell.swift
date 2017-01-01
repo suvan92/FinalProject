@@ -16,7 +16,7 @@ class TagTextFieldTableViewCell: UITableViewCell {
     let tagTextField: WSTagsField = {
         let tagsField = WSTagsField()
         tagsField.tag = 1
-        tagsField.placeholder = "Enter a tag"
+        tagsField.placeholder = "Enter tags..."
         tagsField.backgroundColor = .white
         tagsField.spaceBetweenTags = 10.0
         tagsField.font = .systemFont(ofSize: 17.0)
