@@ -29,18 +29,39 @@ class ActiveRequestsTableViewCell: UITableViewCell {
             self.activityIndicator.isHidden = true
         })
         postDateLabel.text = "Posted " + timeAgoSince(foodItem.postDate)
-        setUpAcceptanceLabel(foodItem.requesterChosen)
-    }
-    
-    func setUpAcceptanceLabel(_ isAccepted: Bool) {
         
-        if isAccepted {
-            acceptanceLabel.text = "Status: Accepted!"
-            acceptanceLabel.textColor = UIColor.green
+        if foodItem.requesterChosen {
+            let channelId = foodItem.channel
+            getChannel(with: channelId, completion: { (channel) in
+                if channel.requesterId == User.sharedInstance.uid {
+                    self.acceptanceLabel.text = "Status: Accepted!"
+                    self.acceptanceLabel.textColor = UIColor.green
+                } else {
+                    self.acceptanceLabel.text = "Status: Pending"
+                    self.acceptanceLabel.textColor = UIColor.red
+                }
+            })
         } else {
             acceptanceLabel.text = "Status: Pending"
             acceptanceLabel.textColor = UIColor.red
         }
-        
+    }
+    
+//    func setUpAcceptanceLabel(_ isAccepted: Bool) {
+//        if isAccepted {
+//            acceptanceLabel.text = "Status: Accepted!"
+//            acceptanceLabel.textColor = UIColor.green
+//        } else {
+//            acceptanceLabel.text = "Status: Pending"
+//            acceptanceLabel.textColor = UIColor.red
+//        }
+//    }
+    
+    //MARK: setupChannel
+    func getChannel(with id: String, completion: @escaping(Channel) -> Swift.Void) {
+        chanRef.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            let channel = Channel(snapshot: snapshot)
+            completion(channel)
+        })
     }
 }
