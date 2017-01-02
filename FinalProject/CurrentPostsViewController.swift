@@ -124,4 +124,5 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
             }
         })
     }
+
 }
