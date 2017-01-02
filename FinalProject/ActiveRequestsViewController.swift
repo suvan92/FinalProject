@@ -77,7 +77,7 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
                 dest.channel = channel
                 dest.channelRef = channel.databaseRef
                 dest.senderDisplayName = channel.ownerUsername
-                dest.title = channel.requesterUsername
+                dest.title = channel.ownerUsername
                 self.navigationController?.pushViewController(dest, animated: true)
             }
         })
