@@ -14,7 +14,9 @@ class ActiveChatTableViewCell: UITableViewCell {
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var foodItemLabel: UILabel!
-
+    @IBOutlet weak var lastMessageLabel: UILabel!
+    
+    
     func setUpCellWith(channel: Channel, isPostItem: Bool) {
 //        activityIndicator.isHidden = false
 //        activityIndicator.startAnimating()
@@ -27,6 +29,8 @@ class ActiveChatTableViewCell: UITableViewCell {
             usernameLabel.text = channel.ownerUsername
             userId = channel.ownerId
         }
+        foodItemLabel.text = "re: \(channel.foodItemName)"
+        
         ImageDownloader.getProfileImage(userId: userId!, completion: { image in
             self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2
             self.profilePic.clipsToBounds = true

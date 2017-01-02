@@ -34,7 +34,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OpR-kc-03f">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagedefault" translatesAutoresizingMaskIntoConstraints="NO" id="OpR-kc-03f">
                                                     <rect key="frame" x="14" y="8" width="53" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="OpR-kc-03f" secondAttribute="height" id="O9W-E8-58z"/>
@@ -58,19 +58,32 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You: Thanks for getting in touch..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOL-lq-EhG">
+                                                    <rect key="frame" x="82" y="37" width="279" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20.5" id="23n-Ix-tCg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.68235294117647061" green="0.68235294117647061" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="BgK-nR-eeD" firstAttribute="top" secondItem="sKl-Ay-VbA" secondAttribute="topMargin" id="1Yz-xa-bNC"/>
                                                 <constraint firstItem="OpR-kc-03f" firstAttribute="top" secondItem="sKl-Ay-VbA" secondAttribute="topMargin" id="2lD-AP-6mk"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="5MT-gJ-s9R" secondAttribute="trailing" constant="6" id="4o2-YP-w4m"/>
                                                 <constraint firstItem="OpR-kc-03f" firstAttribute="bottom" secondItem="sKl-Ay-VbA" secondAttribute="bottomMargin" id="5oG-KW-IzA"/>
+                                                <constraint firstItem="SOL-lq-EhG" firstAttribute="top" secondItem="BgK-nR-eeD" secondAttribute="bottom" constant="8" id="6Zp-F3-R9D"/>
                                                 <constraint firstItem="BgK-nR-eeD" firstAttribute="leading" secondItem="OpR-kc-03f" secondAttribute="trailing" constant="15" id="7jn-mM-L6i"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SOL-lq-EhG" secondAttribute="trailing" constant="6" id="IIX-I5-Vfj"/>
+                                                <constraint firstItem="SOL-lq-EhG" firstAttribute="leading" secondItem="OpR-kc-03f" secondAttribute="trailing" constant="15" id="LE1-95-mct"/>
                                                 <constraint firstItem="OpR-kc-03f" firstAttribute="leading" secondItem="sKl-Ay-VbA" secondAttribute="leadingMargin" constant="6" id="Z6F-r6-cRE"/>
                                                 <constraint firstItem="5MT-gJ-s9R" firstAttribute="top" secondItem="sKl-Ay-VbA" secondAttribute="topMargin" id="yVA-zQ-tEW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="foodItemLabel" destination="5MT-gJ-s9R" id="7cx-wC-XNO"/>
+                                            <outlet property="lastMessageLabel" destination="SOL-lq-EhG" id="vZN-QL-3RI"/>
                                             <outlet property="profilePic" destination="OpR-kc-03f" id="s65-i3-enh"/>
                                             <outlet property="usernameLabel" destination="BgK-nR-eeD" id="cht-5Q-Ygp"/>
                                         </connections>
@@ -137,4 +150,7 @@
             <point key="canvasLocation" x="364" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="profileImagedefault" width="840" height="840"/>
+    </resources>
 </document>
