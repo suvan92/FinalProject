@@ -201,7 +201,7 @@
         <scene sceneID="ewK-az-kHT">
             <objects>
                 <viewControllerPlaceholder storyboardName="PostBranch" id="IVK-uL-Xxb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Post" image="postIconNeg" selectedImage="requestIcon" id="qW1-Ss-2R2">
+                    <tabBarItem key="tabBarItem" title="Share" image="postIconNeg" selectedImage="requestIcon" id="qW1-Ss-2R2">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="Itv-z5-5VG"/>
