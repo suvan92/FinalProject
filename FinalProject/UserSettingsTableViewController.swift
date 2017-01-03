@@ -33,10 +33,15 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     let user: User = User.sharedInstance
     var postAlert : UIAlertController?
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        self.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settingsIconNeg"), tag: 4)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "User Settings"
+        self.navigationItem.title = "User Settings"
         setUpGestures()
         tableView.separatorStyle = .none
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2

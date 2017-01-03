@@ -169,7 +169,7 @@
         <scene sceneID="uw9-Aq-tGv">
             <objects>
                 <viewControllerPlaceholder storyboardName="Messages" id="as2-yo-9kf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Message" image="messageIconNeg" id="CRW-MJ-vZL"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Message" image="messageIconNeg" id="CRW-MJ-vZL"/>
                     <navigationItem key="navigationItem" id="hqd-4Q-Odi"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEU-Mb-rWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +180,7 @@
         <scene sceneID="Vv2-Hb-8y5">
             <objects>
                 <viewControllerPlaceholder storyboardName="RequestBranch" id="H0Y-iz-BEl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Request" image="requestIconNeg" id="2np-y4-Plj"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Request" image="requestIconNeg" id="2np-y4-Plj"/>
                     <navigationItem key="navigationItem" id="DOQ-dy-oFz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyd-mh-sP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -191,7 +191,7 @@
         <scene sceneID="ZVi-7X-dGM">
             <objects>
                 <viewControllerPlaceholder storyboardName="UserSettings" id="A7t-8Y-lK6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="settingsIconNeg" id="W3Y-kV-ckR"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Settings" image="settingsIconNeg" id="W3Y-kV-ckR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJl-It-3WA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +201,7 @@
         <scene sceneID="ewK-az-kHT">
             <objects>
                 <viewControllerPlaceholder storyboardName="PostBranch" id="IVK-uL-Xxb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Share" image="postIconNeg" selectedImage="requestIcon" id="qW1-Ss-2R2">
+                    <tabBarItem key="tabBarItem" tag="1" title="Share" image="postIconNeg" selectedImage="requestIcon" id="qW1-Ss-2R2">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="Itv-z5-5VG"/>
