@@ -217,7 +217,9 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     func setUpViews() {
         self.hasLoadedSettings = true
         self.usernameTextField.text = user.username
-        self.isSearchByAddress = user.isSearchByAddress!
+        if user.isSearchByAddress != nil {
+            self.isSearchByAddress = user.isSearchByAddress!
+        }
         if isSearchByAddress {
             searchRelativeLabel.text = "Search relative to home address"
             searchRelativeSwitch.setOn(false, animated: true)
@@ -230,7 +232,10 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         self.addressPostCodeTF.text = user.addressPostCode
         self.addressProvinceTF.text = user.addressProvince
         self.addressCountryTF.text = user.addressCountry
-        self.searchRadius = user.searchRadius!
+        if user.searchRadius != nil {
+            self.searchRadius = user.searchRadius!
+
+        }
         self.searchRadiusSlider.value = Float(self.searchRadius)
         self.searchRadiusLabel.text = "\(self.searchRadius) km"
         ImageDownloader.getProfileImage(userId: user.uid!, completion: { image in
