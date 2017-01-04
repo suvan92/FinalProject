@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.barTintColor = ColorManager.red()
+        tabBarAppearance.unselectedItemTintColor = ColorManager.lightRed()
         tabBarAppearance.tintColor = UIColor.white
-        
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         return true
     }

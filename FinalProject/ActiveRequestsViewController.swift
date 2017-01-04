@@ -15,6 +15,14 @@ let activeRequestsCellRI = "activeRequestsCell"
 
 class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        self.tabBarItem = UITabBarItem(title: "Request", image: UIImage(named: "requestIconNeg"), tag: 2)
+        
+    }
+    
+    
     // MARK: - Properties -
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +30,7 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = requestVCTitle
+        self.navigationItem.title = requestVCTitle
         getDataSource()
     }
     

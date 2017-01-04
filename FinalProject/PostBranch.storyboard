@@ -48,13 +48,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fk-lq-vi8">
-                                                    <rect key="frame" x="91" y="2" width="276" height="26.5"/>
+                                                    <rect key="frame" x="91" y="2" width="224" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 1 day ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8r-In-37L">
-                                                    <rect key="frame" x="91" y="30.5" width="276" height="14.5"/>
+                                                    <rect key="frame" x="91" y="30.5" width="216" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -63,29 +63,39 @@
                                                     <rect key="frame" x="35" y="29" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RequestCountLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c8-N8-jEa">
-                                                    <rect key="frame" x="91" y="59.5" width="112" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="91" y="56" width="135" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.78823529410000004" green="0.78823529410000004" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Y2-nlu">
+                                                    <rect key="frame" x="322" y="25" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="I1i-bL-aJO"/>
+                                                        <constraint firstAttribute="width" constant="30" id="iiP-SB-H8W"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cc4-PX-NpN" firstAttribute="leading" secondItem="5fB-Rv-EWV" secondAttribute="leadingMargin" constant="27" id="1YJ-c4-Hef"/>
                                                 <constraint firstItem="5fk-lq-vi8" firstAttribute="leading" secondItem="XjL-eP-ieL" secondAttribute="trailing" constant="8" id="6Oi-9e-aqx"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="s8r-In-37L" secondAttribute="trailing" id="712-yt-KVy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="s8r-In-37L" secondAttribute="trailing" constant="60" id="712-yt-KVy"/>
                                                 <constraint firstItem="5fk-lq-vi8" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="top" constant="2" id="DRP-OX-pw9"/>
                                                 <constraint firstAttribute="bottom" secondItem="6c8-N8-jEa" secondAttribute="bottom" constant="5.5" id="Imp-NT-LZD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1UU-Y2-nlu" secondAttribute="trailing" constant="15" id="K3D-kG-HqN"/>
                                                 <constraint firstItem="XjL-eP-ieL" firstAttribute="leading" secondItem="5fB-Rv-EWV" secondAttribute="leading" constant="8" id="P7M-SQ-kXq"/>
-                                                <constraint firstAttribute="trailing" secondItem="5fk-lq-vi8" secondAttribute="trailing" constant="8" id="RJc-Xq-bP6"/>
+                                                <constraint firstAttribute="trailing" secondItem="5fk-lq-vi8" secondAttribute="trailing" constant="60" id="RJc-Xq-bP6"/>
                                                 <constraint firstItem="s8r-In-37L" firstAttribute="top" secondItem="5fk-lq-vi8" secondAttribute="bottom" constant="2" id="Rj2-JY-LH6"/>
                                                 <constraint firstItem="XjL-eP-ieL" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="top" constant="2" id="ZEu-jX-JMN"/>
                                                 <constraint firstItem="6c8-N8-jEa" firstAttribute="leading" secondItem="XjL-eP-ieL" secondAttribute="trailing" constant="8" id="dKp-T4-chn"/>
+                                                <constraint firstItem="1UU-Y2-nlu" firstAttribute="centerY" secondItem="5fB-Rv-EWV" secondAttribute="centerY" id="fkm-R6-5ps"/>
                                                 <constraint firstItem="s8r-In-37L" firstAttribute="leading" secondItem="XjL-eP-ieL" secondAttribute="trailing" constant="8" id="mcx-dm-sWL"/>
                                                 <constraint firstItem="cc4-PX-NpN" firstAttribute="top" secondItem="5fB-Rv-EWV" secondAttribute="topMargin" constant="21" id="qfJ-Je-EwB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="activityIndicator" destination="cc4-PX-NpN" id="EGg-2y-9gc"/>
+                                            <outlet property="checkIcon" destination="1UU-Y2-nlu" id="Bb6-Yb-N8s"/>
                                             <outlet property="itemImageView" destination="XjL-eP-ieL" id="ZFU-JS-yp1"/>
                                             <outlet property="itemTitleLabel" destination="5fk-lq-vi8" id="mic-sR-hke"/>
                                             <outlet property="numOfRequestsLabel" destination="6c8-N8-jEa" id="Tey-Gg-JfX"/>
@@ -384,6 +394,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkIcon" width="288" height="288"/>
         <image name="foodImage" width="855" height="855"/>
     </resources>
 </document>

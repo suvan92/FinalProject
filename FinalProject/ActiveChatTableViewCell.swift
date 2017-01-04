@@ -7,20 +7,22 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ActiveChatTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var foodItemLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
+    var isPostItem: Bool = false
+    var cellChannel: Channel?
     
-    
-    func setUpCellWith(channel: Channel, isPostItem: Bool) {
+    func setUpCellWith(channel: Channel) {
 //        activityIndicator.isHidden = false
 //        activityIndicator.startAnimating()
         let userId: String?
+        cellChannel = channel
         
         if isPostItem {
             usernameLabel.text = channel.requesterUsername
@@ -30,7 +32,7 @@ class ActiveChatTableViewCell: UITableViewCell {
             userId = channel.ownerId
         }
         foodItemLabel.text = "re: \(channel.foodItemName)"
-        
+        getLastMessage()
         ImageDownloader.getProfileImage(userId: userId!, completion: { image in
             self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2
             self.profilePic.clipsToBounds = true
@@ -43,16 +45,25 @@ class ActiveChatTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
-    
-    
-
+    func getLastMessage() {
+        cellChannel?.databaseRef?.child("messages").observe(.value, with: { (snapshot) in
+            
+            var messages: [Message] = []
+            for item in snapshot.children {
+                let message = Message(snapshot: item as! FIRDataSnapshot)
+                messages.append(message)
+            }
+            if let current = messages.last {
+                let user = User.sharedInstance
+                let text = current.text!
+                if current.senderId == user.uid {
+                    self.lastMessageLabel.text = "You: \(text)"
+                } else {
+                    self.lastMessageLabel.text = "\(text)"
+                }
+            }
+        })
+    }
 }

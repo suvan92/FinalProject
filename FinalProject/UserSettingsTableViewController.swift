@@ -33,10 +33,15 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     let user: User = User.sharedInstance
     var postAlert : UIAlertController?
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        self.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settingsIconNeg"), tag: 4)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "User Settings"
+        self.navigationItem.title = "User Settings"
         setUpGestures()
         tableView.separatorStyle = .none
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
@@ -212,7 +217,9 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     func setUpViews() {
         self.hasLoadedSettings = true
         self.usernameTextField.text = user.username
-        self.isSearchByAddress = user.isSearchByAddress!
+        if user.isSearchByAddress != nil {
+            self.isSearchByAddress = user.isSearchByAddress!
+        }
         if isSearchByAddress {
             searchRelativeLabel.text = "Search relative to home address"
             searchRelativeSwitch.setOn(false, animated: true)
@@ -225,7 +232,10 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         self.addressPostCodeTF.text = user.addressPostCode
         self.addressProvinceTF.text = user.addressProvince
         self.addressCountryTF.text = user.addressCountry
-        self.searchRadius = user.searchRadius!
+        if user.searchRadius != nil {
+            self.searchRadius = user.searchRadius!
+
+        }
         self.searchRadiusSlider.value = Float(self.searchRadius)
         self.searchRadiusLabel.text = "\(self.searchRadius) km"
         ImageDownloader.getProfileImage(userId: user.uid!, completion: { image in

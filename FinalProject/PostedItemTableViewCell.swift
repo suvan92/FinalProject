@@ -18,6 +18,7 @@ class PostedItemTableViewCell: UITableViewCell {
     @IBOutlet weak var postDateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var numOfRequestsLabel: UILabel!
+    @IBOutlet weak var checkIcon: UIImageView!
     
     // MARK: - Cell set up -
     func setUpCell(withItem foodItem: FoodItem) {
@@ -30,12 +31,14 @@ class PostedItemTableViewCell: UITableViewCell {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
         })
+        checkIcon.isHidden = true
         postDateLabel.text = "Posted " + timeAgoSince(foodItem.postDate)
         if foodItem.requesterChosen {
-            numOfRequestsLabel.text = "Accepted! Tap to enter chat"
-            numOfRequestsLabel.textColor = UIColor.green
+            checkIcon.isHidden = false
+            numOfRequestsLabel.text = "Tap to message"
+            //numOfRequestsLabel.textColor = UIColor.green
         } else {
-            numOfRequestsLabel.textColor = UIColor.black
+            //numOfRequestsLabel.textColor = UIColor.black
             if let requestCount = foodItem.requesters?.count {
                 numOfRequestsLabel.text = "Requests: \(requestCount)"
             } else {

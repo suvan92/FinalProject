@@ -15,6 +15,14 @@ let itemCellIdentifier = "postCell"
 let pendingPostsVCSegueIdentifier = "showPendingRequestsVC"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        self.tabBarItem = UITabBarItem(title: "Share", image: UIImage(named: "postIconNeg"), tag: 1)
+        
+    }
 
     // MARK: - Properties -
     
@@ -27,7 +35,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = vcTitle
+        self.navigationItem.title = vcTitle
         arrayOfPosts = []
         getDataSource()
     }

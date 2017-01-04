@@ -25,8 +25,15 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     
     var datasource: [Objects] = []
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // Initialize Tab Bar Item
+        self.tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "messageIconNeg"), tag: 3)
+        
+    }
+    
     override func viewDidLoad() {
-        self.title = "Active Chats"
+        self.navigationItem.title = "Active Chats"
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         
@@ -56,11 +63,29 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return datasource[section].sectionName
     }
+
+    
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 45))
+            returnedView.backgroundColor = ColorManager.lightRed()
+    
+            let label = UILabel(frame: CGRect(x: 10, y: 4, width: view.frame.size.width, height: 25))
+            label.text = datasource[section].sectionName
+            label.textColor = ColorManager.red()
+            returnedView.addSubview(label)
+    
+            return returnedView
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveChatTableViewCell", for: indexPath) as! ActiveChatTableViewCell
         let channel = (datasource[indexPath.section].sectionObjects?[indexPath.row])! as Channel
-        cell.setUpCellWith(channel: channel, isPostItem: true)
+        if datasource[indexPath.section].sectionName == "Your Requests" {
+            cell.isPostItem = false
+        } else {
+            cell.isPostItem = true
+        }
+        cell.setUpCellWith(channel: channel)
         return cell
     }
     
