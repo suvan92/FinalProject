@@ -15,9 +15,11 @@ class Channel: NSObject {
     var id: String?
     var ownerId: String
     var ownerUsername: String
+    var isNewOwnerMsg: Bool = false
     var requesterId: String
     var requesterUsername: String
     var foodItemName: String
+    var isNewRequesterMsg: Bool = false
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
         let newChannelRef = chanRef.childByAutoId()
