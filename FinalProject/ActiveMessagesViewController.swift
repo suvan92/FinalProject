@@ -80,7 +80,12 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveChatTableViewCell", for: indexPath) as! ActiveChatTableViewCell
         let channel = (datasource[indexPath.section].sectionObjects?[indexPath.row])! as Channel
-        cell.setUpCellWith(channel: channel, isPostItem: true)
+        if datasource[indexPath.section].sectionName == "Your Requests" {
+            cell.isPostItem = false
+        } else {
+            cell.isPostItem = true
+        }
+        cell.setUpCellWith(channel: channel)
         return cell
     }
     
