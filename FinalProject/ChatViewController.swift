@@ -109,6 +109,13 @@ class ChatViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
         isTyping = false
+        channel?.isNewMsg = true
+        channel?.updateNewMessage(completion: { (error) in
+            if (error != nil) {
+                let err = (error?.localizedDescription)! as String
+                print(err)
+            }
+        })
     }
     
     //No avatar image for this app

@@ -15,11 +15,10 @@ class Channel: NSObject {
     var id: String?
     var ownerId: String
     var ownerUsername: String
-    var isNewOwnerMsg: Bool = false
     var requesterId: String
     var requesterUsername: String
     var foodItemName: String
-    var isNewRequesterMsg: Bool = false
+    var isNewMsg: Bool = false
     
     func savetoDatabase(completion: @escaping () -> Swift.Void) {
         let newChannelRef = chanRef.childByAutoId()
@@ -32,13 +31,14 @@ class Channel: NSObject {
     }
 
     func toDictionary() -> [String: Any?] {
-        let result = [
+        let result: [String: Any?] = [
             "id": id,
             "ownerId": ownerId,
             "ownerUsername": ownerUsername,
             "requesterId": requesterId,
             "requesterUsername": requesterUsername,
-            "foodItemName": foodItemName
+            "foodItemName": foodItemName,
+            "isNewMsg": isNewMsg
         ]
         return result
     }
@@ -59,6 +59,7 @@ class Channel: NSObject {
         self.requesterId = requester.uid
         self.requesterUsername = requester.username
         self.foodItemName = foodItemName
+        self.isNewMsg = false
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -70,6 +71,13 @@ class Channel: NSObject {
         self.requesterId = snapshotValue["requesterId"] as! String
         self.requesterUsername = snapshotValue["requesterUsername"] as! String
         self.foodItemName = snapshotValue["foodItemName"] as! String
+        self.isNewMsg = snapshotValue["isNewMsg"] as! Bool
+    }
+    
+    func updateNewMessage(completion: @escaping (Error?) -> Swift.Void) {
+        self.databaseRef?.updateChildValues(["isNewMsg": self.isNewMsg], withCompletionBlock: { error, ref in
+            completion(error)
+        })
     }
 }
 

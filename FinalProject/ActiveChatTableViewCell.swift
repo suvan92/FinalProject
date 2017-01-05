@@ -61,7 +61,11 @@ class ActiveChatTableViewCell: UITableViewCell {
                 if current.senderId == user.uid {
                     self.lastMessageLabel.text = "You: \(text)"
                 } else {
-                    self.lastMessageLabel.text = "\(text)"
+                    if (self.cellChannel?.isNewMsg)! {
+                        self.lastMessageLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
+                        self.lastMessageLabel.textColor = UIColor.black
+                        self.lastMessageLabel.text = "\(text)"
+                    }
                 }
             }
         })
