@@ -65,10 +65,10 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedItem = arrayOfPosts?[indexPath.row]
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
             let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
             let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
-            let selectedItem = arrayOfPosts?[indexPath.row]
             let channelId = selectedItem?.channel
             getChannel(with: channelId!, completion: { (channel) in
                 dest.foodItem = selectedItem
@@ -79,8 +79,9 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                 self.navigationController?.pushViewController(dest, animated: true)
             })
         } else {
-            selectedItem = arrayOfPosts?[indexPath.row]
-            performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
+            if (selectedItem?.requesters?.count) != nil {
+                performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
+            }
         }
     }
     
@@ -153,7 +154,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    //MARK: set image if datasource is empty
+    //MARK: set view if datasource is empty
     func setupView() {
         self.postView = {
             let view = UIView()
