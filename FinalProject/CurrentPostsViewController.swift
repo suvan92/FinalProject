@@ -16,6 +16,8 @@ let pendingPostsVCSegueIdentifier = "showPendingRequestsVC"
 
 class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var postView: UIView?
+    var postLabel: UILabel?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -112,6 +114,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Actions -
     
     @IBAction func addButtonTouched(_ sender: UIBarButtonItem) {
+        print("hello")
         performSegue(withIdentifier: createNewItemSegueIdentifier, sender: self)
     }
     
@@ -120,7 +123,9 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func getDataSource() {
         let currentUser = User.sharedInstance
         // ordered query not working
+        var snapshotEmpty = true
         userRef.child(currentUser.uid!).child("postedItems").queryOrdered(byChild: "requesterChosen").observe(.value, with: { snapshot in
+            snapshotEmpty = false
             self.arrayOfPosts = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
@@ -128,9 +133,58 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                     let foodItem = FoodItem(snapshot: snap)
                     self.arrayOfPosts?.append(foodItem)
                     self.tableView.reloadData()
+                    self.checkImageRequired()
                 })
             }
         })
+        if snapshotEmpty {
+            self.checkImageRequired()
+        }
     }
-
+    
+    func checkImageRequired() {
+        if self.arrayOfPosts?.count == 0 {
+            self.setupView()
+        } else {
+            if self.postView != nil {
+                self.postView?.isHidden = true
+                self.view.sendSubview(toBack: self.postView!)
+            }
+        }
+    }
+    
+    //MARK: set image if datasource is empty
+    func setupView() {
+        self.postView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.white
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
+        view.addSubview(postView!)
+        postView?.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        postView?.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        postView?.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        postView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        view.bringSubview(toFront: postView!)
+        
+        self.postLabel = {
+            let label = UILabel()
+            label.lineBreakMode = NSLineBreakMode.byWordWrapping
+            label.numberOfLines = 2
+            label.text = "You do not currently have any posted food Items."
+            label.textAlignment = NSTextAlignment.center
+            label.font = UIFont.systemFont(ofSize: 20)
+            label.textColor = ColorManager.red()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        self.postView?.addSubview(self.postLabel!)
+        self.postLabel?.centerXAnchor.constraint(equalTo: (self.postView?.centerXAnchor)!).isActive = true
+        self.postLabel?.centerYAnchor.constraint(equalTo: (self.postView?.centerYAnchor)!).isActive = true
+        self.postLabel?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        self.postView?.bringSubview(toFront: self.postLabel!)
+    }
 }

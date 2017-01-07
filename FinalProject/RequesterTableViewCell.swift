@@ -24,7 +24,7 @@ class RequesterTableViewCell: UITableViewCell {
     func setUpCellWith(requestUser: RequestUser, and foodItem: FoodItem) {
         cellRequestUser = requestUser
         //user = requestUser
-        requesterNameLabel.text = requestUser.email
+        requesterNameLabel.text = requestUser.username
         self.foodItem = foodItem
     }
     
