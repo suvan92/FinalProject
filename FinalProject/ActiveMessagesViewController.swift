@@ -29,6 +29,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item
         self.tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "messageIconNeg"), tag: 3)
+        self.tabBarItem.badgeValue = ""
         
     }
     
@@ -36,8 +37,6 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         self.navigationItem.title = "Active Chats"
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
-        
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,8 +94,18 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
         let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
         let channel = (datasource[indexPath.section].sectionObjects?[indexPath.row])! as Channel
-        
-        if datasource[indexPath.section].sectionName == "Your Requests" {
+        let cell = tableView.cellForRow(at: indexPath) as! ActiveChatTableViewCell
+        if cell.isNewMessage {
+            channel.isNewMsg = false
+            cell.isNewMessage = false
+        }
+        channel.updateNewMessage(completion: { (error) in
+            if (error != nil) {
+                let err = (error?.localizedDescription)! as String
+                print(err)
+            }
+        })
+        if self.datasource[indexPath.section].sectionName == "Your Requests" {
             dest.senderDisplayName = channel.requesterUsername
             dest.title = channel.ownerUsername
             

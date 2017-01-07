@@ -16,6 +16,7 @@ class ActiveChatTableViewCell: UITableViewCell {
     @IBOutlet weak var foodItemLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
     var isPostItem: Bool = false
+    var isNewMessage: Bool = false
     var cellChannel: Channel?
     
     func setUpCellWith(channel: Channel) {
@@ -61,7 +62,19 @@ class ActiveChatTableViewCell: UITableViewCell {
                 if current.senderId == user.uid {
                     self.lastMessageLabel.text = "You: \(text)"
                 } else {
-                    self.lastMessageLabel.text = "\(text)"
+                    if (self.cellChannel?.isNewMsg)! {
+                        self.usernameLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
+                        self.lastMessageLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightSemibold)
+                        self.lastMessageLabel.textColor = UIColor.black
+                        self.lastMessageLabel.text = "\(text)"
+                        self.isNewMessage = true
+                    } else {
+                        self.usernameLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+                        self.lastMessageLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular)
+                        self.lastMessageLabel.textColor = ColorManager.gray()
+                        self.lastMessageLabel.text = "\(text)"
+                        self.isNewMessage = false
+                    }
                 }
             }
         })

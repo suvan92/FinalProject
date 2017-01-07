@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
                                                  message: "Input email and password",
                                                  preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .destructive)
+                                         style: .default)
         
         let signupAction = UIAlertAction(title: "Register",
                                          style: .default)
