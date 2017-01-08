@@ -116,7 +116,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         let itemDescription = foodDescription.text!
         let user = User.sharedInstance
         let ownerID = user.uid!
-        let tags = tabcell.tags
+        let tags = createTagsArray(itemName: itemName)
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription, tags: tags)
         
         FoodItem.saveToDatabase(item: newItem) { itemID in
@@ -131,6 +131,13 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
                 }
             })
         }
+    }
+    
+    func createTagsArray(itemName: String) -> [String] {
+        var result = tabcell.tags
+        let titleArray = itemName.components(separatedBy: " ").map{$0.lowercased()}
+        result.append(contentsOf: titleArray)
+        return result
     }
     
     func showPostingAlert() {
