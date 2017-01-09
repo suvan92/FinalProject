@@ -65,13 +65,13 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedItem = arrayOfPosts?[indexPath.row]
+        self.selectedItem = arrayOfPosts?[indexPath.row]
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
             let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
             let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
             let channelId = selectedItem?.channel
             getChannel(with: channelId!, completion: { (channel) in
-                dest.foodItem = selectedItem
+                dest.foodItem = self.selectedItem
                 dest.channel = channel
                 dest.channelRef = channel.databaseRef
                 dest.senderDisplayName = channel.ownerUsername
