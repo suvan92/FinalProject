@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140433DC1E09B7E800189AC9 /* DateExtension.swift */; };
-		141DB4B21E22C56100CFED0E /* ActiveChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141DB4B11E22C56100CFED0E /* ActiveChatTableViewCell.swift */; };
 		141DB4B41E22C63700CFED0E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141DB4B31E22C63700CFED0E /* Message.swift */; };
 		142583B81E05F7DC00324D32 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142583B71E05F7DC00324D32 /* ImageUploader.swift */; };
 		1456DAF01E15E4E00019CC95 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1456DAEF1E15E4E00019CC95 /* ColorManager.swift */; };
@@ -43,6 +42,7 @@
 		14CC06551E126A1E00A16E7F /* DeletionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC06541E126A1E00A16E7F /* DeletionManager.swift */; };
 		14D664F81E0DD09300CC44B2 /* OwnerSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D664F71E0DD09300CC44B2 /* OwnerSearchFilter.swift */; };
 		14D664F91E0E068800CC44B2 /* NewPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA781E0A163600C20F8D /* NewPostTableViewController.swift */; };
+		14E240171E230EB400EB28FC /* ActiveChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E240161E230EB400EB28FC /* ActiveChatTableViewCell.swift */; };
 		7299B2C5B2D9BB35ECC695AB /* Pods_FinalProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */; };
 		B01236241E08737200E7F667 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01236231E08737200E7F667 /* Channel.swift */; };
 		B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */; };
@@ -56,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		140433DC1E09B7E800189AC9 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		141DB4B11E22C56100CFED0E /* ActiveChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveChatTableViewCell.swift; sourceTree = "<group>"; };
 		141DB4B31E22C63700CFED0E /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		142583B71E05F7DC00324D32 /* ImageUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		1456DAEF1E15E4E00019CC95 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		149F5E2F1E18B617009748AD /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		14CC06541E126A1E00A16E7F /* DeletionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletionManager.swift; sourceTree = "<group>"; };
 		14D664F71E0DD09300CC44B2 /* OwnerSearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerSearchFilter.swift; sourceTree = "<group>"; };
+		14E240161E230EB400EB28FC /* ActiveChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveChatTableViewCell.swift; sourceTree = "<group>"; };
 		186E945E3D89E6FD855CA3A6 /* Pods_FinalProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE9941665BA41DA39C32E28 /* Pods-FinalProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.debug.xcconfig"; sourceTree = "<group>"; };
 		AD17F6C1EDB8B905E683035C /* Pods-FinalProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,9 +192,9 @@
 		147917F41E0372EA00727419 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14E240161E230EB400EB28FC /* ActiveChatTableViewCell.swift */,
 				14764DDF1E08960C0033449C /* PostedItemTableViewCell.swift */,
 				148117521E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift */,
-				141DB4B11E22C56100CFED0E /* ActiveChatTableViewCell.swift */,
 				B04BEA7A1E0A223900C20F8D /* TagTextFieldTableViewCell.swift */,
 				148B6D4B1E0B81B100E956BD /* PostSearchCollectionViewCell.swift */,
 				148117541E0C865B000AC5B7 /* RequesterTableViewCell.swift */,
@@ -411,6 +411,7 @@
 				147917DF1E0370B900727419 /* AppDelegate.swift in Sources */,
 				148B6D4E1E0B85EA00E956BD /* ImageDownloader.swift in Sources */,
 				14764DD81E0870D40033449C /* ActiveRequestsViewController.swift in Sources */,
+				14E240171E230EB400EB28FC /* ActiveChatTableViewCell.swift in Sources */,
 				147918061E03916300727419 /* Router.swift in Sources */,
 				148117531E0C76C2000AC5B7 /* ActiveRequestsTableViewCell.swift in Sources */,
 				14764DD61E0870190033449C /* PostPendingRequestsViewController.swift in Sources */,
@@ -421,7 +422,6 @@
 				14D664F81E0DD09300CC44B2 /* OwnerSearchFilter.swift in Sources */,
 				1456DAF01E15E4E00019CC95 /* ColorManager.swift in Sources */,
 				140433DD1E09B7E800189AC9 /* DateExtension.swift in Sources */,
-				141DB4B21E22C56100CFED0E /* ActiveChatTableViewCell.swift in Sources */,
 				147918081E03921000727419 /* CurrentPostsViewController.swift in Sources */,
 				B0BC51E51E08C641002E0DE0 /* ChatViewController.swift in Sources */,
 				B04BEA7B1E0A223900C20F8D /* TagTextFieldTableViewCell.swift in Sources */,
