@@ -24,8 +24,18 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+        setPostByLabel()
         setUpGestures()
         tabcell.setup()
+    }
+    
+    func setPostByLabel() {
+        let currentUser = User.sharedInstance
+        if let username = currentUser.username {
+            postByLabel.text = "Posted by: \(username)"
+        } else {
+            postByLabel.text = "Posted by: \(currentUser.email!)"
+        }
     }
     
     // MARK: - Tap Gesture -
