@@ -82,6 +82,6 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
             print("failed to send requester")
             return
         }
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
 }
