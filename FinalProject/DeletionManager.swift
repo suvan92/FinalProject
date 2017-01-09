@@ -41,6 +41,7 @@ class DeletionManager: NSObject {
             DeletionManager.deleteOwnerRef(for: foodItem) {
                 DeletionManager.deleteImageFor(foodItem) {
                     DeletionManager.removeTagRefsFor(foodItem)
+                    DeletionManager.removeChannelFor(foodItem)
                     DeletionManager.deleteItem(foodItem) {
                         completion()
                     }
@@ -101,6 +102,14 @@ class DeletionManager: NSObject {
                     tagsRef.child(tag).removeValue()
                 }
             })
+        }
+    }
+    
+    class private func removeChannelFor(_ foodItem: FoodItem) {
+        let channelRefCount = foodItem.channel.characters.count
+        if channelRefCount > 1 {
+            chanRef.child(foodItem.channel).removeAllObservers()
+            chanRef.child(foodItem.channel).removeValue()
         }
     }
     
