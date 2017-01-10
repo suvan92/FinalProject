@@ -146,7 +146,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
         
         pickerAlert.addAction(cameraAction)
         pickerAlert.addAction(libraryAction)

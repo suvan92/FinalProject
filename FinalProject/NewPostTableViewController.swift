@@ -24,8 +24,21 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+        setPostByLabel()
         setUpGestures()
         tabcell.setup()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 140
+//        actual height not important. Just for resizing cell for the tags.
+    }
+    
+    func setPostByLabel() {
+        let currentUser = User.sharedInstance
+        if let username = currentUser.username {
+            postByLabel.text = "Posted by: \(username)"
+        } else {
+            postByLabel.text = "Posted by: \(currentUser.email!)"
+        }
     }
     
     // MARK: - Tap Gesture -
@@ -45,7 +58,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
         
         pickerAlert.addAction(cameraAction)
         pickerAlert.addAction(libraryAction)
@@ -71,6 +84,16 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    
+    //MARK: resize height of cell for tags
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     // MARK: - Actions -
@@ -116,7 +139,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         let itemDescription = foodDescription.text!
         let user = User.sharedInstance
         let ownerID = user.uid!
-        let tags = tabcell.tags
+        let tags = createTagsArray(itemName: itemName)
         let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription, tags: tags)
         
         FoodItem.saveToDatabase(item: newItem) { itemID in
@@ -131,6 +154,13 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
                 }
             })
         }
+    }
+    
+    func createTagsArray(itemName: String) -> [String] {
+        var result = tabcell.tags
+        let titleArray = itemName.components(separatedBy: " ").map{$0.lowercased()}
+        result.append(contentsOf: titleArray)
+        return result
     }
     
     func showPostingAlert() {

@@ -18,6 +18,9 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     var requestedItemsChannels: [Channel]?
     var reqTotalCount: Int = 0
     
+    var postView: UIView?
+    var postLabel: UILabel?
+    
     struct Objects {
         var sectionName: String?
         var sectionObjects: [Channel]?
@@ -29,7 +32,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item
         self.tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "messageIconNeg"), tag: 3)
-        self.tabBarItem.badgeValue = ""
+        //self.tabBarItem.badgeValue = ""
         
     }
     
@@ -145,6 +148,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
                 if self.postTotalCount == self.postedItemsChannels?.count {
                     self.loadPostData()
                     self.tableView.reloadData()
+                    self.checkImageRequired()
                 }
             })
         } else {
@@ -152,6 +156,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
             if self.postTotalCount == self.postedItemsChannels?.count {
                 self.loadPostData()
                 self.tableView.reloadData()
+                checkImageRequired()
             }
         }
     }
@@ -163,6 +168,9 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         let currentUserRef = userRef.child(currentUser.uid!)
         currentUserRef.child("requestedItems").observe(.value, with: { (snapshot) in
             self.reqTotalCount = Int(snapshot.childrenCount)
+            if self.reqTotalCount == 0 {
+                self.checkImageRequired()
+            }
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
                 foodRef.child(itemReferenceValue).observe(.value, with: { snap in
@@ -220,7 +228,54 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
                 let postedObjects = Objects(sectionName: "Your Posts", sectionObjects: postedItemsChannels)
                 datasource.append(postedObjects)
                 self.tableView.reloadData()
+                checkImageRequired()
             }
         }
+    }
+    
+    func checkImageRequired() {
+        if self.datasource.count == 0 {
+            self.setupView()
+        } else {
+            if self.postView != nil {
+                self.postView?.isHidden = true
+                self.view.sendSubview(toBack: self.postView!)
+            }
+        }
+    }
+    
+    //MARK: set view if datasource is empty
+    func setupView() {
+        self.postView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.white
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
+        view.addSubview(postView!)
+        postView?.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        postView?.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        postView?.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        postView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        view.bringSubview(toFront: postView!)
+        
+        self.postLabel = {
+            let label = UILabel()
+            label.lineBreakMode = NSLineBreakMode.byWordWrapping
+            label.numberOfLines = 2
+            label.text = "You do not currently have any active chats"
+            label.textAlignment = NSTextAlignment.center
+            label.font = UIFont.systemFont(ofSize: 20)
+            label.textColor = ColorManager.red()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        self.postView?.addSubview(self.postLabel!)
+        self.postLabel?.centerXAnchor.constraint(equalTo: (self.postView?.centerXAnchor)!).isActive = true
+        self.postLabel?.centerYAnchor.constraint(equalTo: (self.postView?.centerYAnchor)!).isActive = true
+        self.postLabel?.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        self.postView?.bringSubview(toFront: self.postLabel!)
     }
 }

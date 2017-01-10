@@ -38,7 +38,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = vcTitle
-        arrayOfPosts = []
+        self.automaticallyAdjustsScrollViewInsets = false
         getDataSource()
     }
     
@@ -65,13 +65,13 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedItem = arrayOfPosts?[indexPath.row]
+        self.selectedItem = arrayOfPosts?[indexPath.row]
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
             let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
             let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
             let channelId = selectedItem?.channel
             getChannel(with: channelId!, completion: { (channel) in
-                dest.foodItem = selectedItem
+                dest.foodItem = self.selectedItem
                 dest.channel = channel
                 dest.channelRef = channel.databaseRef
                 dest.senderDisplayName = channel.ownerUsername
@@ -124,9 +124,9 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func getDataSource() {
         let currentUser = User.sharedInstance
         // ordered query not working
-        var snapshotEmpty = true
+        //var snapshotEmpty = true
         userRef.child(currentUser.uid!).child("postedItems").queryOrdered(byChild: "requesterChosen").observe(.value, with: { snapshot in
-            snapshotEmpty = false
+            //snapshotEmpty = false
             self.arrayOfPosts = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
@@ -138,13 +138,11 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                 })
             }
         })
-        if snapshotEmpty {
-            self.checkImageRequired()
-        }
+        self.checkImageRequired()
     }
     
     func checkImageRequired() {
-        if self.arrayOfPosts?.count == 0 {
+        if self.arrayOfPosts?.count == 0 || self.arrayOfPosts == nil {
             self.setupView()
         } else {
             if self.postView != nil {
