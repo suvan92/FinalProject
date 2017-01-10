@@ -82,7 +82,7 @@ class RequestDetailViewController: UIViewController {
     
     func dismissDetailView() {
         requestStatusAlert?.dismiss(animated: true, completion: nil)
-        let _ = navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popToRootViewController(animated: true)
     }
     
 
