@@ -17,6 +17,7 @@ class FoodItem: NSObject {
     var name : String
     var dataBaseRef : String
     var ownerID : String
+    //var ownerUsername: String
     var photoID : String
     var itemDescription : String
     var itemTags : [String]?
