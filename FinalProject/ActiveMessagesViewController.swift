@@ -32,7 +32,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
         super.init(coder: aDecoder)
         // Initialize Tab Bar Item
         self.tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "messageIconNeg"), tag: 3)
-        self.tabBarItem.badgeValue = ""
+        //self.tabBarItem.badgeValue = ""
         
     }
     
@@ -148,6 +148,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
                 if self.postTotalCount == self.postedItemsChannels?.count {
                     self.loadPostData()
                     self.tableView.reloadData()
+                    self.checkImageRequired()
                 }
             })
         } else {
@@ -155,6 +156,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
             if self.postTotalCount == self.postedItemsChannels?.count {
                 self.loadPostData()
                 self.tableView.reloadData()
+                checkImageRequired()
             }
         }
     }
@@ -226,6 +228,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
                 let postedObjects = Objects(sectionName: "Your Posts", sectionObjects: postedItemsChannels)
                 datasource.append(postedObjects)
                 self.tableView.reloadData()
+                checkImageRequired()
             }
         }
     }

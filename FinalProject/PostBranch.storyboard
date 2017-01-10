@@ -18,19 +18,12 @@
                         <viewControllerLayoutGuide type="top" id="eAw-8i-HEk"/>
                         <viewControllerLayoutGuide type="bottom" id="euU-gm-gpV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="te9-Gk-z9V">
+                    <view key="view" contentMode="scaleToFill" id="te9-Gk-z9V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have no active posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-nV-cj0">
-                                <rect key="frame" x="92" y="323" width="190" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LqX-wR-KWD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="80" id="Ukg-By-ua5" customClass="PostedItemTableViewCell" customModule="FinalProject" customModuleProvider="target">
@@ -246,7 +239,8 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8hE-of-cXd" firstAttribute="centerY" secondItem="7oI-Hj-EGC" secondAttribute="centerY" id="QGa-AV-WPB"/>
+                                                <constraint firstAttribute="bottom" secondItem="8hE-of-cXd" secondAttribute="bottom" constant="7.5" id="T0N-gI-h3K"/>
+                                                <constraint firstItem="8hE-of-cXd" firstAttribute="top" secondItem="7oI-Hj-EGC" secondAttribute="top" constant="8" id="max-pB-yYy"/>
                                                 <constraint firstAttribute="trailing" secondItem="8hE-of-cXd" secondAttribute="trailing" constant="8" id="opO-vj-wYk"/>
                                                 <constraint firstItem="8hE-of-cXd" firstAttribute="leading" secondItem="7oI-Hj-EGC" secondAttribute="leading" constant="8" id="zD6-cN-7ma"/>
                                             </constraints>
@@ -267,8 +261,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="uh3-6D-Knu" secondAttribute="bottom" constant="6" id="5Ib-1j-XTL"/>
+                                                <constraint firstItem="uh3-6D-Knu" firstAttribute="top" secondItem="n1j-ok-k2B" secondAttribute="top" constant="6.5" id="8c7-gq-3Zs"/>
                                                 <constraint firstAttribute="trailing" secondItem="uh3-6D-Knu" secondAttribute="trailing" constant="8" id="jcJ-zU-xwd"/>
-                                                <constraint firstItem="uh3-6D-Knu" firstAttribute="centerY" secondItem="n1j-ok-k2B" secondAttribute="centerY" id="q3V-yH-DQ4"/>
                                                 <constraint firstItem="uh3-6D-Knu" firstAttribute="leading" secondItem="n1j-ok-k2B" secondAttribute="leading" constant="8" id="sGn-6Q-Xrx"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -289,7 +284,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SfR-31-62v" firstAttribute="centerY" secondItem="9Qr-8S-2Kh" secondAttribute="centerY" id="pOS-RQ-jbx"/>
+                                                <constraint firstAttribute="bottom" secondItem="SfR-31-62v" secondAttribute="bottom" constant="5.5" id="jAL-Je-rcc"/>
                                                 <constraint firstItem="SfR-31-62v" firstAttribute="centerX" secondItem="9Qr-8S-2Kh" secondAttribute="centerX" id="tti-N5-JSB"/>
                                             </constraints>
                                         </tableViewCellContentView>

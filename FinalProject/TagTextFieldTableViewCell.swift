@@ -29,6 +29,7 @@ class TagTextFieldTableViewCell: UITableViewCell {
         tagTextField.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         tagTextField.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
         tagTextField.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
+//        tagTextField.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
         
         // Events
         tagTextField.onDidAddTag = { field, tag in

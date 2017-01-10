@@ -38,7 +38,6 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = vcTitle
-        arrayOfPosts = []
         getDataSource()
     }
     
@@ -134,7 +133,6 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                     let foodItem = FoodItem(snapshot: snap)
                     self.arrayOfPosts?.append(foodItem)
                     self.tableView.reloadData()
-                    self.checkImageRequired()
                 })
             }
         })
@@ -144,7 +142,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func checkImageRequired() {
-        if self.arrayOfPosts?.count == 0 {
+        if self.arrayOfPosts?.count == 0 || self.arrayOfPosts == nil {
             self.setupView()
         } else {
             if self.postView != nil {
