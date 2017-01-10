@@ -27,9 +27,11 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         setPostByLabel()
         setUpGestures()
         tabcell.setup()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 140
-//        actual height not important. Just for resizing cell for the tags.
+        let nCentre = NotificationCenter.default
+        nCentre.addObserver(forName: Notification.Name("tagMaximumReached"), object: nil, queue: nil, using: postTagAlert)
+//        Attempt at auto resize cells for tags... not working.
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 140
     }
     
     func setPostByLabel() {
@@ -182,5 +184,15 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
             self.postAlert!.dismiss(animated: true, completion: nil)
         }
         postAlert?.addAction(dismissAction)
+    }
+    
+    //MARK: Post alert if tag maximum reached
+    func postTagAlert(notification: Notification) -> Void {
+        let postAlert = UIAlertController(title: "Sorry", message: "You have used your maximum available number of tags", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            postAlert.dismiss(animated: true, completion: nil)
+        }
+        postAlert.addAction(dismissAction)
+        present(postAlert, animated: true, completion: nil)
     }
 }

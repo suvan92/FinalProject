@@ -47,6 +47,7 @@ class RequestDetailViewController: UIViewController {
                 self.requestAlreadyMadeAlert()
             } else if error == nil {
                 self.requestCompleteAlert()
+                self.dismissAlert()
                 self.dismissDetailView()
             } else {
                 self.requestFailedAlert()
@@ -81,8 +82,11 @@ class RequestDetailViewController: UIViewController {
     }
     
     func dismissDetailView() {
-        requestStatusAlert?.dismiss(animated: true, completion: nil)
         let _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func dismissAlert() {
+        requestStatusAlert?.dismiss(animated: true, completion: nil)
     }
     
 

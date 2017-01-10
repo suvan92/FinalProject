@@ -99,6 +99,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
             let foodItem = arrayOfPosts?[indexPath.row]
             DeletionManager.delete(foodItem: foodItem!) {
                 self.tableView.reloadData()
+                self.checkImageRequired()
             }
         }
     }
