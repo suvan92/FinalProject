@@ -38,6 +38,7 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = vcTitle
+        self.automaticallyAdjustsScrollViewInsets = false
         getDataSource()
     }
     
@@ -123,9 +124,9 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     func getDataSource() {
         let currentUser = User.sharedInstance
         // ordered query not working
-        var snapshotEmpty = true
+        //var snapshotEmpty = true
         userRef.child(currentUser.uid!).child("postedItems").queryOrdered(byChild: "requesterChosen").observe(.value, with: { snapshot in
-            snapshotEmpty = false
+            //snapshotEmpty = false
             self.arrayOfPosts = []
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
@@ -133,12 +134,11 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                     let foodItem = FoodItem(snapshot: snap)
                     self.arrayOfPosts?.append(foodItem)
                     self.tableView.reloadData()
+                    self.checkImageRequired()
                 })
             }
         })
-        if snapshotEmpty {
-            self.checkImageRequired()
-        }
+        self.checkImageRequired()
     }
     
     func checkImageRequired() {

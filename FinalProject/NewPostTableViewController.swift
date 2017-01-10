@@ -26,9 +26,9 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         tableView.separatorStyle = .none
         setUpGestures()
         tabcell.setup()
-//        self.tableView.rowHeight = UITableViewAutomaticDimension
-//        self.tableView.estimatedRowHeight = 140
-//        //actual height not important. Just for resizing cell for the tags.
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 140
+//        actual height not important. Just for resizing cell for the tags.
     }
     
     // MARK: - Tap Gesture -
