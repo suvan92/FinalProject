@@ -17,16 +17,18 @@ class FoodItem: NSObject {
     var name : String
     var dataBaseRef : String
     var ownerID : String
-    //var ownerUsername: String
     var photoID : String
     var itemDescription : String
     var itemTags : [String]?
     var requesters : [String]?
     var requesterChosen : Bool
     var acceptedRequester : String?
-    var channel : String
-    var postDate : Date
-
+    var channel: String
+    var postDate: Date
+    var latitude: String?
+    var longitude: String?
+    
+    
     // MARK: Class Methods
     
     class func saveToDatabase(item :FoodItem, completion: @escaping (_ itemID: String) -> Swift.Void) {
@@ -40,7 +42,7 @@ class FoodItem: NSObject {
     
     // MARK: Instance Methods
     
-    init(name: String, owner: String, photo: String, description: String, tags: [String]) {
+    init(name: String, owner: String, photo: String, description: String, tags: [String], latitude: String, longitude: String) {
         self.name = name
         self.ownerID = owner
         self.photoID = photo
@@ -52,10 +54,12 @@ class FoodItem: NSObject {
         self.dataBaseRef = ""
         self.postDate = Date()
         self.channel = ""
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     func toDictionary() -> [String:Any?] {
-        let result : [String:Any?] = ["name":name,
+        var result : [String:Any?] = ["name":name,
                                      "ownerID":ownerID,
                                      "photoID":photoID,
                                      "description":itemDescription,
@@ -67,6 +71,8 @@ class FoodItem: NSObject {
                                      "dataBaseRef":dataBaseRef,
                                      "channel": channel
         ]
+        result["longitude"] = longitude
+        result["latitude"] = latitude
         return result
     }
     
@@ -84,6 +90,8 @@ class FoodItem: NSObject {
         channel = snapshotValue["channel"] as! String
         postDate = (snapshotValue["postDate"] as! String).dateFromString()
         dataBaseRef = snapshotValue["dataBaseRef"] as! String
+        latitude = snapshotValue["latitude"] as? String
+        longitude = snapshotValue["longitude"] as? String
     }
     
     func addChannel(withID id: String, completion: @escaping () -> Swift.Void) {

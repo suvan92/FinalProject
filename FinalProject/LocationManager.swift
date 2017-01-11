@@ -19,9 +19,12 @@ class LocationManager: NSObject {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(addressText, completionHandler: { (placeMarkers, error) -> Void in
                 if let placeMark = placeMarkers?.last {
-                    self.userlatitude = String(describing: placeMark.location?.coordinate.latitude)
-                    self.userlongitude = String(describing: placeMark.location?.coordinate.longitude)
-                    //print("latitude: \(self.userlatitude) and longitude \(self.userlongitude)")
+                    if let lat = placeMark.location?.coordinate.latitude {
+                        self.userlatitude = String(lat)
+                    }
+                    if let long = placeMark.location?.coordinate.longitude {
+                        self.userlongitude = String(long)
+                    }
                 }
                 completion(error)
             })

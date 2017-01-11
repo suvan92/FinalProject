@@ -32,7 +32,9 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         print(searchArray)
         let searchManager = SearchManager()
         searchManager.searchForItems(searchArray: searchArray, completion: { foodItems in
-            self.dataSource = OwnerSearchFilter.removePostersItems(postArray: foodItems)
+            let firstFilter = OwnerSearchFilter.removePostersItems(postArray: foodItems)
+            let secondFilter = OwnerSearchFilter.itemsWithinRadius(postArray: firstFilter)
+            self.dataSource = secondFilter
             self.collectionView.reloadData()
         })
         view.endEditing(true)
