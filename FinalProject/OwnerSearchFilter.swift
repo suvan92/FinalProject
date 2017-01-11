@@ -9,7 +9,14 @@
 import UIKit
 import CoreLocation
 
+struct ItemWithDistance {
+    var foodItem: FoodItem?
+    var distance: Double?
+}
+
 class OwnerSearchFilter: NSObject {
+    
+    
     
     class func removePostersItems(postArray: [FoodItem]) -> [FoodItem] {
         let currentUser = User.sharedInstance
@@ -22,11 +29,11 @@ class OwnerSearchFilter: NSObject {
         return result
     }
     
-    class func itemsWithinRadius(postArray: [FoodItem]) -> [FoodItem] {
+    class func itemsWithinRadius(postArray: [FoodItem]) -> [ItemWithDistance] {
         let user = User.sharedInstance
+        var latDouble: Double = 0
+        var longDouble: Double = 0
         var userLocation: CLLocation?
-        var latDouble: Double
-        var longDouble: Double
         
         if user.isSearchByAddress! {
             if let latString = user.homeLatitude {
@@ -35,20 +42,10 @@ class OwnerSearchFilter: NSObject {
             if let longString = user.homeLongitude {
                 longDouble = Double(longString)!
             }
- 
-            
-//            if let lat = user.homeLatitude, let doubleLat = Double(lat) {
-//                latitude = doubleLat
-//            }
-//            if let long = user.homeLongitude, let doubleLong = Double(long) {
-//                longitude = doubleLong
-//            }
-//            if latitude != nil && longitude != nil {
-//                userLocation = CLLocation(latitude: latitude!, longitude: longitude!)
-//            }
+            userLocation = CLLocation(latitude: latDouble, longitude: longDouble)
         } //else users current location
         
-        var array: [FoodItem] = []
+        var array: [ItemWithDistance] = []
         for item in postArray {
             let itemLat = Double(item.latitude!)
             let itemLong = Double(item.longitude!)
@@ -56,7 +53,8 @@ class OwnerSearchFilter: NSObject {
             let distance = userLocation?.distance(from: itemLocation)
             let distanceKm = distance! / 1000
             if distanceKm <= Double(user.searchRadius!) {
-                array.append(item)
+                let element = ItemWithDistance(foodItem: item, distance: distanceKm)
+                array.append(element)
             }
         }
         return array

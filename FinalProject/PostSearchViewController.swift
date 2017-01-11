@@ -17,7 +17,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    var dataSource : [FoodItem] = []
+    var dataSource : [ItemWithDistance] = []
     var selectedFoodItem : FoodItem?
     
     
@@ -47,9 +47,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchCellReuseIdentifier, for: indexPath) as! PostSearchCollectionViewCell
-        
-        cell.setUpWithFoodItem(dataSource[indexPath.row])
-        
+        cell.setUpWithItemWithDistance(dataSource[indexPath.row])
         return cell
     }
     
@@ -63,7 +61,7 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        selectedFoodItem = dataSource[indexPath.row]
+        selectedFoodItem = dataSource[indexPath.row].foodItem
         performSegue(withIdentifier: showRequestDetailSegueIdentifier, sender: self)
     }
     

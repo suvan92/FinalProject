@@ -48,4 +48,37 @@ class LocationManager: NSObject {
     }
     
     
+//    class func itemsWithinRadius(postArray: [FoodItem]) -> [ItemWithDistance] {
+//        let user = User.sharedInstance
+//        var latDouble: Double = 0
+//        var longDouble: Double = 0
+//        var userLocation: CLLocation?
+//
+//        if user.isSearchByAddress! {
+//            if let latString = user.homeLatitude {
+//                latDouble = Double(latString)!
+//            }
+//            if let longString = user.homeLongitude {
+//                longDouble = Double(longString)!
+//            }
+//            userLocation = CLLocation(latitude: latDouble, longitude: longDouble)
+//        } //else users current location
+//
+//        var array: [ItemWithDistance] = []
+//        for item in postArray {
+//            let itemLat = Double(item.latitude!)
+//            let itemLong = Double(item.longitude!)
+//            let itemLocation = CLLocation(latitude: itemLat!, longitude: itemLong!)
+//            let distance = userLocation?.distance(from: itemLocation)
+//            let distanceKm = distance! / 1000
+//            if distanceKm <= Double(user.searchRadius!) {
+//                let element = ItemWithDistance(foodItem: item, distance: distanceKm)
+//                array.append(element)
+//            }
+//        }
+//        return array
+  //  }
+
+    
+    
 }
