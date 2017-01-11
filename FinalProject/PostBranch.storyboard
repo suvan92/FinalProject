@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,22 +162,32 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jA9-vQ-2SC">
-                                                    <rect key="frame" x="8" y="24" width="302" height="22"/>
+                                                    <rect key="frame" x="71" y="24" width="237" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagedefault" translatesAutoresizingMaskIntoConstraints="NO" id="Kkp-Uo-IaM">
+                                                    <rect key="frame" x="8" y="8" width="53" height="53"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Kkp-Uo-IaM" secondAttribute="height" id="xf8-DX-LdR"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="jA9-vQ-2SC" firstAttribute="leading" secondItem="UTc-dg-mEy" secondAttribute="leadingMargin" id="EtL-Xs-kxW"/>
+                                                <constraint firstItem="jA9-vQ-2SC" firstAttribute="leading" secondItem="Kkp-Uo-IaM" secondAttribute="trailing" constant="10" id="9Ci-8T-bV8"/>
+                                                <constraint firstItem="Kkp-Uo-IaM" firstAttribute="bottom" secondItem="UTc-dg-mEy" secondAttribute="bottomMargin" id="Jgb-zJ-aWi"/>
                                                 <constraint firstItem="xeF-Ue-jqX" firstAttribute="centerY" secondItem="UTc-dg-mEy" secondAttribute="centerY" id="QWY-Nd-esG"/>
                                                 <constraint firstItem="jA9-vQ-2SC" firstAttribute="centerY" secondItem="UTc-dg-mEy" secondAttribute="centerY" id="Wma-OY-MJq"/>
                                                 <constraint firstItem="xeF-Ue-jqX" firstAttribute="trailing" secondItem="UTc-dg-mEy" secondAttribute="trailingMargin" id="kqk-V5-jUe"/>
-                                                <constraint firstItem="xeF-Ue-jqX" firstAttribute="leading" secondItem="jA9-vQ-2SC" secondAttribute="trailing" constant="8" id="qfS-kj-fgY"/>
+                                                <constraint firstItem="Kkp-Uo-IaM" firstAttribute="leading" secondItem="UTc-dg-mEy" secondAttribute="leadingMargin" id="nqs-Zw-xst"/>
+                                                <constraint firstItem="Kkp-Uo-IaM" firstAttribute="top" secondItem="UTc-dg-mEy" secondAttribute="topMargin" id="seL-pL-2Kx"/>
+                                                <constraint firstItem="xeF-Ue-jqX" firstAttribute="leading" secondItem="jA9-vQ-2SC" secondAttribute="trailing" constant="10" id="upa-wE-JM3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="acceptButton" destination="xeF-Ue-jqX" id="D2B-bw-CKp"/>
+                                            <outlet property="profileImage" destination="Kkp-Uo-IaM" id="MnM-V0-3ik"/>
                                             <outlet property="requesterNameLabel" destination="jA9-vQ-2SC" id="Pgy-56-tLH"/>
                                         </connections>
                                     </tableViewCell>
@@ -381,5 +392,6 @@
     <resources>
         <image name="checkIcon" width="288" height="288"/>
         <image name="foodImage" width="855" height="855"/>
+        <image name="profileImagedefault" width="840" height="840"/>
     </resources>
 </document>
