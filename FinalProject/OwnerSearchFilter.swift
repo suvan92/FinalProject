@@ -35,7 +35,7 @@ class OwnerSearchFilter: NSObject {
         var longDouble: Double = 0
         var userLocation: CLLocation?
         
-        if user.isSearchByAddress! {
+        //if user.isSearchByAddress! {
             if let latString = user.homeLatitude {
                 latDouble = Double(latString)!
             }
@@ -43,7 +43,7 @@ class OwnerSearchFilter: NSObject {
                 longDouble = Double(longString)!
             }
             userLocation = CLLocation(latitude: latDouble, longitude: longDouble)
-        } //else users current location
+        //} //else user's current location
         
         var array: [ItemWithDistance] = []
         for item in postArray {

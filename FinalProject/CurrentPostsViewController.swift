@@ -39,11 +39,14 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         self.navigationItem.title = vcTitle
         self.automaticallyAdjustsScrollViewInsets = false
+        let nCentre = NotificationCenter.default
+        nCentre.addObserver(forName: Notification.Name("popToPost"), object: nil, queue: nil, using: refresh)
         getDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        //getDataSource()
     }
     
     // MARK: - TableVew Methods-
@@ -116,7 +119,6 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Actions -
     
     @IBAction func addButtonTouched(_ sender: UIBarButtonItem) {
-        print("hello")
         performSegue(withIdentifier: createNewItemSegueIdentifier, sender: self)
     }
     
@@ -133,7 +135,19 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
                 foodRef.child(itemReferenceValue).observe( .value, with: { snap in
                     let foodItem = FoodItem(snapshot: snap)
-                    self.arrayOfPosts?.append(foodItem)
+                    if self.arrayOfPosts?.count == 0 {
+                        self.arrayOfPosts?.append(foodItem)
+                    } else {
+                        var isInArray: Bool = false
+                        for item in self.arrayOfPosts! {
+                            if item.dataBaseRef == foodItem.dataBaseRef {
+                                isInArray = true
+                            }
+                        }
+                        if !isInArray {
+                            self.arrayOfPosts?.append(foodItem)
+                        }
+                    }
                     self.tableView.reloadData()
                     self.checkImageRequired()
                 })
@@ -186,5 +200,9 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         self.postLabel?.centerYAnchor.constraint(equalTo: (self.postView?.centerYAnchor)!).isActive = true
         self.postLabel?.widthAnchor.constraint(equalToConstant: 200).isActive = true
         self.postView?.bringSubview(toFront: self.postLabel!)
+    }
+    
+    func refresh(notification: Notification) -> Void {
+        getDataSource()
     }
 }
