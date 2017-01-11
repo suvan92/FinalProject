@@ -34,6 +34,7 @@ class ActiveRequestsViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = requestVCTitle
+        self.automaticallyAdjustsScrollViewInsets = false
         getDataSource()
     }
     

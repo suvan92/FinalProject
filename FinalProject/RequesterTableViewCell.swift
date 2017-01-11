@@ -15,6 +15,8 @@ class RequesterTableViewCell: UITableViewCell {
     @IBOutlet weak var requesterNameLabel: UILabel!
     @IBOutlet weak var requesterDistanceLabel: NSLayoutConstraint!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
+    
     var cellRequestUser : RequestUser?
     var foodItem : FoodItem?
     //var user : RequestUser?
@@ -26,6 +28,16 @@ class RequesterTableViewCell: UITableViewCell {
         //user = requestUser
         requesterNameLabel.text = requestUser.username
         self.foodItem = foodItem
+        
+        let uid = requestUser.uid
+        ImageDownloader.getProfileImage(userId: uid, completion: { image in
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2
+            self.profileImage.clipsToBounds = true
+            self.profileImage.image = image
+            self.profileImage.contentMode = .scaleToFill
+            //    self.activityIndicator.stopAnimating()
+            //    self.activityIndicator.isHidden = true
+        })
     }
     
     // MARK: - Actions -

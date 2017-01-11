@@ -47,7 +47,6 @@ class RequestDetailViewController: UIViewController {
                 self.requestAlreadyMadeAlert()
             } else if error == nil {
                 self.requestCompleteAlert()
-                self.dismissDetailView()
             } else {
                 self.requestFailedAlert()
             }
@@ -61,12 +60,15 @@ class RequestDetailViewController: UIViewController {
     
     func requestCompleteAlert() {
         requestStatusAlert?.title = "Request successful!"
+        requestStatusAlert?.dismiss(animated: false, completion: nil)
+        self.perform(Selector("dismissDetailView"), with: nil, afterDelay: 1.0)
     }
     
     func requestAlreadyMadeAlert() {
         requestStatusAlert?.title = "You have already requested this item"
         let dismissAction = UIAlertAction(title: "Ok", style: .default) { action in
-            self.dismissDetailView()
+            self.requestStatusAlert?.dismiss(animated: false, completion: nil)
+            self.perform(Selector("dismissDetailView"), with: nil, afterDelay: 1.0)
         }
         requestStatusAlert?.addAction(dismissAction)
     }
@@ -75,15 +77,13 @@ class RequestDetailViewController: UIViewController {
         requestStatusAlert?.title = "Request failed"
         requestStatusAlert?.message = "Please try again later"
         let dismissAction = UIAlertAction(title: "Ok", style: .default) { action in
-            self.dismissDetailView()
+            self.requestStatusAlert?.dismiss(animated: false, completion: nil)
+            self.perform(Selector("dismissDetailView"), with: nil, afterDelay: 1.0)
         }
         requestStatusAlert?.addAction(dismissAction)
     }
     
     func dismissDetailView() {
-        requestStatusAlert?.dismiss(animated: true, completion: nil)
         let _ = navigationController?.popToRootViewController(animated: true)
     }
-    
-
 }

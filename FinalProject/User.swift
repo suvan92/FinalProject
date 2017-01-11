@@ -17,7 +17,7 @@ class User: NSObject {
     var email : String?
     var postedItems : [String]?
     var requestedItems : [String]?
-    var channels: [String]? //REMOVE
+    var channels: [String]?
     var username: String?
     var isSearchByAddress: Bool?
     var addressStreet: String?

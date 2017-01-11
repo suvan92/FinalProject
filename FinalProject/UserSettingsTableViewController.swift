@@ -102,6 +102,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
             self.locationManager = LocationManager()
             self.locationManager?.placemarkFromString(address: locationString, completion: { error in
                 if error != nil {
+                
                 } else {
                     self.locationLatitude = self.locationManager?.returnLatitudeString()
                     self.locationLongitude = self.locationManager?.returnLongitudeString()

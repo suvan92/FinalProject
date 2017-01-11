@@ -32,27 +32,18 @@ class TagTextFieldTableViewCell: UITableViewCell {
         
         // Events
         tagTextField.onDidAddTag = { field, tag in
-            if self.tags.count < 11 {
+            if self.tags.count < 7 {
                 let tag = tag.text as String
                 self.tags.append(tag)
             } else {
-                self.maximumTagsAlert()
-                //send notification
+                let nCentre = NotificationCenter.default
+                let notification = Notification(name: Notification.Name(rawValue: "tagMaximumReached"), object: self, userInfo: nil)
+                nCentre.post(notification)
             }
         }
         
         tagTextField.onDidRemoveTag = { _ in
             self.tags.removeLast()
         }
-    }
-    
-    //put in VC
-    func maximumTagsAlert() {
-        let postAlert = UIAlertController(title: "Sorry", message: "You have used your maximum available number of tags", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-            postAlert.dismiss(animated: true, completion: nil)
-        }
-        postAlert.addAction(dismissAction)
-        //present(postAlert!, animated: true, completion: nil)
     }
 }

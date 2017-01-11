@@ -83,5 +83,8 @@ class PostPendingRequestsViewController: UIViewController, UITableViewDelegate, 
             return
         }
         let _ = navigationController?.popViewController(animated: true)
+        let nCentre = NotificationCenter.default
+        let notification = Notification(name: Notification.Name(rawValue: "popToPost"), object: self, userInfo: nil)
+        nCentre.post(notification)
     }
 }

@@ -27,9 +27,11 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         setPostByLabel()
         setUpGestures()
         tabcell.setup()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 140
-//        actual height not important. Just for resizing cell for the tags.
+        let nCentre = NotificationCenter.default
+        nCentre.addObserver(forName: Notification.Name("tagMaximumReached"), object: nil, queue: nil, using: postTagAlert)
+//        Attempt at auto resize cells for tags... not working.
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 140
     }
     
     func setPostByLabel() {
@@ -139,20 +141,25 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         let itemDescription = foodDescription.text!
         let user = User.sharedInstance
         let ownerID = user.uid!
+        let longitude = user.homeLongitude
+        let latitude = user.homeLatitude
         let tags = createTagsArray(itemName: itemName)
-        let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription, tags: tags)
-        
-        FoodItem.saveToDatabase(item: newItem) { itemID in
-            user.addFoodItem(withID: itemID, completion: { (error) in
-                if error == nil {
-                    let tagManager = TagManager()
-                    tagManager.saveToDatabase(foodItem: newItem, completion: {
-                        self.dismissView()
-                    })
-                } else {
-                    self.showErrorAlert()
-                }
-            })
+        if latitude != nil && longitude != nil {
+            let newItem = FoodItem(name: itemName, owner: ownerID, photo: imageName, description: itemDescription, tags: tags, latitude: latitude!, longitude: longitude!)
+            FoodItem.saveToDatabase(item: newItem) { itemID in
+                user.addFoodItem(withID: itemID, completion: { (error) in
+                    if error == nil {
+                        let tagManager = TagManager()
+                        tagManager.saveToDatabase(foodItem: newItem, completion: {
+                            self.dismissView()
+                        })
+                    } else {
+                        self.showErrorAlert()
+                    }
+                })
+            }
+        } else {
+           showLocationErrorAlert()
         }
     }
     
@@ -183,4 +190,25 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
         }
         postAlert?.addAction(dismissAction)
     }
+    
+    //MARK: Post alert if tag maximum reached
+    func postTagAlert(notification: Notification) -> Void {
+        postAlert = UIAlertController(title: "Sorry", message: "You have used your maximum available number of tags", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            self.postAlert?.dismiss(animated: true, completion: nil)
+        }
+        postAlert?.addAction(dismissAction)
+        present(postAlert!, animated: true, completion: nil)
+    }
+    
+    //MARK: No post address alert
+    func showLocationErrorAlert() {
+        postAlert!.title = "No address set"
+        postAlert!.message = "Please complete your address in user settings and try again"
+        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            self.postAlert!.dismiss(animated: true, completion: nil)
+        }
+        postAlert?.addAction(dismissAction)
+    }
+
 }
