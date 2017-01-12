@@ -21,6 +21,8 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     var postView: UIView?
     var postLabel: UILabel?
     
+    var stringItems: [String] = []
+    
     struct Objects {
         var sectionName: String?
         var sectionObjects: [Channel]?
@@ -132,6 +134,7 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
             for item in snapshot.children {
                 let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
                 foodRef.child(itemReferenceValue).observe(.value, with: { snap in
+                    print("POST SNAPSHOT RETURNED")
                     let foodItem = FoodItem(snapshot: snap)
                     self.getPostChannel(foodItem: foodItem)
                 })
@@ -170,13 +173,16 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
             self.reqTotalCount = Int(snapshot.childrenCount)
             if self.reqTotalCount == 0 {
                 self.checkImageRequired()
-            }
-            for item in snapshot.children {
-                let itemReferenceValue = ((item as! FIRDataSnapshot).value as! String)
-                foodRef.child(itemReferenceValue).observe(.value, with: { snap in
-                    let foodItem = FoodItem(snapshot: snap)
-                    self.getRequestChannel(foodItem: foodItem)
-                })
+            } else {
+                for item in snapshot.children {
+                    let stringItem = ((item as! FIRDataSnapshot).value as! String)
+                    //self.stringItems.append(stringItem)
+                    foodRef.child(stringItem).observe(.value, with: { snap in
+                        print("REQ SNAPSHOT RETURNED")
+                        let foodItem = FoodItem(snapshot: snap)
+                        self.getRequestChannel(foodItem: foodItem)
+                    })
+                }
             }
         })
     }
@@ -184,23 +190,35 @@ class ActiveMessagesViewController: UIViewController, UITableViewDelegate, UITab
     func getRequestChannel(foodItem: FoodItem) {
         let item = foodItem
         let ref = item.channel
+        print("REF IS: \(ref)")
         if ref != "" {
             getChannel(with: ref, completion: { (channel) in
+                print("ENTERS GET CHANNEL")
                 let user = User.sharedInstance
                 if channel.requesterId == user.uid {
+                    print("REQ HAS CHAT")
                     self.requestedItemsChannels?.append(channel)
                     if self.reqTotalCount == self.requestedItemsChannels?.count {
                         self.loadRequestData()
                         self.tableView.reloadData()
                     }
                 } else {
+                    print("NO CHAT")
                     self.reqTotalCount -= 1
                     if self.reqTotalCount == self.requestedItemsChannels?.count {
                         self.loadRequestData()
                         self.tableView.reloadData()
                     }
                 }
+                self.checkImageRequired()
             })
+        } else {
+            self.reqTotalCount -= 1
+            if self.reqTotalCount == self.requestedItemsChannels?.count {
+                self.loadRequestData()
+                self.tableView.reloadData()
+                checkImageRequired()
+            }
         }
     }
     
