@@ -72,16 +72,21 @@ class CurrentPostsViewController: UIViewController, UITableViewDelegate, UITable
         if (arrayOfPosts?[indexPath.row].requesterChosen)! {
             let destStory = UIStoryboard.init(name: "Messages", bundle: nil)
             let dest = destStory.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
-            let channelId = selectedItem?.channel
-            getChannel(with: channelId!, completion: { (channel) in
-                dest.foodItem = self.selectedItem
-                dest.channel = channel
-                dest.channelRef = channel.databaseRef
-                dest.senderDisplayName = channel.ownerUsername
-                dest.title = channel.requesterUsername
-                self.navigationController?.pushViewController(dest, animated: true)
+            var updateFoodItem: FoodItem?
+            let ref = self.selectedItem?.dataBaseRef
+            foodRef.child(ref!).observe(.value, with: { snap in
+                updateFoodItem = FoodItem(snapshot: snap)
+                let channelId = updateFoodItem?.channel
+                self.getChannel(with: channelId!, completion: { (channel) in
+                    dest.foodItem = self.selectedItem
+                    dest.channel = channel
+                    dest.channelRef = channel.databaseRef
+                    dest.senderDisplayName = channel.ownerUsername
+                    dest.title = channel.requesterUsername
+                    self.navigationController?.pushViewController(dest, animated: true)
+                })
             })
-        } else {
+                    } else {
             if (selectedItem?.requesters?.count) != nil {
                 performSegue(withIdentifier: pendingPostsVCSegueIdentifier, sender: self)
             }
