@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class UserSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+class UserSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -32,6 +33,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     var hasLoadedSettings: Bool = false
     let user: User = User.sharedInstance
     var postAlert : UIAlertController?
+    let cLLocMan = CLLocationManager()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,7 +49,9 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2
         self.imageView.clipsToBounds = true
         if isFirstVisit {
-            welcomeAlert()
+            //welcomeAlert()
+            cLLocMan.delegate = self
+            cLLocMan.requestWhenInUseAuthorization()
         }
     }
     
@@ -205,14 +209,14 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
         postAlert?.addAction(dismissAction)
     }
     
-    func welcomeAlert() {
-        postAlert = UIAlertController(title: "Welcome", message: "Please complete your user profile to help you share with other users in your area.", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-            self.postAlert!.dismiss(animated: true, completion: nil)
-        }
-        postAlert?.addAction(dismissAction)
-        present(postAlert!, animated: true, completion: nil)
-    }
+//    func welcomeAlert() {
+//        postAlert = UIAlertController(title: "Welcome", message: "Please complete your user profile to help you share with other users in your area.", preferredStyle: .alert)
+//        let dismissAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+//            self.postAlert!.dismiss(animated: true, completion: nil)
+//        }
+//        postAlert?.addAction(dismissAction)
+//        present(postAlert!, animated: true, completion: nil)
+//    }
     
 
     func setUpViews() {
@@ -222,7 +226,7 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
             self.isSearchByAddress = user.isSearchByAddress!
         }
         if isSearchByAddress {
-            searchRelativeLabel.text = "Search relative to home address"
+            searchRelativeLabel.text = "Search from home address"
             searchRelativeSwitch.setOn(false, animated: true)
         } else {
             searchRelativeLabel.text = "Search relative to current location"
