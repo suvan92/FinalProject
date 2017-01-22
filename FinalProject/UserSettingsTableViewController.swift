@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+let cLLocMan = CLLocationManager()
+
 class UserSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -33,7 +35,6 @@ class UserSettingsTableViewController: UITableViewController, UIImagePickerContr
     var hasLoadedSettings: Bool = false
     let user: User = User.sharedInstance
     var postAlert : UIAlertController?
-    let cLLocMan = CLLocationManager()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

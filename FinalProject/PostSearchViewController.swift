@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 let searchCellReuseIdentifier = "searchResultCell"
 let showRequestDetailSegueIdentifier = "showRequestDetail"
 
-class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
     // MARK: - Properties -
 
@@ -19,10 +20,14 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
     @IBOutlet weak var collectionView: UICollectionView!
     var dataSource : [ItemWithDistance] = []
     var selectedFoodItem : FoodItem?
-    
+    var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cLLocMan.delegate = self
+        cLLocMan.desiredAccuracy = kCLLocationAccuracyBest
+        cLLocMan.requestWhenInUseAuthorization()
+        cLLocMan.startUpdatingLocation()
     }
     
     // MARK: - Search Bar Delegate Methods -
@@ -33,9 +38,11 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
         let searchManager = SearchManager()
         searchManager.searchForItems(searchArray: searchArray, completion: { foodItems in
             let firstFilter = OwnerSearchFilter.removePostersItems(postArray: foodItems)
-            let secondFilter = OwnerSearchFilter.itemsWithinRadius(postArray: firstFilter)
-            self.dataSource = secondFilter
-            self.collectionView.reloadData()
+            if self.currentLocation != nil {
+                let secondFilter = OwnerSearchFilter.itemsWithinRadius(postArray: firstFilter, currentLocation: self.currentLocation!)
+                self.dataSource = secondFilter
+                self.collectionView.reloadData()
+            }
         })
         view.endEditing(true)
     }
@@ -71,6 +78,16 @@ class PostSearchViewController: UIViewController, UISearchBarDelegate, UICollect
             if let selectedFoodItem = selectedFoodItem {
                 destinationVC.foodItem = selectedFoodItem
             }
+        }
+    }
+    
+    //MARK: CLLocationManagerDelegate methods
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.first
+        
+        if currentLocation != nil {
+            cLLocMan.delegate = nil
+            cLLocMan.stopUpdatingLocation()
         }
     }
 

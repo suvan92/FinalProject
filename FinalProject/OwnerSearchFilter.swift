@@ -14,9 +14,7 @@ struct ItemWithDistance {
     var distance: Double?
 }
 
-class OwnerSearchFilter: NSObject {
-    
-    
+class OwnerSearchFilter: NSObject, CLLocationManagerDelegate {
     
     class func removePostersItems(postArray: [FoodItem]) -> [FoodItem] {
         let currentUser = User.sharedInstance
@@ -29,13 +27,13 @@ class OwnerSearchFilter: NSObject {
         return result
     }
     
-    class func itemsWithinRadius(postArray: [FoodItem]) -> [ItemWithDistance] {
+    class func itemsWithinRadius(postArray: [FoodItem], currentLocation: CLLocation) -> [ItemWithDistance] {
         let user = User.sharedInstance
         var latDouble: Double = 0
         var longDouble: Double = 0
         var userLocation: CLLocation?
         
-        //if user.isSearchByAddress! {
+        if user.isSearchByAddress! {
             if let latString = user.homeLatitude {
                 latDouble = Double(latString)!
             }
@@ -43,7 +41,10 @@ class OwnerSearchFilter: NSObject {
                 longDouble = Double(longString)!
             }
             userLocation = CLLocation(latitude: latDouble, longitude: longDouble)
-        //} //else user's current location
+        } else {
+            //else user's current location
+            userLocation = currentLocation
+        }
         
         var array: [ItemWithDistance] = []
         for item in postArray {
