@@ -172,6 +172,7 @@ class NewPostTableViewController: UITableViewController, UIImagePickerController
     
     func showPostingAlert() {
         postAlert = UIAlertController(title: "Posting...", message: nil, preferredStyle: .alert)
+        postAlert!.message = ""
         present(postAlert!, animated: true, completion: nil)
     }
     
