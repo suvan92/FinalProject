@@ -11,6 +11,4 @@ Frameworks: Firebase, JSQMessenger, CLLocation, WSTags, UIImagePicker
 <img width="188" alt="messagessmall" src="https://cloud.githubusercontent.com/assets/21972121/22039436/23bce372-dcb4-11e6-810a-98d02af0c588.png">
 <img width="188" alt="chatsmall" src="https://cloud.githubusercontent.com/assets/21972121/22039455/381d90be-dcb4-11e6-8e8d-5042da707f01.png">
 
-See a demo at: [linkname](https://https://www.youtube.com/embed/ASJSqAyLaDU)
-
-
+See the demo here: [Share](https://www.youtube.com/watch?v=ASJSqAyLaDU&feature=youtu.be)
