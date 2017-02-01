@@ -1,6 +1,12 @@
 # Share
 
-Share is a social networking platform that aims to mitigate food waste. Users post and request food items within their chosen radius and connect via a chat messenger. Language: Swift. Frameworks: Firebase, JSQMessenger, CLLocation, WSTags, UIImagePicker
+Share is a social networking platform that aims to mitigate food waste. Users post and request food items within their chosen radius and connect via a chat messenger. 
+
+Language: Swift
+
+Frameworks: Firebase, JSQMessenger, CLLocation, WSTags, UIImagePicker
+
+See the demo here: [Share](https://www.youtube.com/watch?v=ASJSqAyLaDU&feature=youtu.be)
 
 <img width="188" alt="loginsmall" src="https://cloud.githubusercontent.com/assets/21972121/22038409/eac1a9b2-dcaf-11e6-9dd6-a9d2e0ef1cb5.png">
 <img width="188" alt="usersettingssmall" src="https://cloud.githubusercontent.com/assets/21972121/22039362/d8c1ca86-dcb3-11e6-866c-5ee981102af4.png">
@@ -10,4 +16,4 @@ Share is a social networking platform that aims to mitigate food waste. Users po
 <img width="188" alt="messagessmall" src="https://cloud.githubusercontent.com/assets/21972121/22039436/23bce372-dcb4-11e6-810a-98d02af0c588.png">
 <img width="188" alt="chatsmall" src="https://cloud.githubusercontent.com/assets/21972121/22039455/381d90be-dcb4-11e6-8e8d-5042da707f01.png">
 
-See the demo here: [Share](https://www.youtube.com/watch?v=ASJSqAyLaDU&feature=youtu.be)
+
