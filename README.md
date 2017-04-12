@@ -6,7 +6,7 @@ Language: Swift
 
 Frameworks: Firebase, JSQMessenger, CLLocation, WSTags, UIImagePicker
 
-See the demo here: [Share](https://www.youtube.com/watch?v=ASJSqAyLaDU&feature=youtu.be)
+See the demo here: [Share](https://www.youtube.com/watch?v=ePpliWTmcyI)
 
 <img width="188" alt="loginsmall" src="https://cloud.githubusercontent.com/assets/21972121/22038409/eac1a9b2-dcaf-11e6-9dd6-a9d2e0ef1cb5.png">
 <img width="188" alt="usersettingssmall" src="https://cloud.githubusercontent.com/assets/21972121/22039362/d8c1ca86-dcb3-11e6-866c-5ee981102af4.png">
